@@ -11,4 +11,13 @@
 	<bean id="chefcalendar" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/pages/chefcalendar.jsp"></property>
 	</bean>
+	<bean id="discusstest" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/essaypages/discusstest.jsp"></property>
+	</bean>
+	<bean id="essaytest" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/essaypages/essaytest.jsp"></property>
+	</bean>
+	<bean id="essaytitle" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/essaypages/essaytitle.jsp"></property>
+	</bean>
 </beans>

@@ -47,5 +47,9 @@ public class EssayDAOHibernate implements EssayDAO {
 			return null;
 		}
 	}
-
+	@Override
+	public List<EssayBean> listAll() {
+		Query listall = this.getSession().createQuery("from EssayBean where e_status='0'");
+		return (List<EssayBean>) listall.getResultList();
+	}
 }

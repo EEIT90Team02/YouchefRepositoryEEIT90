@@ -10,5 +10,6 @@ public interface EssayDAO {
 	List<EssayBean> selectAll();
 
 	EssayBean update(EssayBean bean);
-
+	
+	List<EssayBean> listAll();
 }

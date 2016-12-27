@@ -84,4 +84,8 @@ public class EssayService {
 	private EssayBean update(EssayBean bean){
 		return essayDao.update(bean);
 	}
+	public List<EssayBean> listAll() {
+		List<EssayBean> list = essayDao.listAll();
+		return list;
+	}
 }

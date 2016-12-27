@@ -28,11 +28,11 @@ public class ReviewService {
 			
 			//insert
 			ReviewBean bean = new ReviewBean();
-			bean.setMchefBean(service.mchefDao.select(1002));
-			bean.setChefBean(service.chefDao.select(4010));
-			bean.setStars(6d);
-			bean.setOrderNum(2);
-			System.out.println(service.insert(bean));
+//			bean.setMchefBean(service.mchefDao.select(1002));
+//			bean.setChefBean(service.chefDao.select(4010));
+//			bean.setStars(6d);
+//			bean.setOrderNum(2);
+//			System.out.println(service.insert(bean));
 			
 			//update
 //			ReviewBean bean = new ReviewBean();
@@ -64,6 +64,18 @@ public class ReviewService {
 //			bean.setOrderNum(1);
 //			System.out.println("ReviewBean = " + bean);
 //			service.insert(bean);
+			//select MchefandChef
+//			ReviewDAO reviewDAO = (ReviewDAO) context.getBean("reviewDao");
+//			System.out.println(reviewDAO.MchefStars(1001));
+//			System.out.println(reviewDAO.MchefStars(1002));
+//			System.out.println(reviewDAO.MchefStars(1003));
+//			System.out.println(reviewDAO.MchefStars(1004));
+//			System.out.println(reviewDAO.MchefStars(1005));			
+//			System.out.println(reviewDAO.ChefStars(4003));
+//			System.out.println(reviewDAO.ChefStars(4004));
+//			System.out.println(reviewDAO.ChefStars(4005));
+//			System.out.println(reviewDAO.ChefStars(4006));
+//			System.out.println(reviewDAO.ChefStars(4007));
 			
 			
 			
@@ -88,7 +100,12 @@ public class ReviewService {
 	private ReviewBean update(ReviewBean bean){
 		return reviewDao.update(bean);
 	}
-	
+	private Double MchefStars(Integer mc_id){
+		return reviewDao.MchefStars(mc_id);
+	}
+	private Double ChefStars(Integer c_id) {
+		return reviewDao.ChefStars(c_id);
+	}
 //	public ReviewBean reviewMchefInput(ReviewBean reviewBean){
 //		Integer mc_id = reviewBean.getMchefBean().getMc_id();
 //		//確認table裡有沒有這筆資料
