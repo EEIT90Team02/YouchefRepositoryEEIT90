@@ -1,15 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
-	<bean id="leave" class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/pages/leave.jsp"></property>
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<bean id="chef"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/getchef.jsp"></property>
 	</bean>
-	<bean id="chefcalendar" class="org.springframework.web.servlet.view.InternalResourceView">
+	<bean id="mchef"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/getmchef.jsp"></property>
+	</bean>
+	<bean id="dish.detail"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/dishdisplay/mchef-dish-detail.jsp"></property>
+	</bean>
+	<bean id="mchefapply"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/mchefapply.jsp"></property>
+	</bean>
+	<bean id="member"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/pages/getmembertest.jsp"></property>
+	</bean>
+	<bean id="chefcalendar"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<!-- <bean id="chefcalendar" class="org.springframework.web.servlet.view.RedirectView"> -->
+		<!-- <property name="contextRelative" value="true"></property> -->
 		<property name="url" value="/pages/chefcalendar.jsp"></property>
 	</bean>
-	
+	<bean id="mchefcalendar" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/pages/mchefcalendar.jsp"></property>
+	</bean>
+	<bean id="applysuccess"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<!-- <property name="contextRelative" value="true"></property> -->
+		<property name="url" value="/pages/applysuccess.jsp"></property>
+	</bean>
+	<bean id="applyfailed"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<!-- <property name="contextRelative" value="true"></property> -->
+		<property name="url" value="/pages/applyfailed.jsp"></property>
+	</bean>
+	<bean id="mchefdishdisplay"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<!-- <property name="contextRelative" value="true"></property> -->
+		<property name="url" value="/dishdisplay/dishdisplayallmchef.jsp"></property>
+	</bean>
+
 </beans>

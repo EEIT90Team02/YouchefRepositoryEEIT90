@@ -1,9 +1,7 @@
 package model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +60,18 @@ public class MemberService {
 	}
 	@Autowired
 	private MemberDAO memberDao;
+	
+	public List<MemberBean> select(){
+		return memberDao.select();
+	}
+	
+	public boolean update(MemberBean bean){
+		return memberDao.update(bean);
+	}
+	
+	public MemberBean select(Integer m_id){
+		return memberDao.select(m_id);
+	}
 	
 	public boolean check(String email){
 		MemberBean bean = memberDao.select(email);

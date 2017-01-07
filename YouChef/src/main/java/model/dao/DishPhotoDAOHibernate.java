@@ -61,4 +61,9 @@ public class DishPhotoDAOHibernate implements DishPhotoDAO {
 		return list;
 	}
 
+	@Override
+	public DishPhotoBean selectByDpid(Integer dp_id) {
+		return this.getSession().get(DishPhotoBean.class, dp_id);
+	}
+
 }

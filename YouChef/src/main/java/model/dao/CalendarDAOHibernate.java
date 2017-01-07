@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -40,6 +42,7 @@ public class CalendarDAOHibernate implements CalendarDAO {
 		return (CalendarBean) query.getResultList().get(0);
 	}
 
+	//with date
 	private final String SELECT_CHEF = "from CalendarBean where c_id=:c_id and theMonth=:date";
 
 	@Override
@@ -51,9 +54,21 @@ public class CalendarDAOHibernate implements CalendarDAO {
 		System.out.println(query.getResultList().size());
 		if (0 == query.getResultList().size())
 			return null;
-		else
-			System.out.println((CalendarBean) query.getResultList().get(0));
 		return (CalendarBean) query.getResultList().get(0);
+	}
+	
+	//without date
+	private final String SELECT_CHEF_NO_DATE = "from CalendarBean where c_id=:c_id";
+
+	@Override
+	public List<CalendarBean> selectChef(int c_id) {
+		Query query = this.getSession().createQuery(SELECT_CHEF_NO_DATE);
+		query.setParameter("c_id", c_id);
+		System.out.println(query.getResultList().size());
+		if (0 == query.getResultList().size())
+			return null;
+		else
+			return (List<CalendarBean>) query.getResultList();
 	}
 
 	@Override
@@ -61,12 +76,32 @@ public class CalendarDAOHibernate implements CalendarDAO {
 		boolean b = false;
 		try {
 			getSession().clear();
+			System.out.println("bean date29 = " + bean.getDate29());
 			this.getSession().update(bean);
-			return selectMchef(bean.getMchefBean().getMc_id(), bean.getTheMonth());
+			System.out.println("bean date29 = " + bean.getDate29());
+			if(null == bean.getChefBean().getC_id()){
+				System.out.println("return mchef");
+				return selectMchef(bean.getMchefBean().getMc_id(), bean.getTheMonth());
+			}
+			else{
+				System.out.println("return chef");
+				return selectChef(bean.getChefBean().getC_id(), bean.getTheMonth());
+			}
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
+	}
+
+	private final String SELECT_MCHEF_NO_DATE = "from CalendarBean where mc_id=:mc_id";
+	@Override
+	public List<CalendarBean> selectMchef(int mc_id) {
+		Query query = this.getSession().createQuery(SELECT_MCHEF_NO_DATE);
+		query.setParameter("mc_id", mc_id);
+		if (0 == query.getResultList().size())
+			return null;
+		else
+			return (List<CalendarBean>) query.getResultList();
 	}
 
 }

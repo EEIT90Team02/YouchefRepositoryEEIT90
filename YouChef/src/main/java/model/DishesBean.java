@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -20,15 +21,16 @@ import javax.persistence.Table;
 public class DishesBean implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private int d_id;
+	private Integer d_id;
 	private MchefBean mchefBean;
-	private double price; 
+	private Double price; 
 	private	String d_name;
 	private String d_briefing;
 	private	String menu;
 	private TypeBean typeBean;
 	private String d_status;
 	private Set<OrderDishesBean> orderDishes = new HashSet<OrderDishesBean>();
+	private Set<DishPhotoBean> dishPhotoBean;
 	@Override
 	public String toString() {
 		return "DishesBean [d_id=" + d_id + ", mchefBean=" + mchefBean + ", price=" + price + ", d_name=" + d_name
@@ -37,10 +39,10 @@ public class DishesBean implements java.io.Serializable {
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getD_id() {
+	public Integer getD_id() {
 		return d_id;
 	}
-	public void setD_id(int d_id) {
+	public void setD_id(Integer d_id) {
 		this.d_id = d_id;
 	}
 	public double getPrice(){
@@ -100,4 +102,15 @@ public class DishesBean implements java.io.Serializable {
 	public void setOrderDishes(Set<OrderDishesBean> orderDishes) {
 		this.orderDishes = orderDishes;
 	}
+	
+	
+	@OneToMany
+	@JoinColumn(name = "dp_id")
+	public Set<DishPhotoBean> getDishPhotoBean() {
+		return this.dishPhotoBean;
+	}
+	public void setDishPhotoBean(Set<DishPhotoBean> dishPhotoBean) {
+		this.dishPhotoBean = dishPhotoBean;
+	}
+
 }

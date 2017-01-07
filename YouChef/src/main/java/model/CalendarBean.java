@@ -1,5 +1,8 @@
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "calendar")
 public class CalendarBean implements java.io.Serializable {
@@ -58,43 +64,106 @@ public class CalendarBean implements java.io.Serializable {
 	
 	@Override
 	public String toString() {
-		return "CalendarBean[cal_id = " + cal_id + ",  mc_id = " + mchefBean
-				+ ", date1 = " + date1
-				+ ", date2 = " + date2
-				+ ", date3 = " + date3
-				+ ", date4 = " + date4
-				+ ", date5 = " + date5
-				+ ", date6 = " + date6
-				+ ", date7 = " + date7
-				+ ", date8 = " + date8
-				+ ", date9 = " + date9
-				+ ", date10 = " + date10
-				+ ", date11 = " + date11
-				+ ", date12 = " + date12
-				+ ", date13 = " + date13
-				+ ", date14 = " + date14
-				+ ", date15 = " + date15
-				+ ", date16 = " + date16
-				+ ", date17 = " + date17
-				+ ", date18 = " + date18
-				+ ", date19 = " + date19
-				+ ", date20 = " + date20
-				+ ", date21 = " + date21
-				+ ", date22 = " + date22
-				+ ", date23 = " + date23
-				+ ", date24 = " + date24
-				+ ", date25 = " + date25
-				+ ", date26 = " + date26
-				+ ", date27 = " + date27
-				+ ", date28 = " + date28
-				+ ", date29 = " + date29
-				+ ", date30 = " + date30
-				+ ", date31 = " + date31
-				+ ", theMonth = " + theMonth
-				+ ", maxNum = " + maxNum
-				+"]";
+		Integer[] arr = {date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, date11, date12, date13, date14, date15, date16, date17, date18, date19, date20, date21, date22, date23, date24, date25, date26, date27, date28, date29, date30, date31};
+		StringBuilder sb = new StringBuilder("");
+//		int count = 1;
+		String title = null;
+		String start_time = "";
+		String end_time = "";
+		String eventColor = "";
+//		System.out.println("arr = " + arr);
+//		int ii = 0;
+		for(int i = 0; i < arr.length;i++){
+//			ii++;
+//			System.out.println("i = " + i);
+			if(4 != arr[i]){
+				switch(arr[i]){
+				case 0:
+					start_time = "12:00:00";
+					end_time = "21:00:00";
+					if(checkDate(this.theMonth + String.format("%02d", i + 1))){
+						title = "請假";
+						eventColor = "#1884A2";
+					}else{
+						title = "請假(已過期)";
+						eventColor = "#848484";
+					}
+					break;
+				case 1:
+					title = "中午預訂";
+					start_time = "12:00:00";
+					end_time = "15:00:00";
+					eventColor = "green";
+					break;
+				case 2:
+					title = "晚上預訂";
+					start_time = "18:00:00";
+					end_time = "21:00:00";
+					eventColor = "green";
+					break;
+				case 3:
+					title = "預訂已滿";
+					start_time = "12:00:00";
+					end_time = "21:00:00";
+					eventColor = "#DF013A";
+					break;
+				}
+				sb.append(theMonth.substring(0, 4)).append("-").append(theMonth.substring(4)).append("-").append(String.format("%02d", i + 1)).append("_").append(" ").append(start_time).append("_").append(" ").append(end_time).append("_").append(title).append("_").append(eventColor).append(",");
+			}
+//			System.out.println("ii = " + ii);
+//			count++;
+		}
+		System.out.println();
+		return sb.toString().substring(0, sb.length() - 1);
+//		return "CalendarBean[cal_id = " + cal_id + ",  mc_id = " + mchefBean
+//				+ ", date1 = " + date1
+//				+ ", date2 = " + date2
+//				+ ", date3 = " + date3
+//				+ ", date4 = " + date4
+//				+ ", date5 = " + date5
+//				+ ", date6 = " + date6
+//				+ ", date7 = " + date7
+//				+ ", date8 = " + date8
+//				+ ", date9 = " + date9
+//				+ ", date10 = " + date10
+//				+ ", date11 = " + date11
+//				+ ", date12 = " + date12
+//				+ ", date13 = " + date13
+//				+ ", date14 = " + date14
+//				+ ", date15 = " + date15
+//				+ ", date16 = " + date16
+//				+ ", date17 = " + date17
+//				+ ", date18 = " + date18
+//				+ ", date19 = " + date19
+//				+ ", date20 = " + date20
+//				+ ", date21 = " + date21
+//				+ ", date22 = " + date22
+//				+ ", date23 = " + date23
+//				+ ", date24 = " + date24
+//				+ ", date25 = " + date25
+//				+ ", date26 = " + date26
+//				+ ", date27 = " + date27
+//				+ ", date28 = " + date28
+//				+ ", date29 = " + date29
+//				+ ", date30 = " + date30
+//				+ ", date31 = " + date31
+//				+ ", theMonth = " + theMonth
+//				+ ", maxNum = " + maxNum
+//				+"]";
 	}
 	
+	private boolean checkDate(String time) {
+		// TODO Auto-generated method stub
+		Calendar today = Calendar.getInstance();
+		today.set(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
+		System.out.println("today = " + new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(today.getTimeInMillis())));
+		Calendar date = Calendar.getInstance();
+//		date.set(Integer.parseInt(time.substring(0, 4)), Integer.parseInt(time.substring(4, 6)), Integer.parseInt(time.substring(6)));
+		date.set(Integer.parseInt(time.substring(0, 4)), Integer.parseInt(time.substring(4, 6))-1, Integer.parseInt(time.substring(6)));
+		System.out.println("date = " + new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(date.getTimeInMillis())));
+		return today.getTimeInMillis() <= date.getTimeInMillis();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getCal_id() {

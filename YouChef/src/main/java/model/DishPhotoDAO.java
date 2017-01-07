@@ -7,4 +7,5 @@ public interface DishPhotoDAO {
 	public List<DishPhotoBean> selectByMcid(Integer mc_id);
 	public List<DishPhotoBean> selectByDid(Integer d_id);
 	public List<DishPhotoBean> selectByMcidAndDid(Integer mc_id, Integer d_id);
+	public DishPhotoBean selectByDpid(Integer dp_id);
 }

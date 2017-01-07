@@ -24,7 +24,7 @@ public class VenueBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private int v_id;    
+	private Integer v_id;    
 	private String v_name;    
 	private String v_address; 
 	private String v_status;
@@ -36,10 +36,10 @@ public class VenueBean implements Serializable{
 	@Id
 	@Column(name = "v_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)   
-	public int getV_id() {
+	public Integer getV_id() {
 		return v_id;
 	}
-	public void setV_id(int v_id) {
+	public void setV_id(Integer v_id) {
 		this.v_id = v_id;
 	}
 	@Column(name = "v_name")

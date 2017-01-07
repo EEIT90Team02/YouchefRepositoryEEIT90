@@ -84,6 +84,10 @@ public class DishPhotoService {
 		return list;
 	}
 	
+	public DishPhotoBean selectByDpid(Integer dp_id){
+		return dishPhotoDao.selectByDpid(dp_id);
+	}
+	
 	public List<DishPhotoBean> selectByMcidAndDid(Integer mc_id, Integer d_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByMcidAndDid(mc_id, d_id);

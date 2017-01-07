@@ -151,6 +151,11 @@ public class ChefDAOHibernate implements ChefDAO {
 		}
 		return null;
 	}
+	@Override
+	public List<ChefBean> selectChefByType(int t_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 

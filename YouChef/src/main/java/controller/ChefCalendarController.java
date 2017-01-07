@@ -23,7 +23,7 @@ import model.misc.LeaveBean;
 
 @Controller
 @RequestMapping(path = { "/pages/chefcalendar.controller" })
-public class ChefCalendar {
+public class ChefCalendarController {
 	@Autowired
 	ChefService chefService;
 	

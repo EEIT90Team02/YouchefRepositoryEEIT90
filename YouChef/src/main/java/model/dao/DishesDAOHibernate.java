@@ -82,17 +82,17 @@ public class DishesDAOHibernate implements DishesDAO {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DishesBean> selectAll() {
-		Query query = this.getSession().createQuery("from DishesBean");
-		return (List<DishesBean>) query.getResultList();
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<DishesBean> selectAllDishes() {
+//		Query query = this.getSession().createQuery("from DishesBean");
+//		return (List<DishesBean>) query.getResultList();
+//	}
 
-	@Override
-	public DishesBean select(int d_id) {
-		return getSession().get(DishesBean.class, d_id);
-	}
+//	@Override
+//	public DishesBean selectDishById(int)(int d_id) {
+//		return getSession().get(DishesBean.class, d_id);
+//	}
 
 	@Override
 	public DishesBean update(String d_name, String d_briefing, double price, String menu, TypeBean typeBean,
@@ -109,30 +109,59 @@ public class DishesDAOHibernate implements DishesDAO {
 		return update;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
+//	@SuppressWarnings("unchecked")
+//	@Override
 	public List<DishesBean> selectType(int t_id) {
 		Query query = this.getSession().createQuery("from DishesBean where t_id=?");
 		query.setParameter(0, t_id);
 		return (List<DishesBean>) query.getResultList();
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<DishesBean> selectMchef(int mc_id) {
+//		Query query = this.getSession().createQuery("from DishesBean where mc_id=?");
+//		query.setParameter(0, mc_id);
+//		return (List<DishesBean>) query.getResultList();
+//	}
+
+//	@Override
+//	public DishesBean update(DishesBean dishesBean) {
+//		try {
+//			this.getSession().update(dishesBean);
+//			return dishesBean;
+//		} catch (RuntimeException e) {
+//			return null;
+//		}
+//	}
+
 	@Override
-	public List<DishesBean> selectMchef(int mc_id) {
-		Query query = this.getSession().createQuery("from DishesBean where mc_id=?");
-		query.setParameter(0, mc_id);
-		return (List<DishesBean>) query.getResultList();
+	public List<DishesBean> selectAllDishes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DishesBean update(DishesBean dishesBean) {
-		try {
-			this.getSession().update(dishesBean);
-			return dishesBean;
-		} catch (RuntimeException e) {
-			return null;
-		}
+	public DishesBean selectDishById(int d_id) {
+		return this.getSession().get(DishesBean.class, d_id);
+	}
+
+	@Override
+	public List<Object[]> selectDishesByType(int t_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DishesBean> selectDishesByMchef(int mc_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DishesBean> selectMenuByType(int t_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

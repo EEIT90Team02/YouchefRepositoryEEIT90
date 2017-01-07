@@ -16,9 +16,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="member")
-public class MemberBean {
+public class MemberBean implements java.io.Serializable {
 
-	private int m_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer m_id;
 	private	String lastName;
 	private	String firstName;
 	private String nickname;
@@ -44,10 +48,10 @@ public class MemberBean {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getM_id() {
+	public Integer getM_id() {
 		return m_id;
 	}
-	public void setM_id(int m_id) {
+	public void setM_id(Integer m_id) {
 		this.m_id = m_id;
 	}
 	public String getLastName() {

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,7 +35,7 @@ public class DishPhotoBean implements java.io.Serializable {
 	public void setDp_id(Integer dp_id) {
 		this.dp_id = dp_id;
 	}
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="mc_id")
 	public MchefBean getMchefBean() {
 		return mchefBean;
@@ -48,7 +49,7 @@ public class DishPhotoBean implements java.io.Serializable {
 	public void setD_photo(byte[] d_photo) {
 		this.d_photo = d_photo;
 	}
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="d_id")
 	public DishesBean getDishesBean() {
 		return dishesBean;

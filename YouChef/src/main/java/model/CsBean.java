@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="cs")
 public class CsBean {
 	
-	private int message_id;
+	private Integer message_id;
 	private MemberBean memberBean;
 	private String content;
 	private java.util.Date time;
@@ -24,11 +24,11 @@ public class CsBean {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getMessage_id() {
+	public Integer getMessage_id() {
 		return message_id;
 	}
 
-	public void setMessage_id(int message_id) {
+	public void setMessage_id(Integer message_id) {
 		this.message_id = message_id;
 	}
 	

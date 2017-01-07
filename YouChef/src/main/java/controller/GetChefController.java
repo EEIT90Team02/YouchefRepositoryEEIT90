@@ -39,9 +39,8 @@ public class GetChefController {
 		model.addAttribute("errors", errors);
 		List<ChefBean> list = chefService.select();
 		
-//		errors.put("test", "Test OK");
 		HttpSession session = request.getSession();
 		session.setAttribute("list", list);
-		return "leave";
+		return "chef";
 	}
 }
