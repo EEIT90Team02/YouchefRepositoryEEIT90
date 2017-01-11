@@ -24,7 +24,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script src="<c:url value='${request.contextPath}/js/bootstrap.js' />"></script>
-
+<script src="<c:url value='${request.contextPath}/js/bootstrap-tooltip.js' />"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='${request.contextPath}/css/default.css' />">
 
@@ -170,7 +170,7 @@ ul {
 										src='<c:url value="${request.contextPath}/pages/getImage.controller?d_id=${element.d_id}" />'
 										class="btn btn-lg" data-toggle="modal"
 										data-target=".bs-example-modal" value="${element.menu}" id="menu"
-										onclick="getdpid(${element.d_id},${element.mchefBean.mc_id},'${element.mchefBean.memberBean.nickname}',${element.price},'${element.mchefBean.background}')">
+										onclick="getdpid(${element.d_id},${element.mchefBean.mc_id},'${element.mchefBean.memberBean.nickname}',${element.price},'${element.mchefBean.background}','${element.mchefBean.venue}')">
 									<div>${element.d_name}</div>
 									<div>每份<fmt:formatNumber value="${element.price}" pattern="#,###"/>元</div>
 									
@@ -187,6 +187,7 @@ ul {
 												height="315"
 												src=""></iframe>
 												<br>
+											
 											<img data-toggle="tooltip" data-placement="left" id="header-img" src="..." class="img-circle"
 												width="150px" height="150px">
 											<label for="header-img" id="mylabel"></label>
@@ -199,12 +200,15 @@ ul {
 													<div align="center">菜單</div>
 														<div style="margin: 5px" align="center">
 															<textarea disabled="disabled" draggable="false" wrap="soft" readonly="readonly" class="form-control-sm" rows="8" id="myTextarea" style="padding:5px;text-align:center;border-color:#2c2c2c; bcolor: yellow;background: #2c2c2c"></textarea>
+															<p></p>
+															<div align="center" style="vertical-align: bottom;"><font><label id="myvenue"></label></font></div>
 														</div>
 													</div>
 												</div>
 										</div>
 										<div class="modal-footer" align="center">
 											<div class="modal-footer">
+<!-- 												<div align="left" style="vertical-align: bottom;"><font><label id="myvenue"></label></font></div> -->
 												<button type="button" class="btn btn-default"
 													data-dismiss="modal" onclick="closeIframe()">關閉</button>
 												<button type="button" class="btn btn-primary" >訂購</button>
@@ -223,17 +227,17 @@ ul {
 	<!-- /container -->
 	<script type="text/javascript">
 		$(function() {
-			$('#header-img').tooltip({
-			    animated: 'fade',
-			    placement: 'left',
-			    html: true
-			});
+// 			$('#header-img').tooltip({
+// 			    animated: 'fade',
+// 			    placement: 'left',
+// 			    html: true
+// 			});
 // 			$("#menu").click(function(){
-		        $("#mymodal").modal("show");
+// 		        $("#mymodal").modal("show");
+// // 		    });
+// 		        $("#mymodal").on('show.bs.modal', function () {
+// // 		            alert('The modal is about to be shown.');
 // 		    });
-		        $("#mymodal").on('show.bs.modal', function () {
-// 		            alert('The modal is about to be shown.');
-		    });
 			
 // 			$(".bs-example-modal").on("show.bs.modal", function(e){
 // 		        alert('before show');
@@ -258,12 +262,13 @@ ul {
 		});
 	</script>
 	<script type="text/javascript">
-		function getdpid(d_id, mc_id, name, price, background) {
+		function getdpid(d_id, mc_id, name, price, background, venue) {
 // 		$('#menu').click(function(d_id, mc_id, name, price){
 			$('#myiframe').attr("src", "${pageContext.request.contextPath}" + "/pages/getpdid.controller?d_id=" + d_id);
 			$('#header-img').attr("src","${pageContext.request.contextPath}" + "/pages/getImage.controller?mc_id=" + mc_id);
 			$('#header-img').attr("title",background);
 			$('#mylabel').text(name);
+			$('#myvenue').text("地址：" + venue);
 			$('#price').text("NT$ " + price);
 			$('#myTextarea').text('');
 			$.ajax({

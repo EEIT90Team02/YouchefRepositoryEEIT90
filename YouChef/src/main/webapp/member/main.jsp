@@ -182,11 +182,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -234,7 +234,7 @@
 	                   </c:choose>
 	                </div>
 	                <div class="padding">
-	                    <h4 class="user-name center">${user.firstName}${user.lastName}</h4>
+	                    <h4 class="user-name center">${user.lastName}${user.firstName}</h4>
 	                    <p class="center">
 	                        <small class="muted"></small>
 	                    </p>
@@ -521,7 +521,7 @@
 												    <div class="col-md-3">
 												    <c:choose>
 												      <c:when test="${empty param.name}">
-												      	<input type="text" class="form-control" value='${user.firstName}${user.lastName}' disabled="disabled" name="name">
+												      	<input type="text" class="form-control" value='${user.lastName}${user.firstName}' disabled="disabled" name="name">
 												      </c:when>
 												      <c:otherwise>
 												      	<input type="text" class="form-control" value='${param.name}' disabled="disabled" name="name">
@@ -588,14 +588,14 @@
 												      <textarea class="form-control" rows="8" id="menu" wrap="soft" style="text-align: center;" name="menu">${param.menu}</textarea><font color="red">${errors.menu}</font>
 												    </div>
 												  </div>
-												  <div class="form-group">
-												    <label class="col-md-2 control-label">菜系</label>
-												    <div class="col-md-3">
-												      <select class="form-control" id="t_id" name="t_id" >
-														<!-- javaScript -->
-													  </select>
-												    </div>
-												  </div>
+<!-- 												  <div class="form-group"> -->
+<!-- 												    <label class="col-md-2 control-label">菜系</label> -->
+<!-- 												    <div class="col-md-3"> -->
+<!-- 												      <select class="form-control" id="t_id" name="t_id" > -->
+<!-- 														javaScript -->
+<!-- 													  </select> -->
+<!-- 												    </div> -->
+<!-- 												  </div> -->
 												  <div class="form-group">
 												    <label class="col-md-2 control-label">價格<font color="red">*</font></label>
 												    <div class="col-md-3">
@@ -729,7 +729,7 @@
 												      </c:when>
 												      <c:otherwise>
 												      	<input type="text" class="form-control" value='${param.name}' disabled="disabled" name="name">
-												      	<input type="hidden" id="name" value='${param.name}' name="name">
+												      	<input type="hidden" id="name" value='' name="name">
 												      </c:otherwise>
 												    </c:choose>
 												    </div>
@@ -909,7 +909,7 @@
 			<!-- Ajax 每10秒偵測是否有新郵件 -->		
 			
 			<c:choose>
-				<c:when test="${not empty user}">			
+				<c:when test='${not empty user}'>		
 				function MailCountValue(){
 					$.get('<c:url value='/member/mailCheck.controller' />' ,{'m_id':${user.m_id}},function(data){
 							$('#mailCount').html(data);

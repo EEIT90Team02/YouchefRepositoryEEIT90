@@ -170,7 +170,7 @@
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">

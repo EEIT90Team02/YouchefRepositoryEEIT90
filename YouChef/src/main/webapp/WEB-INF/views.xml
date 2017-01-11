@@ -78,7 +78,7 @@
 	</bean>
 	<bean id="mchefapply"
 		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/pages/mchefapply.jsp"></property>
+		<property name="url" value="/member/main.jsp#applychef"></property>
 	</bean>
 	<bean id="member"
 		class="org.springframework.web.servlet.view.InternalResourceView">
@@ -97,12 +97,13 @@
 	<bean id="applysuccess"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
-		<property name="url" value="/pages/applysuccess.jsp"></property>
+		<property name="url" value="/pages/getmchef.controller"></property>
+		
 	</bean>
 	<bean id="applyfailed"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
-		<property name="url" value="/pages/applyfailed.jsp"></property>
+		<property name="url" value="/pages/getmchef.controller"></property>
 	</bean>
 	<bean id="mchefdishdisplay"
 		class="org.springframework.web.servlet.view.InternalResourceView">
