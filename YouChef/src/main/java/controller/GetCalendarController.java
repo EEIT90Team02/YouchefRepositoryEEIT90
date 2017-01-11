@@ -69,7 +69,11 @@ public class GetCalendarController {
 		}
 		
 		if(null != mc_id){
+			long t1 = System.currentTimeMillis();
 			List<CalendarBean> cbs = calendarService.selectMchef(Integer.parseInt(mc_id));
+			long t2 = System.currentTimeMillis();
+			System.out.println("select mchef time = " + (t2 - t1));
+			System.out.println("beans size = " + cbs.size());
 			if(null != cbs){
 				for (CalendarBean cb : cbs) {
 					String data = cb.toString();

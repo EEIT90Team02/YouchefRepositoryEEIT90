@@ -65,5 +65,27 @@ public class DishPhotoDAOHibernate implements DishPhotoDAO {
 	public DishPhotoBean selectByDpid(Integer dp_id) {
 		return this.getSession().get(DishPhotoBean.class, dp_id);
 	}
+	//書賢修改
+	@Override
+	public DishPhotoBean selectByPrimary(Integer d_id) {
+		DishPhotoBean result = null;
+		Query query = this.getSession().createQuery("from DishPhotoBean where d_id= :d_id");
+		query.setParameter("d_id", d_id);
+		try {
+			result=(DishPhotoBean) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("不是單筆資料");
+			return null;
+		}
+		return result;
+	}
 
+	@Override
+	public DishPhotoBean update(DishPhotoBean bean) {
+		DishPhotoBean update= this.getSession().get(DishPhotoBean.class, bean.getDp_id());
+		if(update!=null){
+			update.setD_photo(bean.getD_photo());
+		}
+		return update;
+	}
 }

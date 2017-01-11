@@ -32,10 +32,18 @@ public class MchefBean implements java.io.Serializable {
 	private Set<DishPhotoBean> dishPhotoBean;
 	private Set<DishesBean> dishesBean;
 
+//	@Override
+//	public String toString() {
+//		return "MchefBean[mc_id = " + mc_id + ", years = " + years + ", venue = " 
+//				+ venue + ", quota = " + quota + ", background = " + background 
+//				+ ", v_id = " + v_id + ", hasPlace = " + hasPlace + "]";
+//	}
+	
+	//Shian測試
 	@Override
 	public String toString() {
-		return "MchefBean[mc_id = " + mc_id + ", years = " + years + ", venue = " 
-				+ venue + ", quota = " + quota + ", background = " + background 
+		return "MchefBean[mc_id = " + mc_id + ", MemberName= "+ memberBean.getLastName() + memberBean.getFirstName() 
+				+", years = " + years + ", venue = " + venue + ", quota = " + quota + ", background = " + background 
 				+ ", v_id = " + v_id + ", hasPlace = " + hasPlace + "]";
 	}
 

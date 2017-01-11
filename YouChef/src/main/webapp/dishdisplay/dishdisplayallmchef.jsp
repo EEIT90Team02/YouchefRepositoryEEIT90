@@ -28,18 +28,15 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='${request.contextPath}/css/default.css' />">
 
-<%-- <link href="<c:url value='${request.contextPath}/css/fileinput.css' />" --%>
-<!-- 	media="all" rel="stylesheet" type="text/css" /> -->
+<link href="<c:url value='${request.contextPath}/css/fileinput.css' />"
+	media="all" rel="stylesheet" type="text/css" />
 
-<%-- <script src="<c:url value='${request.contextPath}/js/fileinput.js' />" --%>
-<!-- 	type="text/javascript"></script> -->
+<script src="<c:url value='${request.contextPath}/js/fileinput.js' />"
+	type="text/javascript"></script>
 <script src="<c:url value='${request.contextPath}/js/jquery.js' />"
 	type="text/javascript"></script>
 <script
 	src="<c:url value='${request.contextPath}/js/locales/zh-TW.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='${request.contextPath}/js/bootstrap-tooltip.js' />"
 	type="text/javascript"></script>
 <style>
 /* .item>a { */
@@ -190,7 +187,7 @@ ul {
 												height="315"
 												src=""></iframe>
 												<br>
-											<img data-toggle="tooltip" data-placement="left" id="header-img" src="#" class="img-circle"
+											<img data-toggle="tooltip" data-placement="left" id="header-img" src="..." class="img-circle"
 												width="150px" height="150px">
 											<label for="header-img" id="mylabel"></label>
 										</div>
@@ -232,10 +229,10 @@ ul {
 			    html: true
 			});
 // 			$("#menu").click(function(){
-// 		        $("#mymodal").modal("show");
+		        $("#mymodal").modal("show");
 // 		    });
 		        $("#mymodal").on('show.bs.modal', function () {
-		            alert('The modal is about to be shown.');
+// 		            alert('The modal is about to be shown.');
 		    });
 			
 // 			$(".bs-example-modal").on("show.bs.modal", function(e){
@@ -255,7 +252,7 @@ ul {
 			    $(this).find('.modal-body').css('max-height', height_body).css('overflow', 'auto');
 			});
 			$('.bs-example-modal').on('hide.bs.modal', function (e) {
-				alert("hide.bs.modal");
+// 				alert("hide.bs.modal");
 				closeIframe();
 			});
 		});
@@ -263,26 +260,23 @@ ul {
 	<script type="text/javascript">
 		function getdpid(d_id, mc_id, name, price, background) {
 // 		$('#menu').click(function(d_id, mc_id, name, price){
-// 			closeIframe();
-			$('#myTextarea').text('');
-			
 			$('#myiframe').attr("src", "${pageContext.request.contextPath}" + "/pages/getpdid.controller?d_id=" + d_id);
 			$('#header-img').attr("src","${pageContext.request.contextPath}" + "/pages/getImage.controller?mc_id=" + mc_id);
 			$('#header-img').attr("title",background);
 			$('#mylabel').text(name);
 			$('#price').text("NT$ " + price);
+			$('#myTextarea').text('');
 			$.ajax({
 		        url: '${pageContext.request.contextPath}/pages/getMenu.controller?d_id=' + d_id,
 		        contentType: "text/html; charset=utf-8",
 // 		        data: {'status': status},
 		        type: 'GET',
-		        cache: true,
+		        cache: false,
 		        success: function (result) {
 		        	$('#myTextarea').text(result);
 		        }
-		    	});
-			}
-			
+		    });
+		}
 		
 		function closeIframe(){
 			$('#myiframe').removeAttr("src");

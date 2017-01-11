@@ -30,7 +30,7 @@ public class DishesBean implements java.io.Serializable {
 	private TypeBean typeBean;
 	private String d_status;
 	private Set<OrderDishesBean> orderDishes = new HashSet<OrderDishesBean>();
-	private Set<DishPhotoBean> dishPhotoBean;
+	private DishPhotoBean dishPhotoBean;
 	@Override
 	public String toString() {
 		return "DishesBean [d_id=" + d_id + ", mchefBean=" + mchefBean + ", price=" + price + ", d_name=" + d_name
@@ -104,13 +104,14 @@ public class DishesBean implements java.io.Serializable {
 	}
 	
 	
-	@OneToMany
-	@JoinColumn(name = "dp_id")
-	public Set<DishPhotoBean> getDishPhotoBean() {
+	@OneToOne
+	@JoinColumn(name = "d_id")
+	public DishPhotoBean getDishPhotoBean() {
 		return this.dishPhotoBean;
 	}
-	public void setDishPhotoBean(Set<DishPhotoBean> dishPhotoBean) {
+	public void setDishPhotoBean(DishPhotoBean dishPhotoBean) {
 		this.dishPhotoBean = dishPhotoBean;
 	}
+
 
 }

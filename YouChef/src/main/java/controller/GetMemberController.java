@@ -37,8 +37,9 @@ public class GetMemberController {
 	public String process(LeaveBean bean, BindingResult bindingResult, Model model, HttpServletRequest request) {
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
-		List<MemberBean> list = memberService.select();
+		List<MemberBean> list = memberService.listAll();
 		
+//		errors.put("test", "Test OK");
 		HttpSession session = request.getSession();
 		session.setAttribute("list", list);
 		return "member";

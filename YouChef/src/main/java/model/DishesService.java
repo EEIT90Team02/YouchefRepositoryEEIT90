@@ -11,11 +11,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 //抓出MENU
 
 
-@Service(value = "dishesService")
+@Service(value = "dishesService ")
 @Transactional(transactionManager="transactionManager")
 public class DishesService {
 	public static void main(String[] args) {
@@ -71,7 +70,7 @@ public class DishesService {
 	}
 	@Transactional(readOnly=true)
 	public List<Object[]>  selectType(int t_id) {
-		List<Object[]>  list =dishesDao.selectDishesByType(t_id);
+		List<Object[]> list =dishesDao.selectDishesByType(t_id);
 		return list;
 	}
 	@Transactional
@@ -79,11 +78,25 @@ public class DishesService {
 			String d_status) {
 		return dishesDao.update(d_name,d_briefing,price,menu,typeBean,d_status);
 	}
+	@Transactional
+	public DishesBean updatedish(DishesBean bean,String d_name, String d_briefing, double price, TypeBean typeBean, String d_status) {
+		bean.setD_name(d_name);
+		bean.setD_briefing(d_briefing);
+		bean.setPrice(price);
+		bean.setTypeBean(typeBean);
+		bean.setD_status(d_status);
+		dishesDao.updatedish(bean.getD_id(),bean.getD_name(),bean.getD_briefing(),bean.getPrice(),bean.getTypeBean(),bean.getD_status());
+		return bean;
+	}
+	@Transactional(readOnly=true) 
+	 public List<Object[]>  selectMchef(int m_id) { 
+	  List<Object[]> list =dishesDao.selectDishesByMchef(m_id); 
+	  return list; 
+	 }
 	@Transactional(readOnly=true)
-	public List<Object[]>  selectMchef(int m_id) {
-		List<Object[]>list =dishesDao.selectDishesByType(m_id);
+	public List<Object[]>  selectMenuByType(int t_id) {
+		List<Object[]> list =dishesDao.selectMenuByType(t_id);
 		return list;
 	}
-	
 }
 

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -58,15 +60,16 @@ public class MchefApplyController {
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String process(@RequestParam(value = "photo", required = false) MultipartFile file,
 			@RequestParam(value = "d_photo", required = false) MultipartFile[] files, MchefApplyBean mab,
-			BindingResult bindingResult, Model model, MultipartHttpServletRequest request) {
+			BindingResult bindingResult, Model model, MultipartHttpServletRequest request, HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>();
 		model.addAttribute("errors", errors);
-//		System.out.println("file = " + file);
-//		System.out.println("files = " + files);
-//		System.out.println("mab = " + mab);
-//		System.out.println("menu = " + mab.getMenu());
-//		System.out.println("m_id = " + mab.getM_id());
-//		System.out.println("email = " + mab.getEmail());
+		// System.out.println(formData);
+		System.out.println("file = " + file);
+		System.out.println("files = " + files);
+		System.out.println("mab = " + mab);
+		System.out.println("menu = " + mab.getMenu());
+		System.out.println("m_id = " + mab.getM_id());
+		System.out.println("email = " + mab.getEmail());
 		
 		model.addAttribute("email", mab.getEmail());
 		model.addAttribute("name", mab.getName());
@@ -95,11 +98,12 @@ public class MchefApplyController {
 		}
 		
 		if(!errors.isEmpty()){
-//			System.out.println("quota = " + errors.get("quota"));
+			System.out.println("quota = " + errors.get("quota"));
 			return "mchefapply";
 		}
 		
 		MemberBean mb = memberService.select(mab.getM_id());
+		mb.setAc_status("1");
 //		MchefBean mchefBean = new MchefBean();
 		mchefBean.setMc_id(mab.getM_id());
 		mchefBean.setMemberBean(mb);
@@ -107,6 +111,7 @@ public class MchefApplyController {
 		mchefBean.setVenue(mab.getVenue());
 		mchefBean.setQuota(mab.getQuota());
 		mchefBean.setBackground(mab.getBackground());
+		System.out.println(mchefBean);
 		if (0 != mab.getV_id()) {
 			mchefBean.setV_id(venueService.select(mab.getV_id()));
 			mchefBean.setHasPlace("0");
@@ -133,8 +138,9 @@ public class MchefApplyController {
 		dishesBean.setD_name(mab.getD_name());
 		dishesBean.setD_briefing(mab.getD_briefing());
 		dishesBean.setMenu(mab.getMenu());
-//		dishesBean.setTypeBean(typeService.select(mab.getT_id()));
+		dishesBean.setTypeBean(typeService.select(mab.getT_id()));
 		dishesBean.setD_status("0");
+		System.out.println("controller 140 :"+dishesBean);
 		DishesBean db = dishesService.addin(dishesBean);
 		if (null != db) { // 餐點新增成功
 			
@@ -154,7 +160,9 @@ public class MchefApplyController {
 		}else{
 			System.out.println("新增餐點失敗");
 		}
-
+		model.addAttribute("applyOk","恭喜您申請成功");
+		mb = memberService.select(mab.getM_id());
+		session.setAttribute("user",mb );
 		return "applysuccess";
 	}
 }

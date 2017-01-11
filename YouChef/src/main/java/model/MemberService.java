@@ -1,5 +1,4 @@
 package model;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -9,11 +8,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.misc.GlobalService;
 
 @Service(value="memberService")
-//@Transactional
+@Transactional
 public class MemberService {
 	public static void main(String[] args) throws IOException{
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
@@ -84,6 +84,7 @@ public class MemberService {
 	public boolean register(MemberBean bean){
 		MemberBean register=null;
 		if(bean!=null){
+			System.out.println(bean);
 			String temp1 = bean.getEmail().toLowerCase();
 			bean.setEmail(temp1);
 			String temp2 = GlobalService.getMD5Encoding(GlobalService.encryptString(bean.getPassword()));
@@ -120,4 +121,38 @@ public class MemberService {
 		}
 		return false;
 	}
+	
+	public MemberBean update(MemberBean bean, String nickname, String sex, String city, String district, String address, String briefing, byte[] photo){		
+			bean.setNickname(nickname);
+			bean.setSex(sex);
+			bean.setCity(city);
+			bean.setDistrict(district);
+			bean.setAddress(address);
+			bean.setBriefing(briefing);
+			bean.setPhoto(photo);
+			memberDao.update(bean.getM_id(), bean.getFirstName(), bean.getLastName(), bean.getNickname(), bean.getSex(), 
+							 bean.getCity(), bean.getDistrict(), bean.getAddress(), bean.getBriefing(), bean.getPhoto());
+			return bean;
+	}
+	
+	public MemberBean loginCheck(String email){
+		if(check(email)){
+			return memberDao.select(email);
+		}
+		return null;
+	}
+	
+	public List<MemberBean> listAll(){
+		return memberDao.select();
+	}
+	
+	public MemberBean select(int m_id) {
+		return memberDao.select(m_id);
+		
+	}
+	
+	public boolean changeStatus(int m_id, String ac_status){
+		return memberDao.updateStatus(m_id, ac_status);
+	}
+	
 }

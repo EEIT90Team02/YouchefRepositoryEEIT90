@@ -25,12 +25,14 @@ public class GetVenueController {
 	public void process(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		List<VenueBean> listv = venueService.selectAll();
+//		System.out.println(list);
 		StringBuilder jsonInString = new StringBuilder();
 		jsonInString.append("[");
 		for(VenueBean vb : listv){
 			jsonInString.append("{\"v_id\":" + vb.getV_id() + ",\"v_name\":\"" + vb.getV_name() + "\",\"v_address\":\"" + vb.getV_address() + "\"},");
 		}
 		String datav = jsonInString.substring(0, jsonInString.length()-1) + "]";
+//		System.out.println(datav);
 		response.setContentType("application/json;chartset=UTF-8");
 		response.getWriter().write(datav);
 	}

@@ -36,16 +36,13 @@ public class GetChefController {
 
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String process(LeaveBean bean, BindingResult bindingResult, Model model, HttpServletRequest request) {
-		// Map<String, String> errors = new HashMap<String, String>();
-		// model.addAttribute("errors", errors);
-		if (null != request.getParameter("c_id")) {
-			ChefBean cb = chefService.select(Integer.parseInt(request.getParameter("c_id")));
-			request.setAttribute("bean", cb);
-			return "chefcalendar";
-		} else {
-			List<ChefBean> list = chefService.select();
-			request.setAttribute("list", list);
-			return "chef";
-		}
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+		List<ChefBean> list = chefService.select();
+		
+//		errors.put("test", "Test OK");
+		HttpSession session = request.getSession();
+		session.setAttribute("list", list);
+		return "chef";
 	}
 }

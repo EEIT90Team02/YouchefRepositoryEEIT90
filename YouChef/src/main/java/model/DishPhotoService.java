@@ -94,4 +94,12 @@ public class DishPhotoService {
 		System.out.println(list);
 		return list;
 	}
+	
+	//書賢修改
+	public DishPhotoBean update(DishPhotoBean bean){
+		return dishPhotoDao.update(bean);
+	}
+	public DishPhotoBean selectByPrimary(Integer dp_id){
+		return dishPhotoDao.selectByPrimary(dp_id);
+	}
 }

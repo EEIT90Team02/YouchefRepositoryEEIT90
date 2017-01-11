@@ -19,12 +19,9 @@ import model.misc.GlobalService;
 @Transactional
 public class MemberBeanDAOHibernate implements MemberDAO {
 	@Autowired
-	private SessionFactory sessionFactory;
-
-	public MemberBeanDAOHibernate() {
-	}
-
-	public MemberBeanDAOHibernate(SessionFactory sessionFactory) {
+	private SessionFactory sessionFactory;	
+	public MemberBeanDAOHibernate(){}
+	public MemberBeanDAOHibernate(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
 
@@ -39,7 +36,8 @@ public class MemberBeanDAOHibernate implements MemberDAO {
 
 	@Override
 	public MemberBean insert(MemberBean bean) {
-		if (bean != null) {
+		if(bean!=null){
+			bean.setM_id(0);
 			MemberBean insert = this.getSession().get(MemberBean.class, bean.getM_id());
 			if (insert == null) {
 				this.getSession().save(bean);
@@ -51,7 +49,7 @@ public class MemberBeanDAOHibernate implements MemberDAO {
 
 	@Override
 	public List<MemberBean> select() {
-		Query query = this.getSession().createQuery("from MemberBean");
+		Query query = this.getSession().createQuery("from MemberBean where ac_status != :ac_status").setParameter("ac_status", "2");
 		return (List<MemberBean>) query.getResultList();
 	}
 
@@ -96,7 +94,16 @@ public class MemberBeanDAOHibernate implements MemberDAO {
 		}
 		return false;
 	}
-
+	@Override
+	public boolean updateStatus(int m_id, String ac_status) {
+		MemberBean bean = getSession().get(MemberBean.class, m_id);
+			if(bean!=null){
+				bean.setAc_status(ac_status);
+				return true;
+			}
+		return false;
+	}
+	
 	@Override
 	public boolean update(MemberBean bean) {
 		try {
@@ -108,5 +115,4 @@ public class MemberBeanDAOHibernate implements MemberDAO {
 			return false;
 		}
 	}
-
 }

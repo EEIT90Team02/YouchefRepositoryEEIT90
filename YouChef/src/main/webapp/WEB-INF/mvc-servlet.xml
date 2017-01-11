@@ -26,5 +26,4 @@
 
 	<context:component-scan base-package="controller"></context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
-<!-- 	<bean id="calendarBean" class="model.CalendarBean"></bean> -->
 </beans>
