@@ -31,8 +31,8 @@
 		<!-- <property name="contextRelative" value="true"></property> -->
 		<property name="url" value="/pages/chefcalendar.jsp"></property>
 	</bean>
-	<bean id="mchefcalendar" class="org.springframework.web.servlet.view.RedirectView">
-		<property name="contextRelative" value="true"></property>
+	<bean id="mchefcalendar" class="org.springframework.web.servlet.view.InternalResourceView">
+<!-- 		<property name="contextRelative" value="true"></property> -->
 		<property name="url" value="/pages/mchefcalendar.jsp"></property>
 	</bean>
 	<bean id="applysuccess"

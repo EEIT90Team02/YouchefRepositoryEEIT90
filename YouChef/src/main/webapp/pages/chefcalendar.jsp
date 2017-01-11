@@ -135,7 +135,7 @@
 	            	    content: '',
 	            	    type: 'blue',
 	            	    typeAnimated: true,
-	            	    async: false,
+// 	            	    async: false,
 	            	    buttons: {
 	            	        	確定: function () {
 	            	        		$('#calendar').fullCalendar('refetchEvents');
@@ -408,7 +408,7 @@
     	    content: '',
     	    type: 'blue',
     	    typeAnimated: true,
-    	    async: false,
+//     	    async: false,
     	    buttons: {
     	        	確定: function () {
     	            $.ajax({
@@ -467,6 +467,7 @@ body {
 #external-events .fc-event {
 	margin: 10px 30px;
 	cursor: pointer;
+	width: 100px;
 }
 
 #external-events p {
@@ -497,7 +498,7 @@ body {
 		<div id='external-events'>
 		<table align="center" border="0px">
 			<tr>
-				<td><h4>${bean.firstName}${bean.lastName}</h4></td>
+				<td><h4>${bean.lastName}${bean.firstName}</h4></td>
 				<form action="#">
 				<input type="hidden" id="c_id" value="${bean.c_id}">
 				</form>

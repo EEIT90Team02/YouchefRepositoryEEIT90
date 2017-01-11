@@ -37,8 +37,6 @@ public class CalendarDAOHibernate implements CalendarDAO {
 		System.out.println(query.getResultList().size());
 		if (0 == query.getResultList().size())
 			return null;
-		else
-			System.out.println((CalendarBean) query.getResultList().get(0));
 		return (CalendarBean) query.getResultList().get(0);
 	}
 
@@ -64,7 +62,6 @@ public class CalendarDAOHibernate implements CalendarDAO {
 	public List<CalendarBean> selectChef(int c_id) {
 		Query query = this.getSession().createQuery(SELECT_CHEF_NO_DATE);
 		query.setParameter("c_id", c_id);
-		System.out.println(query.getResultList().size());
 		if (0 == query.getResultList().size())
 			return null;
 		else
@@ -73,15 +70,13 @@ public class CalendarDAOHibernate implements CalendarDAO {
 
 	@Override
 	public CalendarBean update(CalendarBean bean) {
-		boolean b = false;
 		try {
 			getSession().clear();
-			System.out.println("bean date29 = " + bean.getDate29());
 			this.getSession().update(bean);
-			System.out.println("bean date29 = " + bean.getDate29());
 			if(null == bean.getChefBean().getC_id()){
 				System.out.println("return mchef");
-				return selectMchef(bean.getMchefBean().getMc_id(), bean.getTheMonth());
+//				return selectMchef(bean.getMchefBean().getMc_id(), bean.getTheMonth());
+				return bean;
 			}
 			else{
 				System.out.println("return chef");

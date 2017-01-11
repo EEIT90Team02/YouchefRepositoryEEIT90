@@ -47,7 +47,7 @@
 							<td>${element.background}</td>
 							<td>${element.typeBean.t_name}</td>
 							<td>${element.years}</td>
-							<td><a href="<c:url value="${request.contextPath}/pages/chefcalendar.controller?id=${element.c_id}" />">請假</a></td>
+							<td><a href='<c:url value="${request.contextPath}/pages/getchef.controller?c_id=${element.c_id}" />' target="_blank">請假</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>

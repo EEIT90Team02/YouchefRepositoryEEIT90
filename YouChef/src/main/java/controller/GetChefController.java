@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.ChefBean;
 import model.ChefService;
+import model.MchefBean;
 import model.misc.LeaveBean;
 
 @Controller
@@ -26,21 +27,25 @@ import model.misc.LeaveBean;
 public class GetChefController {
 	@Autowired
 	ChefService chefService;
-	
+
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		System.out.println("Start to initbinder");
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
 	}
-	
+
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String process(LeaveBean bean, BindingResult bindingResult, Model model, HttpServletRequest request) {
-		Map<String, String> errors = new HashMap<String, String>();
-		model.addAttribute("errors", errors);
-		List<ChefBean> list = chefService.select();
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("list", list);
-		return "chef";
+		// Map<String, String> errors = new HashMap<String, String>();
+		// model.addAttribute("errors", errors);
+		if (null != request.getParameter("c_id")) {
+			ChefBean cb = chefService.select(Integer.parseInt(request.getParameter("c_id")));
+			request.setAttribute("bean", cb);
+			return "chefcalendar";
+		} else {
+			List<ChefBean> list = chefService.select();
+			request.setAttribute("list", list);
+			return "chef";
+		}
 	}
 }

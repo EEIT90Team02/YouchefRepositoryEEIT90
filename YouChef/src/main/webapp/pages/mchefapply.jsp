@@ -213,7 +213,14 @@
 							  <div class="form-group">
 							    <label class="col-md-2 col-md-offset-3 control-label">營業時間<font color="red">*</font></label>
 							    <div class="col-md-3">
-							      <a href="../pages/getmchef.controller?mc_id=1002" Target="_blank" class="btn btn-primary btn-danger active" role="button">設定</a>
+							      <c:choose>
+							      <c:when test="${empty param.m_id}">
+							      	<a href="<c:url value='${request.contextPath}/pages/getmchef.controller?m_id=${m_id}' />" Target="_blank" class="btn btn-primary btn-danger active" role="button">設定</a>
+							      </c:when>
+							      <c:otherwise>
+							      	<a href="<c:url value='${request.contextPath}/pages/getmchef.controller?m_id=${param.m_id}' />" Target="_blank" class="btn btn-primary btn-danger active" role="button">設定</a>
+							      </c:otherwise>
+							      </c:choose>
 							    </div>
 							  </div>
 							<br>

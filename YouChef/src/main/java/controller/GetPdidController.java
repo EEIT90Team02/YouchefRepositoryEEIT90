@@ -26,7 +26,6 @@ public class GetPdidController {
 	public String process(LeaveBean bean, BindingResult bindingResult, Model model, HttpServletRequest request,
 			HttpServletResponse response) {
 		String d_id = request.getParameter("d_id");
-		System.out.println("d_id = " + d_id);
 		List<DishPhotoBean> list = dishPhotoService.selectByDid(Integer.parseInt(d_id));
 		model.addAttribute("list", list);
 		return "dish.detail";

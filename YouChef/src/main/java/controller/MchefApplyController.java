@@ -133,7 +133,7 @@ public class MchefApplyController {
 		dishesBean.setD_name(mab.getD_name());
 		dishesBean.setD_briefing(mab.getD_briefing());
 		dishesBean.setMenu(mab.getMenu());
-		dishesBean.setTypeBean(typeService.select(mab.getT_id()));
+//		dishesBean.setTypeBean(typeService.select(mab.getT_id()));
 		dishesBean.setD_status("0");
 		DishesBean db = dishesService.addin(dishesBean);
 		if (null != db) { // 餐點新增成功

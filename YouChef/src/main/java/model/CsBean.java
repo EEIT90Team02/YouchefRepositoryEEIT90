@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cs")
-public class CsBean {
+public class CsBean implements java.io.Serializable {
 	
 	private Integer message_id;
 	private MemberBean memberBean;

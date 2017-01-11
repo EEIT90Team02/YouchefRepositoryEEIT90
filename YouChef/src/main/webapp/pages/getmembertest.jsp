@@ -45,7 +45,10 @@
 							<td>${element.phone}</td>
 							<td>${element.city}${element.district}${element.address}</td>
 							<td>${element.briefing}</td>
-							<td><a href="<c:url value="${request.contextPath}/pages/mchefapply.jsp?m_id=${element.m_id}&email=${element.email}&name=${element.firstName}${element.lastName}" />">申請會員大廚</a></td>
+							<td>
+							<a href="<c:url value="${request.contextPath}/pages/mchefapply.jsp?m_id=${element.m_id}&email=${element.email}&name=${element.firstName}${element.lastName}" />">申請會員大廚</a>
+							<a href="<c:url value='${request.contextPath}/pages/getmchef.controller?mc_id=${element.m_id}'/>" Target='_blank'>營業日設定</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>

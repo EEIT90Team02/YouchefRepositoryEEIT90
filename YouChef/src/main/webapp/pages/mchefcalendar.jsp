@@ -58,7 +58,7 @@
 
 		/* initialize the calendar
 		-----------------------------------------------------------------*/
-		var c_id=$("#c_id").val();
+		var mc_id=$("#mc_id").val();
 		$('#calendar').fullCalendar({
 			displayEventTime : false,
 			minTime: '12:00:00',
@@ -115,23 +115,23 @@
 	            agenda: .8
 	        },
 	        eventDrop: function (event, delta) {
-	        	if(event.title == '請假'){
+	        	if(event.title == '未營業'){
 		        	var before = $.datepicker.formatDate('yymmdd', new Date(event.start - delta));
-		        	var c_id = '${bean.c_id}';
+		        	var mc_id = '${bean.mc_id}';
 		        	var date = event.start.format("YYYYMM");
 		        	var day = event.start.format("DD");
 		        	var year = event.start.format("YYYY");
 		        	var month = event.start.format("M");
 		        	var d = event.start.format("D");
-		        	if(checkAlong(c_id, date, day)){
-		        		storeDB(c_id, date, day, 0, before, year, month, d);
+		        	if(checkAlong(mc_id, date, day)){
+		        		storeDB(mc_id, date, day, -1, before, year, month, d);
 		        	}else{
 		        		alongWarning();
 		        	}
 	        	}else{
 	        		$.confirm({
 	            		icon: 'fa fa-icon',
-	            		title: '只能拖曳"請假"項目！',
+	            		title: '只能拖曳"未營業"項目！',
 	            	    content: '',
 	            	    type: 'blue',
 	            	    typeAnimated: true,
@@ -140,97 +140,86 @@
 	            	        	確定: function () {
 	            	        		$('#calendar').fullCalendar('refetchEvents');
 	            	        },
-// 	            	        	取消: function () {
-// //	             	        	$('#calendar').fullCalendar('updateEvent',event);
-// //	             	            $('#calendar').fullCalendar('refetchEvents');
-// 	            	            location.reload();
-// 	            	        },
 	            	    }
 	            	});
-	        		
 	        	}
 	        },
 	        eventReceive: function(event, clientEvents){
 	          	var title = event.title;
 	          	var start = event.start.format();
 	          	var array = $('#calendar').fullCalendar('clientEvents');
-	          	var c_id = '${bean.c_id}';
+	          	var mc_id = '${bean.mc_id}';
 	        	var date = event.start.format("YYYYMM");
 	        	var day = event.start.format("DD");
 	        	var year = event.start.format("YYYY");
 	        	var month = event.start.format("M");
 	        	var d = event.start.format("D");
-	        	if(checkAlong(c_id, date, day)){
-	        	$.confirm({
-	        		icon: 'fa fa-icon',
-	        		title: '確定' + year + '年' + month + '月' + d + '日要請假？',
-	        	    content: '',
-	        	    type: 'blue',
-	        	    typeAnimated: true,
-	        	    async: false,
-	        	    buttons: {
-	        	        	確定: function () {
-	        	            $.ajax({
-	        	            	url: 'updatecalendar.controller',
-	        	            	data: 'c_id=' + c_id + '&date=' + date + '&day=' + day + '&value=' + 0,
-	        	            	type: 'POST',
-	        	            	dataType: 'html',
-	        	            	success: function(response){
-// 	        	            		alert(response);
-	        	            		if(response == 'OK')
-// 	        	              		$('#calendar').fullCalendar('updateEvent',event);
-// 	        	            		$('#calendar').fullCalendar('refetchEvents');
-	        	            			location.reload();
-	        	            	},
-	        	            	error: function(e){
-	        	            		errorWarning();
-	        	            	}
-	        	           });
-	        	        },
-	        	        	取消: function () {
-// 	         	        	$('#calendar').fullCalendar('updateEvent',event);
-// 	         	            $('#calendar').fullCalendar('refetchEvents');
-	        	            location.reload();
-	        	        },
-	        	    }
-	        	});
+	        	if(checkAlong(mc_id, date, day)){
+		        	$.confirm({
+		        		icon: 'fa fa-icon',
+		        		title: '確定' + year + '年' + month + '月' + d + '日不營業？',
+		        	    content: '',
+		        	    type: 'blue',
+		        	    typeAnimated: true,
+		        	    async: false,
+		        	    buttons: {
+		        	        	確定: function () {
+		        	            $.ajax({
+		        	            	url: 'updatecalendar.controller',
+		        	            	data: 'mc_id=' + mc_id + '&date=' + date + '&day=' + day + '&value=' + '-1',
+		        	            	type: 'POST',
+		        	            	dataType: 'html',
+// 		        	            	async: false,
+		        	            	success: function(response){
+	// 	        	            		alert(response);
+		        	            		if(response == 'OK'){
+	// 	        	              		$('#calendar').fullCalendar('updateEvent',event);
+// 		        	            		$('#calendar').fullCalendar('refetchEvents');
+											location.reload();
+// 		        	            			$('#calendar').fullCalendar('refetchEvents');
+		        	            		}
+		        	            	},
+		        	            	error: function(e){
+		        	            		errorWarning();
+		        	            	}
+		        	           });
+		        	        },
+		        	        	取消: function () {
+	// 	         	        	$('#calendar').fullCalendar('updateEvent',event);
+	// 	         	            $('#calendar').fullCalendar('refetchEvents');
+// 		        	            location.reload();
+		        	        },
+		        	    }
+		        	});
 	        	}else{
 	        		$.confirm({
 	            		icon: 'fa fa-icon',
-	            		title: '這一天無法請假！',
+	            		title: '這一天無法設為未營業！',
 	            	    content: '',
 	            	    type: 'blue',
 	            	    typeAnimated: true,
 	            	    async: false,
 	            	    buttons: {
 	            	        	確定: function () {
-// 	            	        		$('#calendar').fullCalendar('refetchEvents');
 	            	        		location.reload();
 	            	        },
-//	             	        	取消: function () {
-////	        	             	        	$('#calendar').fullCalendar('updateEvent',event);
-////	        	             	            $('#calendar').fullCalendar('refetchEvents');
-//	             	            location.reload();
-//	             	        },
 	            	    }
 	            	});
-	        		
 	        	}
-	          	
 	        },
 			eventLimit: true,
-			events:"getcalendar.controller?c_id=" + c_id,
+			events:"getcalendar.controller?mc_id=" + mc_id,
 			eventClick: function(calEvent, jsEvent, view) {
 		        var title = calEvent.title;
 		        var day = calEvent.start;
 		        var moment = new Date();
-				if(title == '請假' || title == '請假(已過期)'){
+				if(title == '未營業' || title == '未營業(已過期)'){
 					if(day < moment){
 						expiredWarning();
 					}else{
 						$.confirm({
 				    		icon: 'fa fa-icon',
-				    		title: '要刪除' + day.format('YYYY') + '年' + day.format('MM') + '月' + day.format('DD') + '日的請假？',
+				    		title: day.format('YYYY') + '年' + day.format('MM') + '月' + day.format('DD') + '日要設為營業？',
 				    	    content: '',
 				    	    type: 'blue',
 				    	    typeAnimated: true,
@@ -241,9 +230,10 @@
 											if(calEvent.start == day){
 												$.ajax({
 						        	            	url: 'updatecalendar.controller',
-						        	            	data: 'c_id=' + c_id + '&date=' + day.format('YYYYMM') + '&day=' + day.format('DD') + '&value=' + 4,
+						        	            	data: 'mc_id=' + mc_id + '&date=' + day.format('YYYYMM') + '&day=' + day.format('DD') + '&value=' + '${bean.quota}',
 						        	            	type: 'POST',
 						        	            	dataType: 'html',
+						        	            	async: false,
 						        	            	success: function(response){
 //					 	        	            		alert(response);
 						        	            		if(response != 'OK')
@@ -258,24 +248,11 @@
 												return true;
 											}
 									    });
-										$.confirm({
-								    		icon: 'fa fa-icon',
-								    		title: '刪除成功！',
-								    	    content: '',
-								    	    type: 'blue',
-								    	    typeAnimated: true,
-								    	    async: false,
-								    	    buttons: {
-								    	        	確定: function () {
-								    	        		$('#calendar').fullCalendar('refetchEvents');
-								    	        },
-//								     	        	取消: function () {
-////									             	        	$('#calendar').fullCalendar('updateEvent',event);
-////									             	            $('#calendar').fullCalendar('refetchEvents');
-//								     	            location.reload();
-//								     	        },
-								    	    }
-								    	});
+				    	        		successConfirm();
+										
+// 										$('#calendar').fullCalendar('updateEvent',event);
+// 										$('#calendar').fullCalendar('refetchEvents');
+// 										location.reload();
 				    	        },
 				    	        	取消: function () {
 //				     	        	$('#calendar').fullCalendar('updateEvent',event);
@@ -292,28 +269,13 @@
 				}
 
 		    }
-// 		    dayClick: function(date, allDay, jsEvent, view) {
-
-// 		        if (allDay) {
-// 		            alert('Clicked on the entire day: ' + date);
-// 		        }else{
-// 		            alert('Clicked on the slot: ' + date);
-// 		        }
-// 		        var moment = $('#calendar').fullCalendar('getDate');
-// 		        alert("The current date of the calendar is " + moment.format());
-// // 		        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-// 		        // change the day's background color just for fun
-// 		        $(this).css('background-color', 'red');
-
-// 		    }
 		});
 	});
 	
 	function itemWarning(){
 		$.confirm({
     		icon: 'fa fa-warning',
-    		title: '只能點選請假項目！',
+    		title: '只能點選【未營業】項目！',
     	    content: '',
     	    type: 'blue',
     	    typeAnimated: true,
@@ -358,10 +320,33 @@
     	});
 	}
 	
+	function successConfirm(){
+		$.confirm({
+    		icon: 'fa fa-icon',
+    		title: '設定成功！',
+    	    content: '',
+    	    type: 'blue',
+    	    typeAnimated: true,
+    	    async: false,
+    	    buttons: {
+    	        	確定: function () {
+	    	        		$('#calendar').fullCalendar('refetchEvents');
+    	        },
+    	    }
+    	});
+	}
+	
+	function checkExpired(day){
+		if(day < new Date())
+			return true;
+		else
+			return false;
+	}
+	
 	function alongWarning(){
 		$.confirm({
     		icon: 'fa fa-icon',
-    		title: '這一天無法請假！',
+    		title: '這一天無法設為未營業！',
     	    content: '',
     	    type: 'blue',
     	    typeAnimated: true,
@@ -370,20 +355,15 @@
     	        	確定: function () {
     	        		$('#calendar').fullCalendar('refetchEvents');
     	        },
-//     	        	取消: function () {
-////	             	        	$('#calendar').fullCalendar('updateEvent',event);
-////	             	            $('#calendar').fullCalendar('refetchEvents');
-//     	            location.reload();
-//     	        },
     	    }
     	});
 	}
 	
-	function checkAlong(c_id, date, day){
+	function checkAlong(mc_id, date, day){
 		var result;
 		$.ajax({
-        	url: 'checkchefalong.controller',
-        	data: 'c_id=' + c_id + '&date=' + date + '&day=' + day,
+        	url: 'checkmchefalong.controller',
+        	data: 'mc_id=' + mc_id + '&date=' + date + '&day=' + day + '&quota=' + '${bean.quota}',
         	type: 'POST',
         	dataType: 'html',
         	async: false,
@@ -401,25 +381,24 @@
 		return result;
 	}
 	
-	function storeDB(c_id, date, day, value, before, year, month, d){
+	function storeDB(mc_id, date, day, value, before, year, month, d){
 		$.confirm({
     		icon: 'fa fa-icon',
-    		title: '確定' + year + '年' + month + '月' + d + '日要請假？',
+    		title: '確定' + year + '年' + month + '月' + d + '日不營業？',
     	    content: '',
     	    type: 'blue',
     	    typeAnimated: true,
-    	    async: false,
+//     	    async: false,
     	    buttons: {
     	        	確定: function () {
+//     	        		alert("value = " + value);
     	            $.ajax({
     	            	url: 'updatecalendar.controller',
-    	            	data: 'c_id=' + c_id + '&date=' + date + '&day=' + day + '&value=' + value + '&before=' + before,
+    	            	data: 'mc_id=' + mc_id + '&date=' + date + '&day=' + day + '&value=' + value + '&before=' + before,
     	            	type: 'POST',
     	            	dataType: 'html',
     	            	success: function(response){
-//     	            		alert(response);
     	            		if(response == 'OK')
-//     	              		$('#calendar').fullCalendar('updateEvent',event);
     	            		$('#calendar').fullCalendar('refetchEvents');
     	            	},
     	            	error: function(e){
@@ -428,9 +407,7 @@
     	           });
     	        },
     	        	取消: function () {
-//     	        	$('#calendar').fullCalendar('updateEvent',event);
     	            $('#calendar').fullCalendar('refetchEvents');
-//     	            location.reload();
     	        },
     	    }
     	});
@@ -467,6 +444,7 @@ body {
 #external-events .fc-event {
 	margin: 10px 30px;
 	cursor: pointer;
+	width: 100px;
 }
 
 #external-events p {
@@ -490,21 +468,21 @@ body {
 /* 		margin: 0 auto; */
 /* 	} */
 </style>
-<title>大廚行事曆</title>
+<title>會員大廚行事曆</title>
 </head>
 <body>
 	<div id='wrap'>
 		<div id='external-events'>
 		<table align="center" border="0px">
 			<tr>
-				<td><h4>${bean.firstName}${bean.lastName}</h4></td>
+				<td><h4>${bean.memberBean.lastName}${bean.memberBean.firstName}</h4></td>
 				<form action="#">
-				<input type="hidden" id="c_id" value="${bean.c_id}">
+				<input type="hidden" id="mc_id" value="${bean.mc_id}">
 				</form>
 			</tr>
 			<tr style="margin-bottom: 20px">
 				<td><img height='150' width='100'
-					src='<c:url value="${request.contextPath}/pages/getImage.controller?id=${bean.c_id}" />'></td>
+					src='<c:url value="${request.contextPath}/pages/getImage.controller?mc_id=${bean.mc_id}" />'></td>
 			</tr>
 			<tr>
 				<td>
@@ -513,7 +491,7 @@ body {
 <!-- 						<h5>請假時段</h5> -->
 <!-- 						<div class='fc-event'>中午</div> -->
 <!-- 						<div class='fc-event'>晚上</div> -->
-						<div id="fe" class='fc-event'>請假</div>
+						<div id="fe" class='fc-event' style="font-size: 16px">未營業</div>
 					</div>
 					<br>
 				</td>
@@ -525,7 +503,7 @@ body {
 			
 		</table>
 		</div>
-		<div id='calendar'></div>
+		<div id='calendar' style="font-size: 16px"></div>
 
 		<div style='clear: both'></div>
 

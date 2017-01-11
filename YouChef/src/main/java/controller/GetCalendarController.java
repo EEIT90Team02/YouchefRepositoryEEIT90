@@ -69,7 +69,7 @@ public class GetCalendarController {
 		}
 		
 		if(null != mc_id){
-			List<CalendarBean> cbs = calendarService.selectMchef(Integer.parseInt(c_id));
+			List<CalendarBean> cbs = calendarService.selectMchef(Integer.parseInt(mc_id));
 			if(null != cbs){
 				for (CalendarBean cb : cbs) {
 					String data = cb.toString();

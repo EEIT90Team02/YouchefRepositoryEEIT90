@@ -36,8 +36,7 @@ public class GetMchefController {
 		model.addAttribute("errors", errors);
 		if (null != request.getParameter("mc_id")) {
 			MchefBean bean = mchefService.select(Integer.parseInt(request.getParameter("mc_id")));
-			HttpSession session = request.getSession();
-			session.setAttribute("bean", bean);
+			request.setAttribute("bean", bean);
 			return "mchefcalendar";
 		} else {
 			List<MchefBean> li = mchefService.selectAll();
@@ -55,8 +54,7 @@ public class GetMchefController {
 		        }
 
 		    });
-			HttpSession session = request.getSession();
-			session.setAttribute("list", list);
+			request.setAttribute("list", list);
 			return "mchefdishdisplay";
 		}
 	}
