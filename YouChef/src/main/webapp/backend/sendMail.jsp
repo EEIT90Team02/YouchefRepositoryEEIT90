@@ -11,7 +11,24 @@
 	<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
+		<style type="text/css">
+					#webSocketBtn{
+		position:fixed;
+		bottom:0px;
+		right:20px;
+		z-index:9999;
+	}
 	
+	#webSocket {
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		hieght:500px;
+		Width: 300px;
+		z-index:9998;
+		background:white;
+	}
+	</style>
 	
 </head>
 <body class="home">
@@ -150,6 +167,12 @@
 							</div>
 						</div>	
         </div>
+        
+        			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+			
+			<div id="webSocket" style="display:none">
+				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
+			</div>		
 
     	<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
@@ -196,7 +219,11 @@
 			}
 			document.getElementById("message").value = "";
 		}
-
+		$(document).ready(function(){
+			$("#webSocketBtn").click(function(){
+				$("#webSocket").slideToggle();
+			});
+		});
 		</script>
 		
 		<script src="<c:url value="/js/bootstrap.min.js"/>"></script>

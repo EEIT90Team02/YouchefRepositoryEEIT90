@@ -13,6 +13,26 @@
 	<link rel="shortcut icon"
 	href="<c:url value='${request.contextPath}/images/favicon.png' />">
 	
+		<style type="text/css">
+			#webSocketBtn{
+		position:fixed;
+		bottom:0px;
+		right:20px;
+		z-index:9999;
+	}
+	
+	#webSocket {
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		hieght:500px;
+		Width: 300px;
+		z-index:9998;
+		background:white;
+	}
+	</style>
+	
+	
 </head>
 <body class="home">
 
@@ -26,11 +46,11 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
+                        <li><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
-                        <li><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
+                        <li class="active"><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
                         <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
+                        <li><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                     </ul>
@@ -61,11 +81,15 @@
                                     <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">新增大廚</a></li> 
                                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project2">新增餐點</a></li> 
-
                                     <li>
                                         <a href="#" class="icon-info">
                                             <i class="fa fa-bell" aria-hidden="true"></i>
-                                            <span class="label label-primary">3</span>
+                                            <span class="label label-primary" id="mailCount">
+                                            	<c:choose>
+													<c:when test="${empty inbox}">(0)</c:when>
+													<c:otherwise>${inbox}</c:otherwise>
+												</c:choose>
+                                            </span>
                                         </a>
                                     </li>
                                     <li class="dropdown">
@@ -125,26 +149,7 @@
 				}
 				
 			</script>
-		
 
-		<form method="GET" name="typemenu" id="menu" action="">
-		<div class="col-sm-3">
-			<Select name="menu" value='changeAction(this.value)' class="form-control inputstl">
-				<option value="3001">台式套餐</option>
-				<option value="3002">日本套餐</option>
-				<option value="3003">川味套餐</option>
-				<option value="3004">西式套餐</option>
-				<option value="3005">東南套餐</option>
-			</Select>
-		</div>
-		</form>
-	 		<script type="text/javascript"> 
-		 		function changeAction(val){
-		 		document.getElementById('menu').setAttribute('action','+val');
-		 		type.submit();
-		 		}
-	 		
-	 		</script> 
 	
 		
                     <form action="<c:url value="/showDishes.controller?id=3005" />" method="get">
@@ -337,6 +342,15 @@
         </div>
     </div>
     
+    
+   
+   			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+			
+			<div id="webSocket" style="display:none">
+				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
+			</div>		
+    
+    
     	<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
     	</script>
@@ -366,9 +380,11 @@
 //     		              $("#thanks").html(msg) //hide button and show thank you
 //     		              $("#form-content").modal('hide'); //hide popup  
 						  alert("新增成功");
+						  window.close();
     		          },
     		          error: function(){
     		              alert("新增成功");
+    		              window.close();
     		          }
     		      });
     		  });
@@ -400,38 +416,17 @@
 //     		              $("#thanks").html(msg) //hide button and show thank you
 //     		              $("#form-content").modal('hide'); //hide popup  
 						  alert("新增成功");
+						  window.close();
     		          },
     		          error: function(){
     		              alert("新增成功");
+    		              window.close();
     		          }
     		      });
     		  });
     		  });
     			  </script>
-    		    	<!-- 編輯餐點 -->
-    		    	<script type="text/javascript">
-    		    	  $(document).ready(function () {
-    		    		  $("#submit3").click(function(){
-    		    		      var form = new FormData(document.getElementById("ed"));
-    		    			  
-    		    			  $.ajax({
-    		    		    	  type: "POST",
-    		    		          url: "<c:url value="/dishdisplay/dishinsert.controller"/>", // 連接到controller
-    		    		          data: form,
-    		    		          processData:false,
-    		    		          contentType:false,
-    		    		          success: function(msg){
-//    		     		        	  可以控制語法去改變html
-//    		     		              $("#thanks").html(msg) //hide button and show thank you
-//    		     		              $("#form-content").modal('hide'); //hide popup  
-    								  alert("新增成功");
-    		    		          },
-    		    		          error: function(){
-    		    		              alert("新增成功");
-    		    		          }
-    		    		      });
-    		    		  });
-    		    		  });
+    
 		
 // 		$(document).ready(function(){
 // 			$("#typeDish2 option").removeAttr("selected");
@@ -446,6 +441,12 @@
 		   $('[data-toggle="offcanvas"]').click(function(){
 		       $("#navigation").toggleClass("hidden-xs");
 		   });
+		});
+		
+		$(document).ready(function(){
+			$("#webSocketBtn").click(function(){
+				$("#webSocket").slideToggle();
+			});
 		});
 		</script>
 		

@@ -109,7 +109,7 @@ ChefBean cbu =chefService.select(id);
 TypeBean typebean =typeService.select(t_id);
 if(cbu !=null){
 	try {
-		chefService.Chefupdate(cbu,chef.getFirstName(), chef.getLastName(),chef.getSex(),chef.getPhone(), chef.getAddress(), 
+		chefService.update(cbu,chef.getFirstName(), chef.getLastName(),chef.getSex(),chef.getPhone(), chef.getAddress(), 
 				typebean, chef.getC_status(), chef.getBackground(),chef.getYears(),file.getBytes());
 	} catch (IOException e) {
 		// TODO Auto-generated catch block

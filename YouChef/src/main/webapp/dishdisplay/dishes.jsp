@@ -117,7 +117,7 @@ function clearForm() {
 		<td>照片:</td>
 		<td>
 		<input  class='InputClass'  type="file" name="file" size="40" />
-            <font  size='-1'>${errors.Picture}</font></td>
+            <font  size='-1'>${ErrMsg.errPicture}</font></td>
 	</tr>
 	<tr>
 	<td></td>

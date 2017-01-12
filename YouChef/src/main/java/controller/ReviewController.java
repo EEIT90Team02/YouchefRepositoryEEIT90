@@ -53,7 +53,7 @@ public class ReviewController {
 	}
 	OrdersBean bean = new OrdersBean();
 	bean.setR_message(r_message);
-	float r_stars = Float.parseFloat("stars");
+	float r_stars = Float.parseFloat(rstars);
 	bean.setR_stars(r_stars);
 	int o_id = Integer.parseInt(oid);
 	bean.setO_id(o_id);

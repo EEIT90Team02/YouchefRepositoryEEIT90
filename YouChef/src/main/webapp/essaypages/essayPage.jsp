@@ -39,9 +39,26 @@
 		    <![endif]-->
 		<style>
 			body{
-				background-color: #F7F7F6;
+				  background-image:url(<c:url value="/image/background.gif"/>); 
+  				  background-repeat: repeat; 
 			}
-		
+			img{
+				    border-radius: 100px;
+			}
+			
+			.icon-info .label {
+			    border: 2px solid #ffffff;
+			    font-weight: 500;
+			    padding: 3px 5px;
+			    text-align: center;
+			}
+			.label.label-primary {
+			    border-radius: 50%;
+			    font-size: 9px;
+			    left: 8px;
+			    position: absolute;
+			    top: 45px;
+			}
 			#navuser {
 				color: #93B7DB;
 				font-size: 16px
@@ -146,11 +163,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -195,11 +212,11 @@
 		<div id="navigation-wapper">
 			<div id="new-navigation">
 				<ul id="nav-bar">
-					<li class="tab mainpage active"><a id="new-nav-mainpage" href=""><span>首頁</span></a></li>
-					<li class="tab blog "><a id="new-nav-blog" href=""><span>瀏覽大廚</span></a></li>
-					<li class="tab more-channel"><a id="new-nav-more-tab" href="#"><span>瀏覽餐點</span></a></li>
-					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href=""><span>會員大廚餐點區</span></a></li>
-					<li class="tab tech3c "><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
+										<li class="tab mainpage"><a id="new-nav-mainpage" href="#"><span>首頁</span></a></li>
+					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
+					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
+					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>
+					<li class="tab tech3c active"><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
 <!-- 					<li class="tab movie "><a class="tab-link" id="new-nav-movie-tab" href=""><span>ZZZ</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-travel-tab"	href=""><span>GGG</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-family-tab"	href=""><span>AAA</span></a></li> -->
@@ -210,28 +227,30 @@
 	
 		<div class="container col-md-8 col-md-offset-2">
 
+<br>
 	<br>
 	<br>
 	<br>
-	<br>	
+	<br>		
 	<c:choose>
 		<c:when test="${empty user}">
 			<p>
-				<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" name="getessay" value="回列表"></a>
+				<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
 			</p>
 		</c:when>
 		<c:when test="${user.m_id == essayPage.writer_id.m_id}">
 				<p>
-					<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" name="getessay" value="回列表"></a>
-					<a href="<c:url value="${request.contextPath}/essaypages/essayEdit.jsp"/>"><input type="button" name="getessay" value="編輯"></a>
-					<a href="<c:url value="${request.contextPath}/essay/deleteessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="return(confirm('你確定要刪除文章嗎?'))"><input type="button" name="getessay" value="刪除"></a>
-					<a href="<c:url value="${request.contextPath}/essaypages/discussPage.jsp"/>"><input type="button" name="getessay" value="留言"></a>
+					<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
+					<a href="<c:url value="${request.contextPath}/essaypages/essayEdit.jsp"/>"><input type="button" class="btn btn-warning" name="getessay" value="編輯"></a>
+					<a href="<c:url value="${request.contextPath}/essay/deleteessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="return(confirm('你確定要刪除文章嗎?'))"><input type="button" class="btn btn-danger" name="getessay" value="刪除"></a>
+					<a href="<c:url value="${request.contextPath}/essaypages/discussPage.jsp"/>"><input type="button" class="btn btn-success" name="getessay" value="留言"></a>
 				</p>
 			</c:when>
 		<c:otherwise>
 			<p>
-				<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" name="getessay" value="回列表"></a>
-				<a href="<c:url value="${request.contextPath}/essaypages/discussPage.jsp"/>"><input type="button" name="getessay" value="留言"></a>
+				<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
+				<a href="<c:url value="${request.contextPath}/essaypages/discussPage.jsp"/>"><input type="button" class="btn btn-success" name="getessay" value="留言"></a>
+				<a href="<c:url value="${request.contextPath}/essay/reportessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="return(confirm('確定檢舉該文章?'))"><input type="button" class="btn btn-danger" name="getessay" value="檢舉" style="float:right"></a>
 			</p>			
 		</c:otherwise>
 	</c:choose>
@@ -243,65 +262,50 @@
 		</c:when>
 	</c:choose>
 	<fmt:formatDate value="${essayPage.time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日HH:mm:ss"/>
-	<div>
-			<p><label class="title">發文者:</label>${essayPage.writer_id.firstName}${essayPage.writer_id.lastName}</p>
-	</div>
-	<div>
-			<p><label class="title">標題:</label>${essayPage.title}</p>
-	</div>
-	<div>
-			<label class="title">內容:</label><p>
-			<p>${essayPage.content}</p>
-	</div>
-	<div>
-		<p><label class="title">最後發表時間:</label>${formattedDate}</p>
-	</div>
-	<div>
+	<table class="table table-hover table-curved table-bordered">
+			<tr class="info">
+			<td><label class="title">發文者：</label>${essayPage.writer_id.lastName}${essayPage.writer_id.firstName}</td>
+			</tr>
+			<tr class="success">
+			<td><label class="title">標題：</label>${essayPage.title}</td>
+			<tr class="success">
+			<td><label class="title">內容：</label>
+			${essayPage.content}</td>
+			</tr>
+			<tr class="success">
+			<td><label class="title">最後發表時間：</label>${formattedDate}</td>
+			</tr>
+	</table>
+	
 		<c:forEach var="discuss" items="${discussList}">
 			<fmt:formatDate value="${discuss.time}" var="fordiscussDate" type="date" pattern="YYYY年MM月dd日HH:mm:ss"/>
-			<table>
-				<tr>
-				<td>回文者：：${discuss.memberBean.firstName}${discuss.memberBean.lastName}</td>
+			<table class="table table-hover table-curved table-bordered">
+				<tr class="info">
+				<td>回文者：${discuss.memberBean.lastName}${discuss.memberBean.firstName}</td>
 				</tr>
 
-				<tr>
+				<tr class="success">
 				<td>回覆內容：${discuss.content}</td>
 				</tr>
-				<tr>
+				<tr class="success">
 				<td>最後發表時間：${fordiscussDate}</td>
 				</tr>
 				<c:choose>
-				<c:when test="${user.m_id == discuss.memberBean.m_id}">
-					<td>
-<%-- 						<a href="<c:url value="${request.contextPath}/discuss/updatediscuss.controller?discuss_id=p/>"><input type="button" name="getessay" value="編輯"></a> --%>
-						<a href="<c:url value="${request.contextPath}/essaypages/discussEdit.jsp?discuss_id=${discuss.discuss_id}"/>"><input type="button" name="getessay" value="編輯"></a>
-						<a href="<c:url value="${request.contextPath}/discuss/deletedDiscuss.controller?discuss_id=${discuss.discuss_id}"/>" onClick="return(confirm('你確定要刪除回文?'))"><input type="button" name="getessay" value="刪除"></a>	
-					</td>
-				</c:when>
+					<c:when test="${user.m_id == discuss.memberBean.m_id}">
+						<td class="success">
+							<a href="<c:url value="${request.contextPath}/essaypages/discussEdit.jsp?discuss_id=${discuss.discuss_id}"/>"><input type="button" class="btn btn-warning" name="getessay" value="編輯"></a>
+							<a href="<c:url value="${request.contextPath}/discuss/deletedDiscuss.controller?discuss_id=${discuss.discuss_id}"/>" onClick="return(confirm('你確定要刪除回文?'))"><input type="button" class="btn btn-danger" name="getessay" value="刪除"></a>	
+						</td>
+					</c:when>
+					<c:when test="${user.m_id != discuss.memberBean.m_id && not empty user}">
+						<td class="success">
+							<a href="<c:url value="${request.contextPath}/discuss/reportDiscuss.controller?discuss_id=${discuss.discuss_id}"/>" onClick="return(confirm('確定檢舉該回文?'))"><input type="button" class="btn btn-danger" name="getessay" value="檢舉" style="float:right"></a>	
+						</td>
+					</c:when>
 				</c:choose>			
 			</table>
 		</c:forEach>
-	</div>
-	<%-- 				<c:when test="${user.m_id == discuss[0].memberBean.m_id}"> --%>
-<%-- 				</c:when> --%>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	</div>		
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>

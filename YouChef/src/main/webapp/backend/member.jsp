@@ -10,7 +10,24 @@
 	<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
+		<style type="text/css">
+					#webSocketBtn{
+		position:fixed;
+		bottom:0px;
+		right:20px;
+		z-index:9999;
+	}
 	
+	#webSocket {
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		hieght:500px;
+		Width: 300px;
+		z-index:9998;
+		background:white;
+	}
+	</style>
 	
 </head>
 <body class="home">
@@ -29,7 +46,7 @@
                         <li><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
                         <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
+                        <li><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                     </ul>
@@ -57,7 +74,6 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">增刪管理員</a></li>
 <!--                                    	<li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_test">新增大廚</a></li> -->
                                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
@@ -136,7 +152,7 @@
 												   		</c:when>
 												   	</c:choose>	
 														<td>${element.email}</td>
-														<td>${element.firstName}${element.lastName}</td>
+														<td>${element.lastName}${element.firstName}</td>
 														<td>${element.phone}</td>
 														<td>${element.city}${element.district}${element.address}</td>
 													<c:choose>
@@ -170,35 +186,11 @@
 
 
 
-    <!-- Modal -->
-    <div id="add_project" class="modal fade" role="dialog">
-        <div class="new-chef">
-		
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header login-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">增刪管理員</h4>
-                </div>
-                
-                <!-- 新增大廚的表格 -->
-                
-                <form class="insert" action="<c:url value="/index.jsp" />" method="POST">
-                	<div class="modal-body">
-	                            <input type="text" placeholder="Project Title" name="name">
-	                            <input type="text" placeholder="Post of Post" name="mail">
-	                            <input type="text" placeholder="Author" name="passsword">
-	                            <textarea placeholder="Desicrption"></textarea>
-                	</div>
-	                <div class="modal-footer">
-	                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
-	                    <button type="submit" class="add-project" data-dismiss="modal" id="submit">Save</button>
-	                </div>
-                </form> 
-            </div>
-
-        </div>
-    </div>
+   			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+			
+			<div id="webSocket" style="display:none">
+				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
+			</div>		
     
         <!-- Modal -->
 <!--     <div id="add_test" class="modal fade" role="dialog"> -->
@@ -284,7 +276,11 @@
 		</c:when>
 		</c:choose>
 
-
+		$(document).ready(function(){
+			$("#webSocketBtn").click(function(){
+				$("#webSocket").slideToggle();
+			});
+		});
 		</script>
 		
 		<script src="<c:url value="/js/bootstrap.min.js"/>"></script>

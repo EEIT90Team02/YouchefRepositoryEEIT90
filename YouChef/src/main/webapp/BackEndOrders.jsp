@@ -11,6 +11,24 @@
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
 	
+	<style type="text/css">
+			#webSocketBtn{
+		position:fixed;
+		bottom:0px;
+		right:20px;
+		z-index:9999;
+	}
+	
+	#webSocket {
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		hieght:500px;
+		Width: 300px;
+		z-index:9998;
+		background:white;
+	}
+	</style>
 	
 </head>
 <body class="home">
@@ -25,11 +43,11 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
+                        <li><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
-                        <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
+                        <li class="active"><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
+                        <li><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                     </ul>
@@ -141,14 +159,16 @@
 														<c:when test="${element.o_status == 0 }">
 															<td>處理中</td>
 														</c:when>
-														<c:when test="${element.o_status == 1 }">
+														<c:when test="${element.o_status == 2 }">
 															<td>已結帳</td>
 														</c:when>
+														<c:when test="${element.o_status == 1 }">
+															<td>已取消</td>
+														</c:when>
 														<c:otherwise>
-															<td>放鳥</td>
+															<td>被放鳥</td>
 														</c:otherwise>
 													</c:choose>
-														<td>${element.o_status}</td>
 														<td>${element.updateTime}</td>
 														<td>${element.people}</td>
 														
@@ -254,7 +274,12 @@
 
 <!--         </div> -->
 <!--     </div> -->
-    
+    	
+    		<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+			
+			<div id="webSocket" style="display:none">
+				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
+			</div>		
     
     
     	<script
@@ -262,6 +287,8 @@
     	</script>
 
 		<script>
+		
+		
 			window.jQuery
 					|| document
 							.write('<script src="<c:url value="/js/jquery.min.js" />"><\/script>')
@@ -308,7 +335,12 @@
 			setInterval('MailCountValue()',10000);					
 		</c:when>
 		</c:choose>
-
+		
+		$(document).ready(function(){
+			$("#webSocketBtn").click(function(){
+				$("#webSocket").slideToggle();
+			});
+		});
 
 		</script>
 		

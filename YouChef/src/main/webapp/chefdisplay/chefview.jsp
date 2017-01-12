@@ -270,7 +270,7 @@
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
-									<li><a href="<c:url value="/member/main.jsp"/>">會員專區</a></li>
+									<li><a href="<c:url value="/memberOrders.controller?m_id=${user.m_id}"/>">會員專區</a></li>
 									<li><a href="<c:url value="/member/main.jsp"/>#orders">訂單查詢</a></li>
 									<li>
 										<a href="<c:url value="/mail/inbox.controller"/>">信箱 (未讀:
@@ -282,14 +282,7 @@
 										</a>
 									</li>
 									<li>
-										<c:choose>
-											<c:when test="${user.ac_status==0}">
-												<a href="<c:url value="/member/main.jsp"/>#applychef">申請會員大廚</a>
-											</c:when>
-											<c:otherwise>
-													<a href="<c:url value="/member/main.jsp"/>#editchefmeal">修改餐點</a>
-											</c:otherwise>
-										</c:choose>
+										<a href="<c:url value="/member/main.jsp"/>#applychef" >申請會員大廚</a>
 									</li>
 									<li>
 										<a href="<c:url value="/member/logout.jsp" />">登出</a>
@@ -409,8 +402,8 @@
 		</table>
 		
 					<div >
-			<input type="button" value="立即訂購" onclick="location.href='<c:url value="/chefOrder.controller?c_id=${param.c_id}&t_id=${chef.typeBean.t_id}"/>'">
-				</div>
+			<input type="button" value="立即訂購" onclick="window.open('<c:url value="/chefOrder.controller?c_id=${param.c_id}&t_id=${chef.typeBean.t_id}"/>', '_blank')">
+				</div>									
 		<p>
 		
 		<div class="panel panel-default" id="comments">

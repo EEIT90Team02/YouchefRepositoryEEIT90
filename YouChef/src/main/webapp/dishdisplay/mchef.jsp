@@ -240,11 +240,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -289,9 +289,9 @@
 		<div id="navigation-wapper">
 			<div id="new-navigation">
 				<ul id="nav-bar">
-					<li class="tab mainpage"><a id="new-nav-mainpage" href=""><span>首頁</span></a></li>
-					<li class="tab blog "><a id="new-nav-blog" href=""><span>瀏覽大廚</span></a></li>
-					<li class="tab more-channel"><a id="new-nav-more-tab" href="#"><span>瀏覽餐點</span></a></li>
+					<li class="tab mainpage active"><a id="new-nav-mainpage" href="<c:url value="/pages/main.jsp"/>"><span>首頁</span></a></li>
+					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
+					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
 					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>
 					<li class="tab tech3c "><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
 <!-- 					<li class="tab movie "><a class="tab-link" id="new-nav-movie-tab" href=""><span>ZZZ</span></a></li> -->
@@ -325,22 +325,17 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-				<div class="list-group">
-					<a href="../dishdisplay/dishdisplayTaiwan.jsp"
-						class="list-group-item">台式料理</a> <a
-						href="../dishdisplay/dishdisplayJapan.jsp" class="list-group-item">日本料理</a>
-					<a href="../dishdisplay/dishdisplayWestern.jsp"
-						class="list-group-item">西式料理</a> <a
-						href="../dishdisplay/dishdisplaySichuan.jsp"
-						class="list-group-item">川味料理</a> <a
-						href="../dishdisplay/dishdisplaySoutheastAsia.jsp"
-						class="list-group-item">東南亞料理</a>
-
-				</div>
-				<div class="list-group">
-					<a href="../pages/getmchef.controller" class="list-group-item">會員大廚專區</a>
-				</div>
+		    <div class="col-md-2">
+		       <div class="list-group">
+				  <a href="<c:url value="${request.contextPath}/showDishes.controller?id=3001" />" class="list-group-item">台式料理</a>
+				  <a href="<c:url value="${request.contextPath}/showDishes.controller?id=3002" />" class="list-group-item">日本料理</a>
+				  <a href="<c:url value="${request.contextPath}/showDishes.controller?id=3004" />"class="list-group-item">西式料理</a>
+				  <a href="<c:url value="${request.contextPath}/showDishes.controller?id=3003"/>" class="list-group-item">川味料理</a>
+				  <a href="<c:url value="${request.contextPath}/showDishes.controller?id=3005"/>" class="list-group-item">東南亞料理</a>			
+			   </div>
+			   	<div class="list-group">
+					<a href="<c:url value="/pages/getmchef.controller"/>" class="list-group-item">會員大廚專區</a>
+				</div>	
 			</div>
 			<div class="col-md-10">
 				<div class="jumbotron">

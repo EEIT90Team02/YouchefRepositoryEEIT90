@@ -22,7 +22,11 @@ import model.DiscussBean;
 import model.DiscussService;
 import model.EssayBean;
 import model.EssayService;
+import model.InboxBean;
+import model.InboxService;
 import model.MemberBean;
+import model.MemberDAO;
+import model.MemberService;
 
 @Controller
 @RequestMapping(path = {"/essay"})
@@ -31,6 +35,10 @@ public class EssayController {
 		EssayService essayService;
 		@Autowired
 		DiscussService discussService;
+		@Autowired
+		InboxService inboxService;
+		@Autowired
+		MemberDAO memberDao;
 		
 		@InitBinder
 		private void initBinder(WebDataBinder binder) {
@@ -43,16 +51,11 @@ public class EssayController {
 		public String process(EssayBean bean,
 				BindingResult bindingResult, 
 				Model model, HttpServletRequest request) {
-//			String instruction = request.getParameter("getessay");
-//			MemberBean writer =(MemberBean) request.getAttribute("user");
+
 			Map<String, String> errors = new HashMap<String, String>();
 			model.addAttribute("errors", errors);
-//			if("發文"==(instruction) || "user"==null){
-//				errors.put("memberlogin", "請先登入會員");
-//			}
-//			List<DiscussBean> discusst = discussService.selectAll();
+
 			List<EssayBean> elist = essayService.listAll();
-//			System.out.println("elist="+elist);	
 			HttpSession session = request.getSession();
 			session.setAttribute("elist", elist);
 			return "essaylist";
@@ -85,12 +88,10 @@ public class EssayController {
 		bean.setE_status("0");
 		essayService.insert(bean);
 		session.setAttribute("essaybean", bean);
-//		Thread.sleep(1000);
+
 		List<EssayBean> elist = essayService.listAll();
-//		System.out.println("elist = " + elist);
+
 		session.setAttribute("elist", elist);
-//		essayService.select(bean);
-//		session.setAttribute("essaybean", bean);
 		return "essayinsertsuccess";
 		}
 		
@@ -109,10 +110,7 @@ public class EssayController {
 			bean=essayService.select(bean);
 			session.setAttribute("essayPage", bean);
 			List<DiscussBean> temp1 = discussService.discussAll(essay_id);
-//			System.out.println("前面"+temp1);
 			session.setAttribute("discussList", temp1);
-//			System.out.println("後面"+temp1);
-//			System.out.println("essaybean = " + bean);
 			return "essayselect";
 		}
 		
@@ -168,5 +166,106 @@ public class EssayController {
 		List<EssayBean> elist = essayService.listAll();
 		session.setAttribute("elist", elist);
 		return "essayinsertsuccess";
+		}
+		
+		@RequestMapping(path={"/reportessay.controller"},
+				method = {RequestMethod.GET, RequestMethod.POST},
+				produces="text/html;charset=utf-8")
+		public String reportprocess(
+				@RequestParam(name="essay_id")String essayid,
+				Model model, HttpSession session) throws InterruptedException {
+		MemberBean writer =(MemberBean) session.getAttribute("user");
+		EssayBean update = (EssayBean) session.getAttribute("essayPage");
+		Map<String,String> errors = new HashMap<String,String>();
+		model.addAttribute("errors",errors);
+			MemberBean admin = memberDao.select("eeitgroup3@gmail.com");
+		
+			InboxBean bean = new InboxBean();
+			bean.setSubject("這是一封檢舉信喔!!");
+			bean.setContent("這篇文章不符合規定, 請做處理!!");
+			bean.setI_status("0");
+			long time= new java.util.Date().getTime();
+			bean.setMail_time(new java.sql.Time(time));
+			bean.setReceiver (admin);
+			try {
+				inboxService.sendMail(bean, writer, admin);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			int essay_id = Integer.parseInt(essayid);
+			EssayBean upbean = new EssayBean();
+			upbean.setEssay_id(essay_id);
+			upbean=essayService.select(upbean);
+			upbean.setE_status("2");
+			essayService.update(upbean);
+			return "essayselect";
+		}
+		
+		@RequestMapping(path={"/backessay.controller"},
+				method = {RequestMethod.GET, RequestMethod.POST},
+				produces="text/html;charset=utf-8")
+		public String backprocess(
+				@RequestParam(name="essay_id")String essayid,
+				Model model, HttpSession session) throws InterruptedException {
+		MemberBean writer = (MemberBean) session.getAttribute("admin");
+		Map<String,String> errors = new HashMap<String,String>();
+		model.addAttribute("errors",errors);
+		EssayBean bean = new EssayBean();
+		int essay_id = Integer.valueOf(essayid);
+		bean.setEssay_id(essay_id);
+		bean=essayService.select(bean);
+		MemberBean ban = memberDao.select(bean.getWriter_id().getM_id());
+		InboxBean mail = new InboxBean();
+		mail.setSubject("你的文章已被封鎖");
+		mail.setContent("這篇文章不符合規定, 已被鎖定!!");
+		mail.setI_status("0");
+		long time= new java.util.Date().getTime();
+		mail.setMail_time(new java.sql.Time(time));
+		mail.setReceiver (ban);
+		try {
+			inboxService.sendMail(mail, writer, ban);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+
+		essayService.delete(essay_id, "1");
+		List<EssayBean> backlist = essayService.listBack();
+		session.setAttribute("backlist", backlist);
+		return "back.redirect";
+		}
+		
+		@RequestMapping(path={"/getbackessay.controller"},
+				method = {RequestMethod.GET, RequestMethod.POST}
+		)
+		public String getbackprocess(Model model, HttpSession session) {
+
+
+			List<EssayBean> backlist = essayService.listBack();
+
+			session.setAttribute("backlist", backlist);
+			return "essayback";
+			
+		}
+		
+		
+		
+		@RequestMapping(path={"/backnothing.controller"},
+				method = {RequestMethod.GET, RequestMethod.POST},
+				produces="text/html;charset=utf-8")
+		public String nothingprocess(
+				@RequestParam(name="essay_id")String essayid,
+				Model model, HttpSession session) throws InterruptedException {
+		MemberBean writer =(MemberBean) session.getAttribute("user");
+		Map<String,String> errors = new HashMap<String,String>();
+		model.addAttribute("errors",errors);
+		
+		int essay_id = Integer.parseInt(essayid);
+		EssayBean bean = new EssayBean();
+		bean.setEssay_id(essay_id);
+		bean=essayService.select(bean);
+		essayService.delete(essay_id, "0");
+		List<EssayBean> backlist = essayService.listBack();
+		session.setAttribute("backlist", backlist);
+		return "back.redirect";
 		}
 }

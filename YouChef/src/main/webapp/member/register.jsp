@@ -95,11 +95,11 @@
 		</div>		
 		
 		<div class="form-inline">
-			<label for="firstName">姓:
-				<input size="3" type="text" name ="firstName" id="firstName" value="${param.firstName}">
-			</label>
-			<label for="lastName">名:
+			<label for="lastName">姓:
 				<input size="3" type="text" name ="lastName" id="lastName" value="${param.lastName}">
+			</label>
+			<label for="firstName">名:
+				<input size="3" type="text" name ="firstName" id="firstName" value="${param.firstName}">
 			</label> 
 			<label for="nickname">暱稱:
 				<input size="3" type="text" name ="nickname" id="nickname" value="${param.nickname}">

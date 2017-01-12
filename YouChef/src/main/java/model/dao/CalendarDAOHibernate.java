@@ -46,7 +46,8 @@ public class CalendarDAOHibernate implements CalendarDAO {
 	@Override
 	public CalendarBean selectChef(int c_id, String date) {
 		Query query = this.getSession().createQuery(SELECT_CHEF);
-		System.out.println("c_id = " + c_id);
+		System.out.println("Calendar DAO c_id = " + c_id);
+		System.out.println("Calendar DAO date = " + date);
 		query.setParameter("c_id", c_id);
 		query.setParameter("date", date);
 		System.out.println(query.getResultList().size());

@@ -170,7 +170,7 @@ public class ChefDAOHibernate implements ChefDAO {
 	}
 	
 	@Override
-	public ChefBean Chefupdate(int c_id, String fisrtName, String lastName, String sex, String phone, 
+	public ChefBean update(int c_id, String fisrtName, String lastName, String sex, String phone, 
             String address,TypeBean typeBean,String c_status,
             String background,Integer years, byte[] photo) {
 		ChefBean update = this.getSession().get(ChefBean.class, c_id );

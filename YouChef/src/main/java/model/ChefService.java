@@ -117,8 +117,7 @@ public class ChefService {
 		return list;
 	}
 	@Autowired
-	private DishesDAO dishesDao;
-	@Transactional
+	private DishesDAO dishesDao;	
 	public List<Object[]> selectDishesByType(Integer t_id){
 		List<Object[]> list =dishesDao.selectDishesByType(t_id);
 	return list;
@@ -130,12 +129,12 @@ public class ChefService {
 //		return list;
 //		
 //	}
-	@Transactional
+
 	public ChefBean update(ChefBean bean) {
 		return chefDao.update(bean);
 	}
-	@Transactional
-	public ChefBean Chefupdate(ChefBean bean,String fisrtName, String lastName, String sex, String phone, 
+	
+	public ChefBean update(ChefBean bean,String fisrtName, String lastName, String sex, String phone, 
             String address,TypeBean typeBean,String c_status,
             String background,Integer years, byte[] photo) {
 		bean.setFirstName(fisrtName);
@@ -148,12 +147,12 @@ public class ChefService {
 		bean.setBackground(background);
 		bean.setYears(years);
 		bean.setPhoto(photo);
-		chefDao.Chefupdate(bean.getC_id(),bean.getFirstName(), bean.getLastName(),bean.getSex(),bean.getPhone(), bean.getAddress(), 
+		chefDao.update(bean.getC_id(),bean.getFirstName(), bean.getLastName(),bean.getSex(),bean.getPhone(), bean.getAddress(), 
 				bean.getTypeBean(), bean.getC_status(), bean.getBackground(),bean.getYears(), bean.getPhoto());
 		
 		return bean;
 	}
-	@Transactional
+
 	public List<ChefBean> selectChefByType(int t_id){
 		List<ChefBean> list =chefDao.selectChefByType(t_id);
 		return list;

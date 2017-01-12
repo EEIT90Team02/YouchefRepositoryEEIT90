@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>大廚點餐區</title>
+<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
 <link rel="stylesheet" href="css/bootstrap.min.css">
  <style>
   .badge-notify{
@@ -122,7 +123,7 @@
 	var noWork= [];
     var disabledDays = [];
     var temp =[];
-    var m_id = 1002;
+    var m_id = ${user.m_id};
     var t_id = ${data.t_id};
 	var c_id = ${data.c_id};
 	var yr = ${data.yr};
@@ -584,6 +585,7 @@
 	        		 //document.location.href="http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror";
 	        	}else{
 	        		 alert("預訂成功");
+	        		 window.close();
 // 	        		 window.location.replace('https://www.youtube.com/');
 	        		 //document.location.href="https://www.youtube.com/";
 	        	}
@@ -594,12 +596,13 @@
 		     
 		        if (xhr.status == 200) {
 // 		        	 alert("此時段已經被預訂");
-	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
+// 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 		            //alert(ajaxOptions);
 		        }
 		        else {
 // 		        	 alert("此時段已經被預訂");
-	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
+// 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
+>>>>>>> refs/remotes/origin/master
 		            //alert(xhr.status);
 		            //alert(thrownError);
 		        }

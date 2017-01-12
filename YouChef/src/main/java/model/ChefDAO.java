@@ -14,8 +14,8 @@ public interface ChefDAO {
 	ChefBean update(ChefBean bean);
 	
 	List<ChefBean> selectChefByType(Integer t_id);
-	
-	ChefBean Chefupdate(int c_id, String fisrtName, String lastName, String sex, String phone, 
+
+	ChefBean update(int c_id, String fisrtName, String lastName, String sex, String phone, 
             String address,TypeBean typeBean,String c_status,
             String background,Integer years, byte[] photo);
 }
