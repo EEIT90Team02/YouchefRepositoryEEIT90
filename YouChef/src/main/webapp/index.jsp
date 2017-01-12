@@ -10,7 +10,8 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="<c:url value="/images/favicon.ico"/>">
+		<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
+		
 		
 		<title>優廚 - 首頁</title>
 		
