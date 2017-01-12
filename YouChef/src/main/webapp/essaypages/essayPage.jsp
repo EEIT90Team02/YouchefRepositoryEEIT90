@@ -283,7 +283,6 @@
 				<tr class="info">
 				<td>回文者：${discuss.memberBean.lastName}${discuss.memberBean.firstName}</td>
 				</tr>
-
 				<tr class="success">
 				<td>回覆內容：${discuss.content}</td>
 				</tr>
