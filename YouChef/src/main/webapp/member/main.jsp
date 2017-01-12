@@ -391,7 +391,7 @@
 									</div>
 									<div class="form-group">
 										<label for="captcha">
-										系統產生認證碼:<img src="captcha.controller" alt="New Image"/><br>
+										系統產生認證碼:<img src="<c:url value="/member/captcha.controller"/>" alt="New Image"/><br>
 										請輸入上認證碼:<input type="text" name="captcha" size="3"/><span id="spanCaptcha" class="">  ${errors.captcha}</span>
 										</label>
 									</div>
