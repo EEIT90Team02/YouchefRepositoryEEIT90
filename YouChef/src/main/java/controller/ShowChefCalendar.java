@@ -30,8 +30,7 @@ public class ShowChefCalendar {
 	@ResponseBody
 	public String handleAjax(@RequestParam String c_id, @RequestParam String theMonth,
 			@RequestParam String date){
-	  
-        
+
 		System.out.println("id= "+c_id);
 		System.out.println("month= "+ theMonth);
 		System.out.println("date= "+date);

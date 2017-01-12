@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 	<head>
+	<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -308,6 +309,7 @@
 			    if (myIndex > x.length) {myIndex = 1}    
 			    x[myIndex-1].style.display = "block";  
 			    setTimeout(carousel, 3000); // Change image every 2 seconds
+>>>>>>> refs/remotes/origin/master
 			}
 			
 		</script>

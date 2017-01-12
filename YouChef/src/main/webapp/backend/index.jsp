@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+<link href="<c:url value='${request.contextPath}/images/YouChef-logo-bk.png' />" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +63,6 @@
 		<div class="container col-md-4 col-md-offset-4">
 			<form role="form" action="<c:url value="/backend/login.controller"/>"
 				method="POST">
-
 				<div class="form-group">
 					<label for="inputEmail">電子郵件</label> <input type="text"
 						class="form-control" id="inputEmail" placeholder="輸入電子郵件"

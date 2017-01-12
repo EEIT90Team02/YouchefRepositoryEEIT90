@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="shortcut icon" href="images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>會員大廚點餐區  </title>
 <link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
@@ -571,7 +572,6 @@
 			<input id="time3" type="hidden">
 			<input id="time4" type="hidden">
 			<p>地址: <input type="text" id="address" size="47" value="${mchef.venue}"></p>
-		
 	</div>
 
   <div class="row">

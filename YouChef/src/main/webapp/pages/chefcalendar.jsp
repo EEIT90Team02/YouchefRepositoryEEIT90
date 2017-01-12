@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-Hant-TW">
 <head>
-<link rel="shortcut icon" href="../images/favicon.png">
+<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href='../css/fullcalendar.min.css' rel='stylesheet' />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

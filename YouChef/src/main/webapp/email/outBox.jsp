@@ -11,7 +11,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<c:url value="/images/favicon.ico"/>">
+    <link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 
     <title>優廚 - 站內信箱</title>
 

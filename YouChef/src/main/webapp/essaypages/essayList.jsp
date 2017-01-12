@@ -11,7 +11,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="<c:url value="/images/favicon.ico"/>">
+		<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		
 		<title>優廚</title>
 		
@@ -273,25 +273,7 @@
 		</tbody>	
 	</table>
 	<div style="float: left"><a href="javascript:;" onclick="$('html,body').animate({scrollTop:0},500);" title="回到頂端"><input type="button" class="btn btn-success" name="getessay" value="回到頂端"></a></div>
-	</form>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	</form>	
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>
