@@ -39,9 +39,26 @@
 		    <![endif]-->
 		<style>
 			body{
-				background-color: #F7F7F6;
+				  background-image:url(<c:url value="/image/background.gif"/>); 
+  				  background-repeat: repeat; 
 			}
-		
+			img{
+				    border-radius: 100px;
+			}
+			
+			.icon-info .label {
+			    border: 2px solid #ffffff;
+			    font-weight: 500;
+			    padding: 3px 5px;
+			    text-align: center;
+			}
+			.label.label-primary {
+			    border-radius: 50%;
+			    font-size: 9px;
+			    left: 8px;
+			    position: absolute;
+			    top: 45px;
+			}
 			.navuser {
 				color: #93B7DB;
 				font-size: 16px
@@ -145,11 +162,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -194,11 +211,11 @@
 		<div id="navigation-wapper">
 			<div id="new-navigation">
 				<ul id="nav-bar">
-					<li class="tab mainpage active"><a id="new-nav-mainpage" href=""><span>首頁</span></a></li>
-					<li class="tab blog "><a id="new-nav-blog" href=""><span>瀏覽大廚</span></a></li>
-					<li class="tab more-channel"><a id="new-nav-more-tab" href="#"><span>瀏覽餐點</span></a></li>
-					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href=""><span>會員大廚餐點區</span></a></li>
-					<li class="tab tech3c "><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
+					<li class="tab mainpage"><a id="new-nav-mainpage" href="#"><span>首頁</span></a></li>
+					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
+					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
+					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>
+					<li class="tab tech3c active"><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
 <!-- 					<li class="tab movie "><a class="tab-link" id="new-nav-movie-tab" href=""><span>ZZZ</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-travel-tab"	href=""><span>GGG</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-family-tab"	href=""><span>AAA</span></a></li> -->
@@ -220,6 +237,9 @@
 			
 			
 			
+	<br>
+	<br>
+	<br>		
 	<c:choose>
 		<c:when test="${not empty errors}">
 			<script>
@@ -227,25 +247,24 @@
 			</script>
 		</c:when>
 	</c:choose>
-<form action="<c:url value="${request.contextPath}/essay/updateessay.controller"/>" method="POST">
-	<div>
-			<input id="writerid01" type="text" name="essay_id" value="${essayPage.essay_id}" >
-			<p><label class="title">發文者:</label>${essayPage.writer_id.firstName}${essayPage.writer_id.lastName}</p>
-	</div>
-	<div>
-			<label class="title">標題:</label>
-			<input type="text" name="title" value="${essayPage.title}">
-	</div>
-	<div>
-			<label class="title">內容:</label><p>
-			<textarea cols="40" rows="20" name="content">${essayPage.content}</textarea>
-	</div>
-
-	<p>
-	<input type="button" onclick="history.go(-1)" name="getessay" value="取消編輯" >
-	<input type="submit" name="inessay" value="編輯完成">
-
-</form>
+<form action="<c:url value="${request.contextPath}/essay/updateessay.controller"/>" method="POST" class="form-horizontal" role="form">
+	<input id="writerid01" type="text" name="essay_id" value="${essayPage.essay_id}" style="display:none;">
+	<table class="table table-hover-curved table-bordered">
+	<tr class="info">
+			<td><label class="title">發文者:</label>${essayPage.writer_id.lastName}${essayPage.writer_id.firstName}</td>
+	</tr>
+	<tr class="success">
+			<td><label class="title">標題:</label>
+			<input type="text" name="title" value="${essayPage.title}"></td>
+	</tr>
+	<tr class="success">
+			<td><label class="title">內容:</label>
+			<textarea class="form-control" cols="40" rows="10" name="content">${essayPage.content}</textarea></td>
+	</tr>
+	</table>
+	<input type="button" class="btn btn-warning" onclick="history.go(-1)" name="getessay" value="取消編輯" >
+	<input type="submit" class="btn btn-success" name="inessay" value="編輯完成">
+</form>>
 			
 			
 			

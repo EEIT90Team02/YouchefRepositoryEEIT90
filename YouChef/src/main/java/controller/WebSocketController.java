@@ -30,7 +30,7 @@ public class WebSocketController {
         String[] AfterSplit = content.split("\\{\"|\":\"|\",\"|\":\"|\",\"|\":\"|\"\\}");
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         int m_idint=0;
-        String content1 = null, m_id = null, name;
+        String content1 = null, m_id = null, name, path=null;
         if(AfterSplit.length==7){
         	content1 = AfterSplit[2].trim();
         	m_id= AfterSplit[4].trim();
@@ -46,11 +46,14 @@ public class WebSocketController {
         	
         	csService.sendMessage(bean,user);
         	
-            return new OutPutMessage(name, content1, time);
+            path = "<c:url value='/pages/getMemLoginImage.controller'/>";
+        	System.out.println(path);
+        	
+            return new OutPutMessage(path , name, content1, time);
         } else{
         	content1 = AfterSplit[2].trim();
         	name = "訪客";
-            return new OutPutMessage(name, content1, time);
+            return new OutPutMessage(path , name, content1, time);
         }
 //        String time = new SimpleDateFormat("HH:mm").format(new Date());
 //        String tmp = "{\"Data\":{\"Name\":\""+ name +"\",\"Content\":\""+ content +"\",\"time\":\""+time+"\"}}";

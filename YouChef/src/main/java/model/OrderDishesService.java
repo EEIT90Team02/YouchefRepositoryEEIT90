@@ -21,7 +21,7 @@ import model.dao.OrdersDAOHibernate;
 @Service(value="orderDishesService")
 public class OrderDishesService {
 	private static final String ORDER_HISTORTY_STMT =
-	 "SELECT os.o_id,os.c_id,os.mc_id,os.dineDate,os.dinePlace,os.session,os.totalPrice,os.o_status "
+	 "SELECT os.o_id,os.c_id,os.mc_id,os.dineDate,os.dinePlace,os.session,os.totalPrice,os.o_status,os.orderDate "
 	    +"FROM orders as os "
 	 +"LEFT　JOIN mchef as mc "
 	    +"ON os.mc_id = mc.mc_id "
@@ -31,7 +31,7 @@ public class OrderDishesService {
 	    +"ON c.t_id = t.t_id "
 	 +"WHERE os.m_id = ? ";
 	private static final String Single_ORDER_DETAIL_STMT =
-	  "SELECT os.m_id,os.o_id,c.lastName,c.firstName,m.lastName,m.firstName,d.d_name,od.dishNum,d.price,d.menu,os.totalPrice,t.t_name "
+	  "SELECT os.m_id,os.o_id,c.lastName as cll,c.firstName as clf,m.lastName,m.firstName,d.d_name,od.dishNum,d.price,d.menu,os.totalPrice,t.t_name "
          +"FROM   orders as os "
       +"LEFT JOIN mchef as mc "
          +"ON os.mc_id = mc.mc_id "

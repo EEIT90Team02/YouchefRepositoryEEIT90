@@ -56,7 +56,7 @@ public class OrdersService {
     	return sessionFactory.getCurrentSession();
     }
 	
-	private static final String ACCOUNTSUSPENDED = "2";
+	private static final String ACCOUNTSUSPENDED = "3";
 	
 	public static void main (String[] args){
 	    	ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
@@ -530,7 +530,7 @@ public class OrdersService {
 	}
 	
 	
-	private static final String CHEF_CHECK = "SELECT * FROM orders WHERE c_id = ? and session = ? and (DATEPART(yy, dineDate) = ? AND DATEPART(mm, dineDate) = ? AND DATEPART(dd, dineDate) = ?)";
+	private static final String CHEF_CHECK = "SELECT * FROM orders WHERE o_status = 0 and c_id = ? and session = ? and (DATEPART(yy, dineDate) = ? AND DATEPART(mm, dineDate) = ? AND DATEPART(dd, dineDate) = ?)";
 	@Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
 	@SuppressWarnings("deprecation")
 	public List<OrdersBean> checkOrdersForChef(int c_id, String session, String year, String month, String day) {

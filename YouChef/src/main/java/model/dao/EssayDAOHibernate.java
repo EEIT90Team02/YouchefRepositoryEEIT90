@@ -67,30 +67,13 @@ public class EssayDAOHibernate implements EssayDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<EssayBean> listAll() {
-		Query listall = this.getSession().createQuery("from EssayBean where e_status='0' order by time DESC");
+		Query listall = this.getSession().createQuery("from EssayBean where (e_status='0' or e_status='2') order by time DESC");
 		return (List<EssayBean>) listall.getResultList();
-		// Create CriteriaBuilder
-//		CriteriaBuilder builder = getSession().getCriteriaBuilder();
-
-		// Create CriteriaQuery
-//		CriteriaQuery<EssayBean> criteria = builder.createQuery(EssayBean.class);
-////		Criteria query = getSession().createCriteria(EssayBean.class);
-//		criteria.setFirstResult(0);
-//		criteria.setMaxResults(10);
-//		 int pageSize = 10;
-//		 String countQ = "Select count (essay_id) from EssayBean where e_status='0'";
-//		 Query countQuery = getSession().createQuery(countQ);
-//		 Long countResults = (Long) ((Criteria) countQuery).uniqueResult();
-//		 int lastPageNumber = (int) ((countResults / pageSize) + 1);
-//		 
-//		    Query selectQuery = getSession().createQuery("From EssayBean where e_status='0' order by time DESC");
-//		    selectQuery.setFirstResult((lastPageNumber - 1) * pageSize);
-//		    selectQuery.setMaxResults(pageSize);
-//		    List<EssayBean> lastPage = ((Criteria) selectQuery).list();
-//		 
-//		    assertThat(lastPage, hasSize(lessThan(pageSize + 1)));
-//		List<EssayBean> result = selectQuery.getResultList();
-//		
-//		return result;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EssayBean> listBack() {
+		Query listback = this.getSession().createQuery("from EssayBean where e_status='2' order by time DESC");
+		return (List<EssayBean>) listback.getResultList();
 	}
 }

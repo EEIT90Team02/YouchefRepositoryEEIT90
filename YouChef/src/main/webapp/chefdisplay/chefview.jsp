@@ -270,7 +270,7 @@
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
-									<li><a href="<c:url value="/member/main.jsp"/>">會員專區</a></li>
+									<li><a href="<c:url value="/memberOrders.controller?m_id=${user.m_id}"/>">會員專區</a></li>
 									<li><a href="<c:url value="/member/main.jsp"/>#orders">訂單查詢</a></li>
 									<li>
 										<a href="<c:url value="/mail/inbox.controller"/>">信箱 (未讀:
@@ -282,14 +282,7 @@
 										</a>
 									</li>
 									<li>
-										<c:choose>
-											<c:when test="${user.ac_status==0}">
-												<a href="<c:url value="/member/main.jsp"/>#applychef">申請會員大廚</a>
-											</c:when>
-											<c:otherwise>
-													<a href="<c:url value="/member/main.jsp"/>#editchefmeal">修改餐點</a>
-											</c:otherwise>
-										</c:choose>
+										<a href="<c:url value="/member/main.jsp"/>#applychef" >申請會員大廚</a>
 									</li>
 									<li>
 										<a href="<c:url value="/member/logout.jsp" />">登出</a>
@@ -407,10 +400,64 @@
 						</tr>
 			</tbody>
 		</table>
+		
 					<div >
-			<input type="button" value="立即訂購" onclick="location.href='<c:url value="/chefOrder.controller?c_id=${param.c_id}&t_id=${chef.typeBean.t_id}"/>'">
-				</div>
+			<input type="button" value="立即訂購" onclick="window.open('<c:url value="/chefOrder.controller?c_id=${param.c_id}&t_id=${chef.typeBean.t_id}"/>', '_blank')">
+				</div>									
 		<p>
+		
+		<div class="panel panel-default" id="comments">
+			<div class="panel-heading">
+				用戶評價
+			</div>
+			<ul class="list-group">
+								<li class="list-group-item comment">
+					<div class="n1">
+						<span class="n">阿和</span>
+						<img height='13' width='64' src=../images/stars/allstars40.png></span>
+						<span class="t">2017-01-10</span>
+					</div>
+										<div class="c">
+						手藝一流!真的值得一試!!					</div>
+				</li>
+								<li class="list-group-item comment">
+					<div class="n1">
+						<span class="n">小華</span>
+						<img height='13' width='64' src=../images/stars/allstars45.png></span>
+						<span class="t">2016-11-13</span>
+					</div>
+										<div class="c">
+						菜餚非常可口!期待下次繼續合作!					</div>
+				</li>
+								<li class="list-group-item comment">
+					<div class="n1">
+						<span class="n">小明</span>
+						<img height='13' width='64' src=../images/stars/allstars45.png></span>
+						<span class="t">2016-10-13</span>
+					</div>
+										<div class="c">
+						口味極佳!真的太棒了!					</div>
+				</li>
+				<li class="list-group-item comment">
+					<div class="n1">
+						<span class="n">李四</span>
+						<img height='13' width='64' src=../images/stars/allstars50.png></span>
+						<span class="t">2016-10-11</span>
+					</div>
+										<div class="c">
+						值得給五星!					</div>
+				</li>
+				<li class="list-group-item comment">
+					<div class="n1">
+						<span class="n">張三</span>
+						<img height='13' width='64' src=../images/stars/allstars40.png></span>
+						<span  style="text-align:right;" class="t">2016-10-09</span>
+					</div>
+										<div class="c">
+						口味道地!實在是太好吃拉~~				</div>
+				</li>
+		
+		
 		
 	</form>
 		    </div>
