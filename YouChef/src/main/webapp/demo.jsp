@@ -48,10 +48,11 @@
             var name = document.getElementById('name').getAttribute('value');
             stompClient.send("/app/hello", {}, JSON.stringify({ 'content': content, 'm_id': m_id, 'name': name }));
         }
-
+        																				
         function showMessageOutput(messageOutput) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
+            document.getElementById('pic').src = "<c:url value='/getMemImage.controller'/>"
             p.style.wordWrap = 'break-word';
             p.appendChild(document.createTextNode(messageOutput.name + ":  " +messageOutput.content + "   (" + messageOutput.time +")"));
             response.appendChild(p);
@@ -70,15 +71,13 @@
 	                <div class="pic-container">
 	                <div class="row" id="right">
 	                	<div class="col-md-5">
-		              <img src="<c:url value="/images/YouChef-logo.png"/>" width="90" height="90" alt="image">
+		              <img src="<c:url value="/images/YouChef-logo.png"/>" width="60" height="60" alt="image">
 		              	</div>
 		               <div class="col-md-10">
 		              </div>
 	                </div>
 	                <div class="padding">
-	                    <h5 class="user-name center">客服</h5>
-	                    <h5 class="user-name center">需要幫忙嗎?</h5>
-	                    <hr class="full">
+	                   	 優廚:需要幫忙嗎?
 	                </div>
 	            </div>
 			</div>
@@ -87,14 +86,14 @@
 				<c:when test="${not empty messages}">
 					<c:forEach var="element" items="${messages}">
 						<fmt:formatDate value="${element.time}" var="formattedDate" type="date" pattern="dd日 hh:mm"/>
-						<p>${element.memberBean.firstName}${element.memberBean.lastName}:  ${element.content}  (${formattedDate})</p>
+						<p>${element.memberBean.lastName}${element.memberBean.firstName} : ${element.content}  (${formattedDate})</p>
 					</c:forEach>
 				</c:when>	
 			</c:choose>
-			<p id="response"></p>
+			 <img id="pic" style="width:60px; height:60px;"/><p id="response" style="font-size:16px; font-weight:700;"></p> 
 		</div>
 	 			<div id="m_id" value="${user.m_id}"></div>
-	 			<div id="name" value="${user.firstName}${user.lastName}"></div>
+	 			<div id="name" value="${user.lastName}${user.firstName}"></div>
 	 		
 		 		<div class="footer">
 			        <input type="text" id="content">

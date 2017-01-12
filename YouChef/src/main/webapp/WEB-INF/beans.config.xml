@@ -26,7 +26,7 @@
 	
 	<!-- 威毅 -->
 	<bean id="sdfYM" class="java.text.SimpleDateFormat">
-		<constructor-arg value="yyyy-MM"></constructor-arg>
+		<constructor-arg value="yyyyMM"></constructor-arg>
 	</bean>
 
 	<bean id="sdfD" class="java.text.SimpleDateFormat">

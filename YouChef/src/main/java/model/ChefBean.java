@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class ChefBean implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int c_id;
+	private Integer c_id;
 	private	String lastName;
 	private	String firstName;
 	private	String sex;

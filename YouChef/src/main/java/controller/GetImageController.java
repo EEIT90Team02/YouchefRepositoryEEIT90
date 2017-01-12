@@ -146,5 +146,25 @@ public class GetImageController {
 	}
 	
 
+	@RequestMapping(path = { "getMemImage.controller" },
+			method = { RequestMethod.GET, RequestMethod.POST })
+	public void csPic(HttpSession session,HttpServletResponse response){
+	MemberBean mBean = (MemberBean)session.getAttribute("user");
+	byte[] ba = mBean.getPhoto();
+	response.setContentType("image/jpeg");
+	OutputStream os = null;
+	try {
+		os = response.getOutputStream();
+			os.write(ba);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				os.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	}	
+	}
 }
 

@@ -39,9 +39,26 @@
 		    <![endif]-->
 		<style>
 			body{
-				background-color: #F7F7F6;
+				  background-image:url(<c:url value="/image/background.gif"/>); 
+  				  background-repeat: repeat; 
 			}
-		
+			img{
+				    border-radius: 100px;
+			}
+			
+			.icon-info .label {
+			    border: 2px solid #ffffff;
+			    font-weight: 500;
+			    padding: 3px 5px;
+			    text-align: center;
+			}
+			.label.label-primary {
+			    border-radius: 50%;
+			    font-size: 9px;
+			    left: 8px;
+			    position: absolute;
+			    top: 45px;
+			}
 			#navuser {
 				color: #ffffff;
 				font-size: 16px
@@ -77,20 +94,6 @@
 				height: 300px;
 			}
 					
-			.headercontent {
-				padding-top: 200px;
-				padding-bottom: 10px;
-			}			
-			.maintitle {
-				font-size: 50px;
-				text-align: center;
-				margin-bottom: 20px;
-			}
-			.subtitle {
-				font-size: 22px;
-				text-align: center;
-				margin-bottom: 20px;
-			}
 			
 			.enterBtn{
 				font-size: 22px;
@@ -145,11 +148,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -231,16 +234,19 @@
 		</c:when>
 	</c:choose>
 	<form action="<c:url value="${request.contextPath}/discuss/insertdiscuss.controller?essay_id=${essayPage.essay_id}"/>" method="post" class="form-horizontal" role="form">
-	<div>
-			<label class="title">原文標題:</label>${essayPage.title}
-			<input id="diswriterid01" type="text" name="writer_id" value="${user.m_id}" >
-			<p><label class="title">回文者:</label>${user.firstName}${user.lastName}</p>
-	</div>
-	<div>
-			<label class="title">內容:</label><p>
-			<textarea class="form-control" cols="40" rows="10" name="content"></textarea>
-	</div>
-	<p>
+			<input id="diswriterid01" type="text" name="writer_id" value="${user.m_id}" style="display:none;" >
+	<table class="table table-hover-curved table-bordered">
+			<tr class="info">
+			<td><label class="title">原文標題:</label>${essayPage.title}</td>
+			</tr>
+			<tr class="success">
+			<td><label class="title">回文者:</label>${user.lastName}${user.firstName}</td>
+			</tr>
+			<tr class="success">
+			<td><label class="title">內容:</label>
+			<textarea class="form-control" cols="40" rows="10" name="content"></textarea></td>
+			</tr>
+	</table>
 	<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
 	<input type="reset" class="btn btn-warning" value="清除內容">
 	<input type="submit" class="btn btn-success" name="inessay" value="發表回文">

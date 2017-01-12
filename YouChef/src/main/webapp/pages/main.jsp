@@ -166,11 +166,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -307,7 +307,7 @@
 			    myIndex++;
 			    if (myIndex > x.length) {myIndex = 1}    
 			    x[myIndex-1].style.display = "block";  
-			    setTimeout(carousel, 2000); // Change image every 2 seconds
+			    setTimeout(carousel, 3000); // Change image every 2 seconds
 			}
 			
 		</script>

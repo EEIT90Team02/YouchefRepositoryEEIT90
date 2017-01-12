@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>會員大廚點餐區  </title>
+<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
 <link rel="stylesheet" href="css/bootstrap.min.css">
  <style>
   .badge-notify{
@@ -126,7 +127,7 @@
 	var noWork = [];
     var disabledDays = [];
     var temp = [];
-    var m_id = 1001;
+    var m_id = ${user.m_id};
 	var mc_id = ${data.mc_id};
 	var yr = ${data.yr};
 	var month = ${data.month}; 
@@ -487,6 +488,7 @@
 		        		 //document.location.href="http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror";
 		        	}else{
 		        		 alert("預訂成功");
+		        		 window.close();
 // 		        		 window.location.replace('https://www.youtube.com/');
 		        		 //document.location.href="https://www.youtube.com/";
 		        	}
@@ -562,7 +564,7 @@
 			<span id="dineTime">用餐時間: </span> 
 			<input id="time3" type="hidden">
 			<input id="time4" type="hidden">
-			<p>地址: <input type="text" id="address" size="47"></p>
+			<p>地址: <input type="text" id="address" size="47" value="${mchef.venue}"></p>
 	</div>
 
   <div class="row">

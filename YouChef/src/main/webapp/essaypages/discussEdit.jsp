@@ -39,9 +39,26 @@
 		    <![endif]-->
 		<style>
 			body{
-				background-color: #F7F7F6;
+				  background-image:url(<c:url value="/image/background.gif"/>); 
+  				  background-repeat: repeat; 
 			}
-		
+			img{
+				    border-radius: 100px;
+			}
+			
+			.icon-info .label {
+			    border: 2px solid #ffffff;
+			    font-weight: 500;
+			    padding: 3px 5px;
+			    text-align: center;
+			}
+			.label.label-primary {
+			    border-radius: 50%;
+			    font-size: 9px;
+			    left: 8px;
+			    position: absolute;
+			    top: 45px;
+			}
 			#navuser {
 				color: #93B7DB;
 				font-size: 16px
@@ -145,11 +162,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -207,7 +224,12 @@
 			
 			
 			
-	
+			
+			
+			
+			
+			
+			
 	<br>
 	<br>
 	<br>		
@@ -219,20 +241,20 @@
 		</c:when>
 	</c:choose>
 	
-
 	<c:forEach var="discuss" items="${discussList}">
 		<c:choose>
 			<c:when test="${discuss.discuss_id == param.discuss_id }">
-				<form action="<c:url value="${request.contextPath}/discuss/updatediscuss.controller"/>" method="POST" class="form-horizontal" role="form">
-					<div>
-							<input id="writerid01" type="text" name="discuss_id" value="${discuss.discuss_id}" >
-							<p><label class="title">發文者:</label>${discuss.memberBean.firstName}${discuss.memberBean.lastName}</p>
-					</div>
-					<div>
-							<label class="title">內容:</label><p>
-							<textarea class="form-control" cols="40" rows="10" name="content">${discuss.content}</textarea>
-					</div>			
-					<p>
+				<form action="<c:url value="${request.contextPath}/discuss/updatediscuss.controller"/>" method="POST" class="form-horizontal" role="form">		
+				<input id="writerid01" type="text" name="discuss_id" value="${discuss.discuss_id}" >
+				<table class="table table-hover-curved table-bordered">
+				<tr class="info">		
+							<td><label class="title">發文者:</label>${discuss.memberBean.lastName}${discuss.memberBean.firstName}</td>
+				</tr>
+				<tr class="success">		
+							<td><label class="title">內容:</label>
+							<textarea class="form-control" cols="40" rows="10" name="content">${discuss.content}</textarea></td>		
+				</tr>
+				</table>
 					<input type="button" class="btn btn-warning" onclick="history.go(-1)" name="getessay" value="取消編輯" >
 					<input type="submit" class="btn btn-success" name="inessay" value="編輯完成">
 				</form>

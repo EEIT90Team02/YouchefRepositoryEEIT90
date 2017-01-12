@@ -27,9 +27,9 @@ public class MemberAdimController {
 				path={"/backend/ListAllMember.controller"},
 				method={RequestMethod.GET, RequestMethod.POST}
 			)
-	public String listAllService(Model model){
+	public String listAllService(Model model,HttpSession session){
 			List<MemberBean> memberAll = memberService.listAll();
-			model.addAttribute("memberAll",memberAll);
+			session.setAttribute("memberAll",memberAll);
 		return "backend.success";
 	}
 	

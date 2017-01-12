@@ -11,7 +11,24 @@
 	<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
+	<style type="text/css">
+	#webSocketBtn{
+		position:fixed;
+		bottom:0px;
+		right:20px;
+		z-index:9999;
+	}
 	
+	#webSocket {
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		hieght:500px;
+		Width: 300px;
+		z-index:9998;
+		background:white;
+	}
+	</style>
 	
 </head>
 <body class="home">
@@ -30,7 +47,7 @@
                         <li><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
                         <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
+                        <li><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                     </ul>
@@ -168,6 +185,13 @@
             </div>
         </div>
 
+			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+			
+			<div id="webSocket" style="display:none">
+				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
+			</div>			
+			
+
     	<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
     	</script>
@@ -181,26 +205,7 @@
 		<!-- 用Ajax 連接 controller 去新增大廚 -->
     	
     	<script type="text/javascript">
-    	  $(document).ready(function () {
-    		  $("#submit").click(function(){
-    		      $.ajax({
-    		          type: "POST",
-    		          url: "", // 連接到controller
-    		          data: $('form.insert').serialize(),
-    		          success: function(msg){
-//     		        	  可以控制語法去改變html
-//     		              $("#thanks").html(msg) //hide button and show thank you
-//     		              $("#form-content").modal('hide'); //hide popup  
-						  alert("success");
-    		          },
-    		          error: function(){
-    		              alert("failure");
-    		          }
-    		      });
-    		  });
-    		  });
     	
-
 		$(document).ready(function(){
 		   $('[data-toggle="offcanvas"]').click(function(){
 		       $("#navigation").toggleClass("hidden-xs");
@@ -220,6 +225,11 @@
 			</c:when>
 		</c:choose>
 
+		$(document).ready(function(){
+			$("#webSocketBtn").click(function(){
+				$("#webSocket").slideToggle();
+			});
+		});
 		</script>
 		
 		<script src="<c:url value="/js/bootstrap.min.js"/>"></script>

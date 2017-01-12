@@ -39,9 +39,26 @@
 		    <![endif]-->
 		<style>
 			body{
-				background-color: #F7F7F6;
+				  background-image:url(<c:url value="/image/background.gif"/>); 
+  				  background-repeat: repeat; 
 			}
-		
+			img{
+				    border-radius: 100px;
+			}
+			
+			.icon-info .label {
+			    border: 2px solid #ffffff;
+			    font-weight: 500;
+			    padding: 3px 5px;
+			    text-align: center;
+			}
+			.label.label-primary {
+			    border-radius: 50%;
+			    font-size: 9px;
+			    left: 8px;
+			    position: absolute;
+			    top: 45px;
+			}
 			#navuser {
 				color: #93B7DB;
 				font-size: 16px
@@ -146,11 +163,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -195,11 +212,11 @@
 		<div id="navigation-wapper">
 			<div id="new-navigation">
 				<ul id="nav-bar">
-					<li class="tab mainpage active"><a id="new-nav-mainpage" href="#"><span>首頁</span></a></li>
+										<li class="tab mainpage"><a id="new-nav-mainpage" href="#"><span>首頁</span></a></li>
 					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
 					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
 					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>
-					<li class="tab tech3c "><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
+					<li class="tab tech3c active"><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
 <!-- 					<li class="tab movie "><a class="tab-link" id="new-nav-movie-tab" href=""><span>ZZZ</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-travel-tab"	href=""><span>GGG</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-family-tab"	href=""><span>AAA</span></a></li> -->
@@ -209,7 +226,8 @@
 		</div>
 	
 		<div class="container col-md-8 col-md-offset-2">
-	<br>
+
+<br>
 	<br>
 	<br>
 	<br>
@@ -246,8 +264,7 @@
 	<fmt:formatDate value="${essayPage.time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日HH:mm:ss"/>
 	<table class="table table-hover table-curved table-bordered">
 			<tr class="info">
-<%-- 			<td><img height='50' width='50' src='<c:url value="${request.contextPath}/pages/getImage.controller?m_id=${essayPage.writer_id.m_id}" />'></td> --%>
-			<td><label class="title">發文者：</label>${essayPage.writer_id.firstName}${essayPage.writer_id.lastName}</td>
+			<td><label class="title">發文者：</label>${essayPage.writer_id.lastName}${essayPage.writer_id.firstName}</td>
 			</tr>
 			<tr class="success">
 			<td><label class="title">標題：</label>${essayPage.title}</td>
@@ -264,7 +281,7 @@
 			<fmt:formatDate value="${discuss.time}" var="fordiscussDate" type="date" pattern="YYYY年MM月dd日HH:mm:ss"/>
 			<table class="table table-hover table-curved table-bordered">
 				<tr class="info">
-				<td>回文者：${discuss.memberBean.firstName}${discuss.memberBean.lastName}</td>
+				<td>回文者：${discuss.memberBean.lastName}${discuss.memberBean.firstName}</td>
 				</tr>
 
 				<tr class="success">
@@ -292,6 +309,22 @@
 	
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>
@@ -314,7 +347,7 @@
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
-			window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>');
+			window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')
 		
 			<!-- Ajax 每10秒偵測是否有新郵件 -->		
 			

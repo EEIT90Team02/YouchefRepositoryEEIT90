@@ -39,8 +39,27 @@
 		    <![endif]-->
 		<style>
 			body{
-				background-color: #F7F7F6;
+				  background-image:url(<c:url value="/image/background.gif"/>); 
+  				  background-repeat: repeat; 
 			}
+			img{
+				    border-radius: 100px;
+			}
+			
+			.icon-info .label {
+			    border: 2px solid #ffffff;
+			    font-weight: 500;
+			    padding: 3px 5px;
+			    text-align: center;
+			}
+			.label.label-primary {
+			    border-radius: 50%;
+			    font-size: 9px;
+			    left: 8px;
+			    position: absolute;
+			    top: 45px;
+			}
+			
 	
 			#navuser {
 				color: #93B7DB;
@@ -148,11 +167,11 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
-										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>
 											<img src="<c:url value="/pages/getMemImage.controller" />" height="64" width="64" >
-											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.firstName}${user.lastName}</span> 		
+											<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
@@ -201,7 +220,8 @@
 					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
 					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
 					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>
-					<li class="tab tech3c active"><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li><!-- 					<li class="tab movie "><a class="tab-link" id="new-nav-movie-tab" href=""><span>ZZZ</span></a></li> -->
+					<li class="tab tech3c active"><a class="tab-link"	id="new-nav-tech3c-tab"	href="<c:url value="/essay/getessay.controller"/>"><span>討論區</span></a></li>
+<!-- 					<li class="tab movie "><a class="tab-link" id="new-nav-movie-tab" href=""><span>ZZZ</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-travel-tab"	href=""><span>GGG</span></a></li> -->
 <!-- 					<li class="tab travel "><a class="tab-link"	id="new-nav-family-tab"	href=""><span>AAA</span></a></li> -->
 <!-- 					<li class="tab food "><a class="tab-link" id="new-nav-food-tab"	href=""><span>BBB</span></a></li> -->
@@ -213,7 +233,7 @@
 		
 
 			
-<br>
+	<br>
 	<br>
 	<br>			
 	<c:choose>
@@ -243,7 +263,7 @@
 			<fmt:formatDate value="${element.time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日HH:mm"/>
 				<tr class="success">
 				<td>${element.essay_id}</td>
-				<td>${element.writer_id.firstName}${element.writer_id.lastName}</td>
+				<td>${element.writer_id.lastName}${element.writer_id.firstName}</td>
 				<td><a href="<c:url value="${request.contextPath}/essay/selectessay.controller?essay_id=${element.essay_id}"/>">${element.title}</a></td>
 				<td>${formattedDate}</td>
 				</tr>
@@ -252,20 +272,8 @@
 			</c:if>
 		</tbody>	
 	</table>
-		<nav>
-  <ul class="pagination">
-    <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-  </ul>
-</nav>		
 	<div style="float: left"><a href="javascript:;" onclick="$('html,body').animate({scrollTop:0},500);" title="回到頂端"><input type="button" class="btn btn-success" name="getessay" value="回到頂端"></a></div>
 	</form>
-
 			
 			
 			
@@ -282,7 +290,8 @@
 			
 			
 			
-			<br>
+			
+			
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>
