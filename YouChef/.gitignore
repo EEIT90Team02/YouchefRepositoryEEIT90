@@ -1,4 +1,10 @@
 /target/
+<<<<<<< HEAD
+/.settings/
 /.classpath
 /.project
-/.settings
+=======
+/.classpath
+/.settings/
+/.project
+>>>>>>> branch 'master' of https://github.com/EEIT90Team02/YouChefRepository.git

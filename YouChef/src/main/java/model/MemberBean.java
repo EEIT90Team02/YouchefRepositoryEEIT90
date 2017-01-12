@@ -3,7 +3,6 @@ package model;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +17,7 @@ import javax.persistence.Table;
 @Table(name="member")
 public class MemberBean {
 
-	private int m_id;
+	private Integer m_id;
 	private	String lastName;
 	private	String firstName;
 	private String nickname;
@@ -44,10 +43,10 @@ public class MemberBean {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getM_id() {
+	public Integer getM_id() {
 		return m_id;
 	}
-	public void setM_id(int m_id) {
+	public void setM_id(Integer m_id) {
 		this.m_id = m_id;
 	}
 	public String getLastName() {
@@ -177,4 +176,5 @@ public class MemberBean {
 				+ ", ac_status=" + ac_status + ", briefing=" + briefing + ", photo=" + Arrays.toString(photo)
 				+ ", absent=" + absent + "]";
 	}	
+
 }

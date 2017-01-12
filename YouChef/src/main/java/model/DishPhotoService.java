@@ -13,8 +13,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = "dishPhotoService")
+@Transactional
 public class DishPhotoService {
 	@Autowired
 	DishesService dishesService;
@@ -65,29 +67,43 @@ public class DishPhotoService {
 	}
 	
 	
-	
+	@Transactional
 	public DishPhotoBean upload(DishPhotoBean bean){
 		return dishPhotoDao.insert(bean);
 	}
-	
+	@Transactional
 	public List<DishPhotoBean> selectByMcid(Integer mc_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByMcid(mc_id);
 		System.out.println(list);
 		return list;
 	}
-	
+	@Transactional
 	public List<DishPhotoBean> selectByDid(Integer d_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByDid(d_id);
 		System.out.println(list);
 		return list;
 	}
-	
+	@Transactional
+	public DishPhotoBean selectByDpid(Integer dp_id){
+		return dishPhotoDao.selectByDpid(dp_id);
+	}
+	@Transactional
 	public List<DishPhotoBean> selectByMcidAndDid(Integer mc_id, Integer d_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByMcidAndDid(mc_id, d_id);
 		System.out.println(list);
 		return list;
+	}
+	
+	//書賢修改
+	@Transactional
+	public DishPhotoBean update(DishPhotoBean bean){
+		return dishPhotoDao.update(bean);
+	}
+	@Transactional
+	public DishPhotoBean selectByPrimary(Integer dp_id){
+		return dishPhotoDao.selectByPrimary(dp_id);
 	}
 }

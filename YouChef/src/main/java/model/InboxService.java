@@ -86,12 +86,16 @@ public class InboxService {
 		}
 	}
 
-	public List<InboxBean> showInbox(MemberBean receiver) {
+	public List<InboxBean> showInbox(MemberBean receiver){
 		return inboxDao.showInbox(receiver);
 	}
-
-	public List<InboxBean> showOutbox(MemberBean sender) {
+	
+	public List<InboxBean> showOutbox(MemberBean sender){
 		return inboxDao.showOutbox(sender);
+	}
+	
+	public List<InboxBean> showUnRead(MemberBean receiver){
+		return inboxDao.showUnread(receiver);
 	}
 
 	public void readMail(InboxBean bean) {
@@ -103,10 +107,9 @@ public class InboxService {
 		}
 	}
 
-	public void deleteMail(InboxBean bean) {
+	public void deleteMail(int mail_id) {
 		try {
-			InboxBean delete = inboxDao.select(bean.getMail_id());
-			inboxDao.update(delete.getMail_id(), "2");
+			inboxDao.update(mail_id, "2");
 		} catch (Exception e) {
 			System.out.println("信件刪除錯誤");
 		}

@@ -7,6 +7,8 @@ public interface InboxDAO {
 	
 	List<InboxBean> showOutbox(MemberBean sender);
 	
+	List<InboxBean> showUnread(MemberBean receiver);
+	
 	InboxBean insert (InboxBean bean);
 	
 	InboxBean select (int mail_id);

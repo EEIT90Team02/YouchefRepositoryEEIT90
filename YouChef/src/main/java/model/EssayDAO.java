@@ -12,4 +12,8 @@ public interface EssayDAO {
 	EssayBean update(EssayBean bean);
 	
 	List<EssayBean> listAll();
+
+	boolean delete(int essay_id, String string);
+	
+	List<EssayBean> listBack();
 }

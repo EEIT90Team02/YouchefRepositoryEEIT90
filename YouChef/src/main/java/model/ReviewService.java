@@ -8,9 +8,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service(value = "reviewService")
+@Transactional
 public class ReviewService {
 	@Autowired 
 	private ReviewDAO reviewDao;
@@ -86,24 +88,24 @@ public class ReviewService {
 		}
 	}
 	
-	private ReviewBean select(ReviewBean bean) {
+	public ReviewBean select(ReviewBean bean) {
 		return reviewDao.select(bean);
 	}
 	
-	private int insert(ReviewBean bean) {
+	public int insert(ReviewBean bean) {
 		return reviewDao.insert(bean);
 	}
 	public List<ReviewBean> selectAll() {
 		List<ReviewBean> list = reviewDao.selectAll();
 		return list;
 	}
-	private ReviewBean update(ReviewBean bean){
+	public ReviewBean update(ReviewBean bean){
 		return reviewDao.update(bean);
 	}
-	private Double MchefStars(Integer mc_id){
+	public Double MchefStars(Integer mc_id){
 		return reviewDao.MchefStars(mc_id);
 	}
-	private Double ChefStars(Integer c_id) {
+	public Double ChefStars(Integer c_id) {
 		return reviewDao.ChefStars(c_id);
 	}
 //	public ReviewBean reviewMchefInput(ReviewBean reviewBean){

@@ -2,8 +2,12 @@ package model.dao;
 
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import model.EssayBean;
 import model.EssayDAO;
+import model.InboxBean;
 
 @Repository(value = "essayDao")
 public class EssayDAOHibernate implements EssayDAO {
@@ -48,8 +53,27 @@ public class EssayDAOHibernate implements EssayDAO {
 		}
 	}
 	@Override
+	public boolean delete(int essay_id, String e_status) {
+		EssayBean bean=null;
+		bean = this.getSession().get(EssayBean.class, essay_id);
+		if(bean!=null){
+			bean.setE_status(e_status);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<EssayBean> listAll() {
-		Query listall = this.getSession().createQuery("from EssayBean where e_status='0'");
+		Query listall = this.getSession().createQuery("from EssayBean where (e_status='0' or e_status='2') order by time DESC");
 		return (List<EssayBean>) listall.getResultList();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EssayBean> listBack() {
+		Query listback = this.getSession().createQuery("from EssayBean where e_status='2' order by time DESC");
+		return (List<EssayBean>) listback.getResultList();
 	}
 }
