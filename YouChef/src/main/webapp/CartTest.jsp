@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="shortcut icon" href="images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>大廚點餐區</title>
 <link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
@@ -581,6 +582,7 @@
 			   var result = data;
 	        	if(result.duplicate){
 	        		 alert("此時段已經被預訂");
+	        		 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 	        		 //document.location.href="http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror";
 	        	}else{
@@ -595,12 +597,14 @@
 		      //On error do this
 		     
 		        if (xhr.status == 200) {
-// 		        	 alert("此時段已經被預訂");
+ 		        	 alert("此時段已經被預訂");
+ 		        	 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 		            //alert(ajaxOptions);
 		        }
 		        else {
-// 		        	 alert("此時段已經被預訂");
+ 		        	 alert("此時段已經被預訂");
+ 		        	 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 		            //alert(xhr.status);
 		            //alert(thrownError);

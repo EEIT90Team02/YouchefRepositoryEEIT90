@@ -12,7 +12,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
+		<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		
 		<title>優廚</title>
 		
@@ -198,7 +198,7 @@
 												<c:when test="${empty inbox}">(0)</c:when>
 												<c:otherwise>${inbox}</c:otherwise>
 											</c:choose>
-											)
+<!-- 											) -->
 										</a>
 									</li>
 									<li>
@@ -226,10 +226,10 @@
 	                <div class="pic-container">
 	                   <c:choose>
 		                   <c:when test="${not empty user.photo }">
-		                   		<img src="<c:url value="/pages/getMemImage.controller"/>" width="150" height="150" alt="${user.firstName} image">
+		                   		<img id="myPhoto" src="<c:url value="/pages/getMemImage.controller"/>" width="150" height="150" alt="${user.firstName} image">
 		                   </c:when>
 		                   <c:otherwise>
-		                   		<img src="<c:url value="/image/unknow128.png"/>" width="150" height="150" alt="${user.firstName} image">
+		                   		<img id="myPhoto" src="<c:url value="/image/unknow128.png"/>" width="150" height="150" alt="${user.firstName} image">
 		                   </c:otherwise>
 	                   </c:choose>
 	                </div>
@@ -340,11 +340,11 @@
 												<div class="form-group">
 												    <label class="col-md6">自我介紹
 												      <textarea class="form-control" rows="5" id="background" name="background" >
-												      	<c:choose>
-												      	  <c:when test="">
+<%-- 												      	<c:choose> --%>
+<%-- 												      	  <c:when test=""> --%>
 												      		${param.background}
-												      	  </c:when>
-												      	</c:choose>
+<%-- 												      	  </c:when> --%>
+<%-- 												      	</c:choose> --%>
 												      </textarea><font color="red">${errors.background}</font>
 												 	</label>
 												 </div>
@@ -353,7 +353,7 @@
 										  </div>
 											<div class="form-group">
 												<label for="captcha">
-												系統產生認證碼:<img src="captcha.controller" alt="New Image"/><br>
+												系統產生認證碼:<img src="<c:url value="/member/captcha.controller"/>" alt="New Image"/><br>
 												請輸入上認證碼:<input type="text" name="captcha" size="3"/><span id="spanCaptcha" class="">  ${errors.captcha}</span>
 												</label>
 											</div>	
@@ -440,10 +440,10 @@
 																	<td>處理中</td>
 																</c:when>
 																<c:when test="${element[7] == 1 }">
-																	<td>結束</td>
+																	<td>取消</td>
 																</c:when>
 																<c:when test="${element[7] == 2 }">
-																	<td>取消訂單</td>
+																	<td>已完成</td>
 																</c:when>
 																<c:when test="${element[7] == 3 }">
 																	<td>未赴約</td>
@@ -898,7 +898,7 @@
 			<c:choose>
 				<c:when test='${not empty user}'>
 				function MailCountValue(){
-					$.get('<c:url value='/member/mailCheck.controller' />' ,{'m_id':${user.m_id}},function(data){
+					$.get('<c:url value='/member/mailCheck.controller' />' ,{'m_id':'${user.m_id}'},function(data){
 							$('#mailCount').html(data);
 						});
 					}				
@@ -990,16 +990,6 @@ $(function() {
 		showUpload: false,
 		autoReplace: true,
 	    overwriteInitial: true,
-	    initialPreview: [
-	    	<c:choose>
-	    		<c:when test='${not empty user.photo}'>
-	        		"<img height='150' width='150' src='../pages/getMemImage.controller'>"
-	        	</c:when>
-	        	<c:otherwise>
-	        		"<img height='150' width='150' src='<c:url value='/image/unknow128.png'/>'"
-	        	</c:otherwise>
-	        </c:choose>
-	    ],
 		allowedFileExtensions : [ 'jpg', 'png', 'gif', 'jpeg' ],
 	});
 	
@@ -1009,16 +999,6 @@ $(function() {
 		showUpload: false,
 		autoReplace: true,
 	    overwriteInitial: true,
-	    initialPreview: [
-	    	<c:choose>
-	    		<c:when test='${not empty user.photo}'>
-	        		"<img height='150' width='150' src='../pages/getMemImage.controller'>"
-	        	</c:when>
-	        	<c:otherwise>
-	        		"<img height='150' width='150' src='<c:url value='/image/unknow128.png'/>'"
-	        	</c:otherwise>
-	        </c:choose>
-	    ],
 		allowedFileExtensions : [ 'jpg', 'png', 'gif', 'jpeg' ],
 	});
 	

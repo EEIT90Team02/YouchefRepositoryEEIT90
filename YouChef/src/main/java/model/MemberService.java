@@ -1,5 +1,4 @@
 package model;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -62,6 +61,18 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDao;
 	
+	public List<MemberBean> select(){
+		return memberDao.select();
+	}
+	
+	public boolean update(MemberBean bean){
+		return memberDao.update(bean);
+	}
+	
+	public MemberBean select(Integer m_id){
+		return memberDao.select(m_id);
+	}
+	
 	public boolean check(String email){
 		MemberBean bean = memberDao.select(email);
 		if(bean!=null){
@@ -122,10 +133,6 @@ public class MemberService {
 			memberDao.update(bean.getM_id(), bean.getFirstName(), bean.getLastName(), bean.getNickname(), bean.getSex(), 
 							 bean.getCity(), bean.getDistrict(), bean.getAddress(), bean.getBriefing(), bean.getPhoto());
 			return bean;
-	}
-	
-	public boolean update(MemberBean bean){
-		return memberDao.update(bean);
 	}
 	
 	public MemberBean loginCheck(String email){

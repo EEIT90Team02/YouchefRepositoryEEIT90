@@ -25,7 +25,7 @@ public class OrderDetailBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int od_id; 
+	private Integer od_id; 
 	private OrdersBean ordersBean;
 	private Set<OrderDishesBean> orderDishes = new HashSet<OrderDishesBean>();
 
@@ -33,10 +33,10 @@ public class OrderDetailBean implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)   
-	public int getOd_id() {
+	public Integer getOd_id() {
 		return od_id;
 	}
-	public void setOd_id(int od_id) {
+	public void setOd_id(Integer od_id) {
 		this.od_id = od_id;
 	}
 	

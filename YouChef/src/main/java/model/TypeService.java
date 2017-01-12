@@ -1,6 +1,8 @@
 package model;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service(value = "typeService")
 @Transactional
 public class TypeService {
+	@Autowired
+	DishPhotoService dishPhotoService;
+	
+	@Autowired
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
@@ -19,24 +25,14 @@ public class TypeService {
 
 		TypeService service = (TypeService) context.getBean("typeService");
 		
-		//insert
-//		TypeBean typeBean = new TypeBean();
-//		typeBean.setT_name("川味");
-//		service.insert(typeBean);
-//		typeBean.setT_name("日式");
-//		service.insert(typeBean);
-//		typeBean.setT_name("台式");
-//		service.insert(typeBean);
-//		typeBean.setT_name("西式");
-//		service.insert(typeBean);
-//		typeBean.setT_name("東南亞");
-//		service.insert(typeBean);
+		Set<DishesBean> set = service.typeDao.select(3002).getDishesBean();
+		System.out.println(set);
+		Iterator it = set.iterator();
+		while(it.hasNext()){
+			DishesBean db = (DishesBean)it.next();
+			System.out.println(service.dishPhotoService.selectByDid(db.getD_id()).get(0).getD_photo());
+		}
 		
-		//select
-//		System.out.println(service.select(3004).getT_name());
-		
-		//selectAll
-//		System.out.println(service.selectAll());
 		
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}finally {

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+<link href="<c:url value='${request.contextPath}/images/YouChef-logo-bk.png' />" rel="stylesheet">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

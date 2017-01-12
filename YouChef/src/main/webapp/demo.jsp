@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="images/YouChef-logo-bk.png">
     <title>Hello WebSocket</title>
     
   		<!-- Bootstrap core CSS -->
@@ -41,18 +42,20 @@
                 });
             });
         }
-
+           var m_id;
         function sendMessage() {
+            m_id = document.getElementById('m_id').getAttribute('value');
             var content = document.getElementById('content').value;
-            var m_id = document.getElementById('m_id').getAttribute('value');
             var name = document.getElementById('name').getAttribute('value');
             stompClient.send("/app/hello", {}, JSON.stringify({ 'content': content, 'm_id': m_id, 'name': name }));
         }        																				
         function showMessageOutput(messageOutput) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
-            document.getElementById('pic').src = "<c:url value='/getMemImage.controller'/>"
+//             document.getElementById('pic').src = "<c:url value='/pages/getImage.controller?m_id=${user.m_id}'/>"
             p.style.wordWrap = 'break-word';
+            var path = messageOutput.path;
+            $('#pic').attr('src',path);
             p.appendChild(document.createTextNode(messageOutput.name + ":  " +messageOutput.content + "   (" + messageOutput.time +")"));
             response.appendChild(p);
         }

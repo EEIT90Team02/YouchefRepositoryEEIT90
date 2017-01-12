@@ -46,14 +46,14 @@ public class WebSocketController {
         	
         	csService.sendMessage(bean,user);
         	
-            path = "<c:url value='/pages/getMemLoginImage.controller'/>";
-        	System.out.println(path);
+            path = "/YouChef/pages/getMemImage.controller";
         	
-            return new OutPutMessage(path , name, content1, time);
+            return new OutPutMessage(name, content1, time, path );
         } else{
         	content1 = AfterSplit[2].trim();
         	name = "訪客";
-            return new OutPutMessage(path , name, content1, time);
+        	
+            return new OutPutMessage(name, content1, time, path );
         }
 //        String time = new SimpleDateFormat("HH:mm").format(new Date());
 //        String tmp = "{\"Data\":{\"Name\":\""+ name +"\",\"Content\":\""+ content +"\",\"time\":\""+time+"\"}}";

@@ -19,5 +19,4 @@ public interface MemberDAO {
 	boolean update(MemberBean bean);
 	
 	boolean updateStatus(int m_id, String ac_status);
-
 }

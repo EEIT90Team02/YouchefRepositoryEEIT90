@@ -10,7 +10,7 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="<c:url value="../favicon.ico"/>">
+<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 
 <title>優廚 - 登入會員</title>
 
@@ -71,12 +71,12 @@
 						<c:otherwise>
 							<c:choose>
 								<c:when test="${not empty memberPic.photo}">
-									<img src="<c:url value="/pages/getMemLoginImage.controller?email=${memberPic.email}" />" class="center-block">
-									<p><label>請問你是 ${memberPic.firstName}${memberPic.lastName} 嗎?</label></p>
+									<img src="<c:url value="/pages/getMemLoginImage.controller?email=${memberPic.email}" />" class="center-block" height="150" width="150">
+									<p><label>請問你是 ${memberPic.lastName}${memberPic.firstName} 嗎?</label></p>
 								</c:when>
 								<c:otherwise>
 									<img src="<c:url value="/image/unknow64.png" />" class="center-block">
-									<p><label>請問你是 ${memberPic.firstName}${memberPic.lastName} 嗎?</label></p>
+									<p><label>請問你是 ${memberPic.lastName}${memberPic.firstName}嗎?</label></p>
 								</c:otherwise>
 							</c:choose>
 						</c:otherwise>

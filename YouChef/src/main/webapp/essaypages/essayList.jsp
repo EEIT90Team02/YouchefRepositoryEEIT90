@@ -11,7 +11,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="<c:url value="/images/favicon.ico"/>">
+		<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		
 		<title>優廚</title>
 		
@@ -216,7 +216,7 @@
 		<div id="navigation-wapper">
 			<div id="new-navigation">
 				<ul id="nav-bar">
-					<li class="tab mainpage"><a id="new-nav-mainpage" href="#"><span>首頁</span></a></li>
+					<li class="tab mainpage"><a id="new-nav-mainpage" href="<c:url value="/pages/main.jsp"/>"><span>首頁</span></a></li>
 					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
 					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
 					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>

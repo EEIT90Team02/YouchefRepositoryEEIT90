@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 	<head>
+	<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,22 +90,44 @@
 				background-size: cover;
 				margin-top: -20px;
 				width: 100%;
-				height: 300px;
+				height: 550px;
 			}
 					
 			.headercontent {
 				padding-top: 200px;
 				padding-bottom: 10px;
+				    float:left;
 			}			
 			.maintitle {
-				font-size: 50px;
-				text-align: center;
-				margin-bottom: 20px;
+				font-size: 28px;
+				margin-top: -350px;
+				margin-right:-700px;
+				color:#ffffff;
+				font-family:Microsoft JhengHei;
 			}
 			.subtitle {
 				font-size: 22px;
-				text-align: center;
-				margin-bottom: 20px;
+
+				margin-top: 50px;
+				margin-right:-700px;
+				color:#ffffff;
+				font-family:Microsoft JhengHei;
+			}
+			
+			#block1{
+			
+				background-color: rgba(0,0,0,0.5);
+				margin-left: auto ;
+  				margin-right: auto ;
+				width:40%;
+				border-radius: 15px;
+			}
+			#block2{
+				background-color: rgba(0,0,0,0.5);
+				margin-left: auto ;
+  				margin-right: auto ;
+				width:30%;
+				border-radius: 15px;
 			}
 			
 			.enterBtn{
@@ -237,6 +260,9 @@
 	
 	
 <div class="container col-md-8 col-md-offset-2">
+
+		<div class="maintitle"><div id="block1">YouChef擁有最專業的廚師團隊，將最安心最美味的料理專業到府烹調。</div></div>
+		<div class="subtitle"><div id="block2">無論是單品小酌，到家庭宴請，依照需求，豐儉由人，也給想要展現廚藝的箇中好手一個平台，不僅能賺外快，也能服務群眾，無論是我們的大廚或是來自四方的會員大廚，不僅讓飲食多了一份安心，更多了無限的可能!</div></div>
 	
 
 			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
@@ -244,6 +270,7 @@
 			<div id="webSocket" style="display:none">
 				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
 			</div>			
+
 			
 		</div>
 		<!-- /container -->
@@ -277,22 +304,7 @@
 				});
 			});
 			
-			$(function(){
-				　$(window).load(function(){
-				　　$(window).bind('scroll resize', function(){
-				　　var $this = $(this);
-				　　var $this_Top=$this.scrollTop();
-				
-				　　//當高度小於100時，關閉區塊 
-				　　if($this_Top < 50){
-				　　　$('#navigation-wapper').stop().animate({top:"365px"});
-				　　　}
-				　　　　if($this_Top > 50){
-				　　　　$('#navigation-wapper').stop().animate({top:"0px"});
-			　　　	 }
-				　　}).scroll();
-				　});
-				});
+	
 			</script>
 			<script>
 			var myIndex = 0;

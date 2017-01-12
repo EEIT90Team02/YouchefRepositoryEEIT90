@@ -58,8 +58,7 @@ public class TypeBean implements java.io.Serializable {
 	}
 	@Override
 	public String toString() {
-		return "TypeBean [t_id=" + t_id + ", t_name=" + t_name 
-				;
+		return "TypeBean [t_id=" + t_id + ", t_name=" + t_name + "]";
 	}
 	
 	

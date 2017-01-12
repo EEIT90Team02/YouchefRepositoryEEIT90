@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
+<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="<c:url value='${request.contextPath}/css/bootstrap.min.css' />" rel="stylesheet">

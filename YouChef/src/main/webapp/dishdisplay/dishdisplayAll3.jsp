@@ -7,6 +7,7 @@
 <!DOCTYPE SYSTEM "about:legacy-compat">
 <html>
 <head>
+<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="<c:url value="/css/table.css"/>" type="text/css" rel="stylesheet">

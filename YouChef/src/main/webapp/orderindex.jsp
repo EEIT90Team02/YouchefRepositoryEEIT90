@@ -5,7 +5,7 @@
 <html>
 <head>
 
-
+<link rel="shortcut icon" href="images/YouChef-logo-bk.png">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
