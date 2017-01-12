@@ -97,7 +97,7 @@
 	<bean id="applysuccess"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
-		<property name="url" value="/pages/getmchef.controller"></property>
+		<property name="url" value="/pages/main.jsp"></property>
 		
 	</bean>
 	<bean id="applyfailed"
@@ -108,7 +108,7 @@
 	<bean id="mchefdishdisplay"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
-		<property name="url" value="/dishdisplay/dishdisplayallmchef.jsp"></property>
+		<property name="url" value="/dishdisplay/mchef.jsp"></property>
 	</bean>
 
 <!-- 	end Long Bro -->

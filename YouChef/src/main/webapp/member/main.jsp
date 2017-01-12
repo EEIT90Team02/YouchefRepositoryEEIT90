@@ -909,7 +909,7 @@
 			<!-- Ajax 每10秒偵測是否有新郵件 -->		
 			
 			<c:choose>
-				<c:when test='${not empty user}'>		
+				<c:when test='${not empty user}'>
 				function MailCountValue(){
 					$.get('<c:url value='/member/mailCheck.controller' />' ,{'m_id':${user.m_id}},function(data){
 							$('#mailCount').html(data);
