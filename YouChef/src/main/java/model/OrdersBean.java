@@ -30,7 +30,7 @@ import model.MchefBean;
 public class OrdersBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private Integer o_id;   
+	private int o_id;   
 	private MemberBean memberBean;
 	private MchefBean mchefBean;    
 	private ChefBean chefBean;      
@@ -50,10 +50,10 @@ public class OrdersBean implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)   
-	public Integer getO_id() {
+	public int getO_id() {
 		return o_id;
 	}
-	public void setO_id(Integer o_id) {
+	public void setO_id(int o_id) {
 		this.o_id = o_id;
 	}
 	@ManyToOne

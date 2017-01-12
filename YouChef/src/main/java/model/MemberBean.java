@@ -21,11 +21,7 @@ public class MemberBean implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
 	private int m_id;
-=======
-	private Integer m_id;
->>>>>>> refs/remotes/origin/master
 	private	String lastName;
 	private	String firstName;
 	private String nickname;
@@ -51,10 +47,10 @@ public class MemberBean implements java.io.Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer getM_id() {
+	public int getM_id() {
 		return m_id;
 	}
-	public void setM_id(Integer m_id) {
+	public void setM_id(int m_id) {
 		this.m_id = m_id;
 	}
 	public String getLastName() {

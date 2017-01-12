@@ -16,17 +16,17 @@ public class OrderDishesBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer ods_id;
+	private int ods_id;
 	private OrderDetailBean orderDetailBean;
 	private DishesBean dishesBean;     
 	private Integer dishNum; 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)   
-	public Integer getOds_id() {
+	public int getOds_id() {
 		return ods_id;
 	}
-	public void setOds_id(Integer ods_id) {
+	public void setOds_id(int ods_id) {
 		this.ods_id = ods_id;
 	}
 	
@@ -56,6 +56,11 @@ public class OrderDishesBean implements Serializable{
 	}
 	public void setDishNum(Integer dishNum) {
 		this.dishNum = dishNum;
+	}
+	@Override
+	public String toString() {
+		return "OrderDishesBean [ods_id=" + ods_id + ", dishesBean="
+				+ dishesBean + ", dishNum=" + dishNum + ", toString()=" + super.toString() + "]";
 	}
 
 	
