@@ -250,7 +250,7 @@
 			<p>
 				<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
 				<a href="<c:url value="${request.contextPath}/essaypages/discussPage.jsp"/>"><input type="button" class="btn btn-success" name="getessay" value="留言"></a>
-				<a href="<c:url value="${request.contextPath}/essay/reportessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="return(confirm('確定檢舉該文章?'))"><input type="button" class="btn btn-danger" name="getessay" value="檢舉" style="float:right"></a>
+				<a href="<c:url value="${request.contextPath}/essay/reportessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="window.open(' <c:url value="/essaypages/essayReport.jsp"/> ', 'YouChef', config='height=700,width=1000');"><input type="button" class="btn btn-danger" name="getessay" value="檢舉" style="float:right"></a>
 			</p>			
 		</c:otherwise>
 	</c:choose>
@@ -304,26 +304,7 @@
 				</c:choose>			
 			</table>
 		</c:forEach>
-	</div>
-	
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	</div>		
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>

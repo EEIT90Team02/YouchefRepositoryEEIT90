@@ -91,6 +91,7 @@ public class EssayService {
 	}
 	public boolean delete(int essay_id, String e_status){
 		return essayDao.delete(essay_id, "1");
+
 	}
 	public List<EssayBean> listBack() {
 		List<EssayBean> list = essayDao.listBack();

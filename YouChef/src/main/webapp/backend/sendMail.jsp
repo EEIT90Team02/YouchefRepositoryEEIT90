@@ -11,7 +11,7 @@
 	<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
-	<style type="text/css">
+		<style type="text/css">
 	#webSocketBtn{
 		position:fixed;
 		bottom:0px;

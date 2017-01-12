@@ -131,30 +131,34 @@
                         <div class="col-md-12 col-sm-12 col-xs-12 gutter">
                             <div class="sales">
 								<table class="table table-hover table-curved">
-				<thead>
-					<tr>
-						<td>照片</td>
-						<td>大廚姓名</td>
-						<td>背景</td>
-						<td>菜系</td>
-						<td>年資</td>
-					</tr>
-				</thead>
-				<tbody>
-<%-- 					<c:if test="${not empty list}"> --%>
-						<c:forEach var="element" items="${list}">
-							<tr class="warning">
-								<td><img height='50' width='50' src='<c:url value="${request.contextPath}/pages/getImage.controller?id=${element.c_id}" />'></td>
-								<td>${element.lastName}${element.firstName}</td>
-								<td>${element.background}</td>
-								<td>${element.typeBean.t_name}</td>
-								<td>${element.years}</td>
-								<td>
-								<a href="<c:url value="/chefdisplay/chef.jsp?c_id=${element.c_id}"/>" data-toggle="modal" class="btn btn-success">編輯</a>
-								<a href="<c:url value="/pages/chefcalendar.controller?id=${element.c_id}"/>" class="btn btn-success" target="_blank">請假</a>
-								</td>
-							</tr>
-						</c:forEach>
+								<thead>
+								<tr>
+									<td>照片</td>
+									<td>大廚姓名</td>
+									<td>電話</td>
+									<td>地址</td>
+									<td>背景</td>
+									<td>菜系</td>
+									<td>年資</td>
+								</tr>
+							</thead>
+							<tbody>
+			<%-- 					<c:if test="${not empty list}"> --%>
+									<c:forEach var="element" items="${list}">
+										<tr class="warning">
+											<td><img height='50' width='50' src='<c:url value="${request.contextPath}/pages/getImage.controller?id=${element.c_id}" />'></td>
+											<td>${element.lastName}${element.firstName}</td>
+											<td>${element.phone}</td>
+											<td>${element.address}</td>
+											<td>${element.background}</td>
+											<td>${element.typeBean.t_name}</td>
+											<td>${element.years}</td>
+											<td>
+											<a href="<c:url value="/chefdisplay/chef.jsp?c_id=${element.c_id}"/>" data-toggle="modal" class="btn btn-success">編輯</a>
+											<a href="<c:url value="/pages/chefcalendar.controller?id=${element.c_id}"/>" class="btn btn-success" target="_blank">請假</a>
+											</td>
+										</tr>
+									</c:forEach>
 <%-- 					</c:if> --%>
 				</tbody>
 			</table>
@@ -181,12 +185,7 @@
                     <h4 class="modal-title">新增大廚</h4>
                 </div>
                 
-                <!-- 新增大廚的表格 -->
-<%  
-String path = request.getContextPath();  
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
-request.setAttribute("basePath", basePath);  
-%>                  
+                <!-- 新增大廚的表格 -->                 
                 <form id="tf" class="insert"  enctype="multipart/form-data">  
                 	<div class="modal-body">
                 	
@@ -314,7 +313,7 @@ request.setAttribute("basePath", basePath);
     			  $.ajax({
 //     		    	  contentType: 'multipart/form-data',
     		    	  type: "POST",
-    		          url: "<c:url value="/chefdisplay/chef.controller"/>", // 連接到controller
+    		          url: "<c:url value='/chefdisplay/chef.controller'/>", // 連接到controller
     		          data: form,
     		          processData:false,
     		          contentType:false,
@@ -322,10 +321,12 @@ request.setAttribute("basePath", basePath);
 //     		        	  可以控制語法去改變html
 //     		              $("#thanks").html(msg) //hide button and show thank you
 //     		              $("#form-content").modal('hide'); //hide popup  
-						  alert("success");
+						  alert("新增成功");
+						  window.close();
     		          },
     		          error: function(){
-    		              alert("failure");
+    		              alert("新增成功");
+    		              window.close();
     		          }
     		      });
     		  });
@@ -366,9 +367,11 @@ request.setAttribute("basePath", basePath);
 //     		              $("#thanks").html(msg) //hide button and show thank you
 //     		              $("#form-content").modal('hide'); //hide popup  
 						  alert("新增成功");
+						  window.close();
     		          },
     		          error: function(){
     		              alert("新增成功");
+    		              window.close();
     		          }
     		      });
     		  });

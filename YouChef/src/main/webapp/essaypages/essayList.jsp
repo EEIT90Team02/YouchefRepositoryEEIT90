@@ -273,25 +273,7 @@
 		</tbody>	
 	</table>
 	<div style="float: left"><a href="javascript:;" onclick="$('html,body').animate({scrollTop:0},500);" title="回到頂端"><input type="button" class="btn btn-success" name="getessay" value="回到頂端"></a></div>
-	</form>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	</form>	
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>

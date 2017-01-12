@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="member")
 public class MemberBean {
-
-	private Integer m_id;
+	private int m_id;
 	private	String lastName;
 	private	String firstName;
 	private String nickname;
@@ -46,7 +45,7 @@ public class MemberBean {
 	public Integer getM_id() {
 		return m_id;
 	}
-	public void setM_id(Integer m_id) {
+	public void setM_id(int m_id) {
 		this.m_id = m_id;
 	}
 	public String getLastName() {

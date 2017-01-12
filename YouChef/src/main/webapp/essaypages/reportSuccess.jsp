@@ -59,7 +59,9 @@
 			    position: absolute;
 			    top: 45px;
 			}
-			.navuser {
+			
+	
+			#navuser {
 				color: #93B7DB;
 				font-size: 16px
 			}
@@ -113,13 +115,16 @@
 				font-size: 22px;
 				text-align: center;
 			}
+				
 			#writerid01{
 			visibility:hidden;
 			}
 			
 			#diswriterid01{
 			visibility:hidden;
-			}		
+			}
+			
+
 		</style>
 	
 	</head>
@@ -204,7 +209,7 @@
 		</nav>
 		
 		<!-- Main jumbotron for a primary marketing message or call to action -->
- 	
+	
 			<header id="header" class="slide">
 			</header>
 			
@@ -222,69 +227,21 @@
 <!-- 					<li class="tab food "><a class="tab-link" id="new-nav-food-tab"	href=""><span>BBB</span></a></li> -->
 				</ul>
 			</div>
-		</div>
-	
+		</div>	
 	
 		<div class="container col-md-8 col-md-offset-2">
-	
-			<h2>${registerOK}</h2>
+		
+
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-<br>
-<br>
-<br>		
-<c:choose>
-		<c:when test="${not empty errors}">
-			<script>
-				alert('${errors.content}');			
-			</script>
-		</c:when>
-	</c:choose>
-	<form action="<c:url value="${request.contextPath}/essay/insertessay.controller"/>" method="POST" class="form-horizontal" role="form">
-	<input id="writerid01" type="text" name="writer_id" value="${user.m_id}" >
-	<table class="table table-hover-curved table-bordered">
-			<tr class="info">
-			<td><label class="title">發文者:</label>${user.lastName}${user.firstName}</td>
-			</tr>
-			<tr class="success">
-			<td><label class="title">標題:</label>
-			<input type="text" name="title" ></td>
-			</tr>
-			<tr class="success">
-			<td><label class="title">內容:</label>
-			<textarea class="form-control" cols="40" rows="10" name="content"></textarea></td>
-			</tr>
-			</table>
-	<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
-	<input type="reset" value="清除內容" class="btn btn-warning">
-	<input type="submit" name="inessay" value="發表文章" class="btn btn-success">
-</form>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	<br>
+	<br>
+	<br>
+	<H1 style="color:green;">已送出檢舉!!<H1>
+	<Input button type="button" class="btn btn-primary" Value="關閉視窗" onClick="window.close();">
+	<br>
+	<br>
+	<br>
+
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>
@@ -355,3 +312,4 @@
 		
 	</body>
 </html>
+

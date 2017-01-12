@@ -335,7 +335,7 @@
 			   </div>
 			   	<div class="list-group">
 					<a href="<c:url value="/pages/getmchef.controller"/>" class="list-group-item">會員大廚專區</a>
-				</div>
+				</div>	
 			</div>
 			<div class="col-md-10">
 				<div class="jumbotron">

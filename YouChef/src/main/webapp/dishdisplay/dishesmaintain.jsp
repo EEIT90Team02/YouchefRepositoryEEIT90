@@ -12,8 +12,9 @@
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
 	<link rel="shortcut icon"
 	href="<c:url value='${request.contextPath}/images/favicon.png' />">
-	<style type="text/css">
-	#webSocketBtn{
+	
+		<style type="text/css">
+			#webSocketBtn{
 		position:fixed;
 		bottom:0px;
 		right:20px;
@@ -148,26 +149,7 @@
 				}
 				
 			</script>
-		
 
-		<form method="GET" name="typemenu" id="menu" action="">
-		<div class="col-sm-3">
-			<Select name="menu" value='changeAction(this.value)' class="form-control inputstl">
-				<option value="3001">台式套餐</option>
-				<option value="3002">日本套餐</option>
-				<option value="3003">川味套餐</option>
-				<option value="3004">西式套餐</option>
-				<option value="3005">東南套餐</option>
-			</Select>
-		</div>
-		</form>
-	 		<script type="text/javascript"> 
-		 		function changeAction(val){
-		 		document.getElementById('menu').setAttribute('action','+val');
-		 		type.submit();
-		 		}
-	 		
-	 		</script> 
 	
 		
                     <form action="<c:url value="/showDishes.controller?id=3005" />" method="get">
@@ -398,9 +380,11 @@
 //     		              $("#thanks").html(msg) //hide button and show thank you
 //     		              $("#form-content").modal('hide'); //hide popup  
 						  alert("新增成功");
+						  window.close();
     		          },
     		          error: function(){
     		              alert("新增成功");
+    		              window.close();
     		          }
     		      });
     		  });
@@ -432,38 +416,17 @@
 //     		              $("#thanks").html(msg) //hide button and show thank you
 //     		              $("#form-content").modal('hide'); //hide popup  
 						  alert("新增成功");
+						  window.close();
     		          },
     		          error: function(){
     		              alert("新增成功");
+    		              window.close();
     		          }
     		      });
     		  });
     		  });
     			  </script>
-    		    	<!-- 編輯餐點 -->
-    		    	<script type="text/javascript">
-    		    	  $(document).ready(function () {
-    		    		  $("#submit3").click(function(){
-    		    		      var form = new FormData(document.getElementById("ed"));
-    		    			  
-    		    			  $.ajax({
-    		    		    	  type: "POST",
-    		    		          url: "<c:url value="/dishdisplay/dishinsert.controller"/>", // 連接到controller
-    		    		          data: form,
-    		    		          processData:false,
-    		    		          contentType:false,
-    		    		          success: function(msg){
-//    		     		        	  可以控制語法去改變html
-//    		     		              $("#thanks").html(msg) //hide button and show thank you
-//    		     		              $("#form-content").modal('hide'); //hide popup  
-    								  alert("新增成功");
-    		    		          },
-    		    		          error: function(){
-    		    		              alert("新增成功");
-    		    		          }
-    		    		      });
-    		    		  });
-    		    		  });
+    
 		
 // 		$(document).ready(function(){
 // 			$("#typeDish2 option").removeAttr("selected");

@@ -8,4 +8,7 @@
 /.settings/
 /.project
 >>>>>>> branch 'master' of https://github.com/EEIT90Team02/YouChefRepository.git
+<<<<<<< HEAD
+=======
 /.gitignore
+>>>>>>> refs/remotes/origin/master

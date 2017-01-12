@@ -265,24 +265,6 @@
 	<input type="button" class="btn btn-warning" onclick="history.go(-1)" name="getessay" value="取消編輯" >
 	<input type="submit" class="btn btn-success" name="inessay" value="編輯完成">
 </form>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>

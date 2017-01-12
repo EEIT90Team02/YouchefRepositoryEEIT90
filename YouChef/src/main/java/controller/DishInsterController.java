@@ -119,16 +119,16 @@ public class DishInsterController {
 			)
 	public String DishUpdateService(@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam(name="t_id2") String temp1,
-
-			 DishesBean dishes, Model model, MultipartHttpServletRequest request){	
+			 DishesBean dishes, DishPhotoBean dishPhotoBean,
+			Model model, MultipartHttpServletRequest request){
 		int id = dishes.getD_id();
 		int t_id=0;
 		t_id=Integer.parseInt(temp1);
 		System.out.println("dishes"+dishes);
 		DishesBean dbu =dishesService.select(id);
+		DishPhotoBean dpb = new DishPhotoBean();
 		TypeBean typebean =typeService.select(t_id);
 		DishesBean db = new DishesBean();
-		DishPhotoBean dpb = new DishPhotoBean();
 		if(dbu !=null){
 			db = dishesService.updatedish(dbu, dishes.getD_name(), dishes.getD_briefing(), dishes.getPrice(), typebean, dishes.getD_status());
 			System.out.println("db"+db);
