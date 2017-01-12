@@ -89,7 +89,9 @@ public class GetImageController {
 	@RequestMapping(path = { "/pages/getMemImage.controller" },
 			method = { RequestMethod.GET, RequestMethod.POST })
 	public void memberPic(HttpSession session,HttpServletResponse response){
+		System.out.println("Start to getMemImage controller");
 	MemberBean mBean = (MemberBean)session.getAttribute("user");
+	System.out.println(mBean.getLastName());
 	byte[] ba = mBean.getPhoto();
 	response.setContentType("image/jpeg");
 	OutputStream os = null;

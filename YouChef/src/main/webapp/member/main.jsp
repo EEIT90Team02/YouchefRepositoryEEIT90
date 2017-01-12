@@ -198,7 +198,7 @@
 												<c:when test="${empty inbox}">(0)</c:when>
 												<c:otherwise>${inbox}</c:otherwise>
 											</c:choose>
-											)
+<!-- 											) -->
 										</a>
 									</li>
 									<li>
@@ -226,10 +226,10 @@
 	                <div class="pic-container">
 	                   <c:choose>
 		                   <c:when test="${not empty user.photo }">
-		                   		<img src="<c:url value="/pages/getMemImage.controller"/>" width="150" height="150" alt="${user.firstName} image">
+		                   		<img id="myPhoto" src="<c:url value="/pages/getMemImage.controller"/>" width="150" height="150" alt="${user.firstName} image">
 		                   </c:when>
 		                   <c:otherwise>
-		                   		<img src="<c:url value="/image/unknow128.png"/>" width="150" height="150" alt="${user.firstName} image">
+		                   		<img id="myPhoto" src="<c:url value="/image/unknow128.png"/>" width="150" height="150" alt="${user.firstName} image">
 		                   </c:otherwise>
 	                   </c:choose>
 	                </div>
@@ -340,11 +340,11 @@
 												<div class="form-group">
 												    <label class="col-md6">自我介紹
 												      <textarea class="form-control" rows="5" id="background" name="background" >
-												      	<c:choose>
-												      	  <c:when test="">
+<%-- 												      	<c:choose> --%>
+<%-- 												      	  <c:when test=""> --%>
 												      		${param.background}
-												      	  </c:when>
-												      	</c:choose>
+<%-- 												      	  </c:when> --%>
+<%-- 												      	</c:choose> --%>
 												      </textarea><font color="red">${errors.background}</font>
 												 	</label>
 												 </div>
@@ -898,7 +898,7 @@
 			<c:choose>
 				<c:when test='${not empty user}'>
 				function MailCountValue(){
-					$.get('<c:url value='/member/mailCheck.controller' />' ,{'m_id':${user.m_id}},function(data){
+					$.get('<c:url value='/member/mailCheck.controller' />' ,{'m_id':'${user.m_id}'},function(data){
 							$('#mailCount').html(data);
 						});
 					}				
@@ -990,16 +990,6 @@ $(function() {
 		showUpload: false,
 		autoReplace: true,
 	    overwriteInitial: true,
-	    initialPreview: [
-	    	<c:choose>
-	    		<c:when test='${not empty user.photo}'>
-	        		"<img height='150' width='150' src='../pages/getMemImage.controller'>"
-	        	</c:when>
-	        	<c:otherwise>
-	        		"<img height='150' width='150' src='<c:url value='/image/unknow128.png'/>'"
-	        	</c:otherwise>
-	        </c:choose>
-	    ],
 		allowedFileExtensions : [ 'jpg', 'png', 'gif', 'jpeg' ],
 	});
 	
@@ -1009,16 +999,6 @@ $(function() {
 		showUpload: false,
 		autoReplace: true,
 	    overwriteInitial: true,
-	    initialPreview: [
-	    	<c:choose>
-	    		<c:when test='${not empty user.photo}'>
-	        		"<img height='150' width='150' src='../pages/getMemImage.controller'>"
-	        	</c:when>
-	        	<c:otherwise>
-	        		"<img height='150' width='150' src='<c:url value='/image/unknow128.png'/>'"
-	        	</c:otherwise>
-	        </c:choose>
-	    ],
 		allowedFileExtensions : [ 'jpg', 'png', 'gif', 'jpeg' ],
 	});
 	
