@@ -52,6 +52,7 @@ public class WebSocketController {
         } else{
         	content1 = AfterSplit[2].trim();
         	name = "訪客";
+        	
             return new OutPutMessage(name, content1, time, path );
         }
 //        String time = new SimpleDateFormat("HH:mm").format(new Date());

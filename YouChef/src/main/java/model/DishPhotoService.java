@@ -1,6 +1,11 @@
 package model;
 
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -63,29 +68,29 @@ public class DishPhotoService {
 	}
 	
 	
-	
+	@Transactional
 	public DishPhotoBean upload(DishPhotoBean bean){
 		return dishPhotoDao.insert(bean);
 	}
-	
+	@Transactional
 	public List<DishPhotoBean> selectByMcid(Integer mc_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByMcid(mc_id);
 		System.out.println(list);
 		return list;
 	}
-	
+	@Transactional
 	public List<DishPhotoBean> selectByDid(Integer d_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByDid(d_id);
 		System.out.println(list);
 		return list;
 	}
-	
+	@Transactional
 	public DishPhotoBean selectByDpid(Integer dp_id){
 		return dishPhotoDao.selectByDpid(dp_id);
 	}
-	
+	@Transactional
 	public List<DishPhotoBean> selectByMcidAndDid(Integer mc_id, Integer d_id){
 		List<DishPhotoBean> list = null;
 		list = dishPhotoDao.selectByMcidAndDid(mc_id, d_id);
@@ -94,9 +99,11 @@ public class DishPhotoService {
 	}
 	
 	//書賢修改
+	@Transactional
 	public DishPhotoBean update(DishPhotoBean bean){
 		return dishPhotoDao.update(bean);
 	}
+	@Transactional
 	public DishPhotoBean selectByPrimary(Integer dp_id){
 		return dishPhotoDao.selectByPrimary(dp_id);
 	}

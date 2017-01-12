@@ -16,7 +16,6 @@ public interface DishesDAO {
 			String d_status);
 	
 	List<Object[]> selectDishesByMchef (int mc_id);
-	
 	List<Object[]> selectMenuByType(int t_id);
 
 	DishesBean updatedish(int d_id,String d_name, String d_briefing, double price, TypeBean typeBean, String d_status);

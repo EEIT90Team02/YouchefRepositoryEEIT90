@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-Hant-TW">
 <head>
-<link rel="shortcut icon" href="../images/favicon.png">
+<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href='../css/fullcalendar.min.css' rel='stylesheet' />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,7 +124,7 @@
 		        	var month = event.start.format("M");
 		        	var d = event.start.format("D");
 		        	if(checkAlong(mc_id, date, day)){
-		        		storeDB(mc_id, date, day, 0, before, year, month, d);
+		        		storeDB(mc_id, date, day, -1, before, year, month, d);
 		        	}else{
 		        		alongWarning();
 		        	}
@@ -166,10 +166,10 @@
 		        	        	確定: function () {
 		        	            $.ajax({
 		        	            	url: 'updatecalendar.controller',
-		        	            	data: 'mc_id=' + mc_id + '&date=' + date + '&day=' + day + '&value=' + -1,
+		        	            	data: 'mc_id=' + mc_id + '&date=' + date + '&day=' + day + '&value=' + '-1',
 		        	            	type: 'POST',
 		        	            	dataType: 'html',
-		        	            	async: false,
+// 		        	            	async: false,
 		        	            	success: function(response){
 	// 	        	            		alert(response);
 		        	            		if(response == 'OK'){
@@ -388,9 +388,10 @@
     	    content: '',
     	    type: 'blue',
     	    typeAnimated: true,
-    	    async: false,
+//     	    async: false,
     	    buttons: {
     	        	確定: function () {
+//     	        		alert("value = " + value);
     	            $.ajax({
     	            	url: 'updatecalendar.controller',
     	            	data: 'mc_id=' + mc_id + '&date=' + date + '&day=' + day + '&value=' + value + '&before=' + before,
@@ -474,7 +475,7 @@ body {
 		<div id='external-events'>
 		<table align="center" border="0px">
 			<tr>
-				<td><h4>${bean.memberBean.firstName}${bean.memberBean.lastName}</h4></td>
+				<td><h4>${bean.memberBean.lastName}${bean.memberBean.firstName}</h4></td>
 				<form action="#">
 				<input type="hidden" id="mc_id" value="${bean.mc_id}">
 				</form>

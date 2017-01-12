@@ -11,7 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 //抓出MENU
 
 
@@ -25,6 +24,7 @@ public class DishesService {
 			sessionFactory.getCurrentSession().beginTransaction();
 
 			DishesService service = (DishesService) context.getBean("dishesService");
+			System.out.println(service.select(5006).getMenu());
 			
 			
 			sessionFactory.getCurrentSession().getTransaction().commit();
@@ -98,6 +98,5 @@ public class DishesService {
 		List<Object[]> list =dishesDao.selectMenuByType(t_id);
 		return list;
 	}
-	
 }
 

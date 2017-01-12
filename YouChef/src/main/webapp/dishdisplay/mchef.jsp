@@ -13,7 +13,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
+		<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		
 		<title>優廚 - 瀏覽會員大廚餐點</title>
 		
@@ -351,7 +351,7 @@
 										class="btn btn-lg" data-toggle="modal"
 										data-target=".bs-example-modal" value="${element.menu}" id="menu"
 										data-id="${element.mchefBean.mc_id}"
-										onclick="getdpid(${element.d_id},${element.mchefBean.mc_id},'${element.mchefBean.memberBean.nickname}',${element.price},'${element.mchefBean.background}')">
+										onclick="getdpid(${element.d_id},${element.mchefBean.mc_id},'${element.mchefBean.memberBean.nickname}',${element.price},'${element.mchefBean.background}','${element.mchefBean.venue}')">
 									<div>${element.d_name}</div>
 									<div>每份<fmt:formatNumber value="${element.price}" pattern="#,###"/>元</div>
 									
@@ -380,6 +380,8 @@
 													<div align="center">菜單</div>
 														<div style="margin: 5px" align="center">
 															<textarea disabled="disabled" draggable="false" wrap="soft" readonly="readonly" class="form-control-sm" rows="8" id="myTextarea" style="padding:5px;text-align:center;border-color:#2c2c2c; bcolor: yellow;background: #2c2c2c"></textarea>
+															<p></p>
+															<div align="center" style="vertical-align: bottom;"><font><label id="myvenue"></label></font></div>
 														</div>
 													</div>
 												</div>
@@ -496,7 +498,7 @@
 			});
 		</script>
 		<script type="text/javascript">
-			function getdpid(d_id, mc_id, name, price, background) {
+			function getdpid(d_id, mc_id, name, price, background,venue) {
 	// 		$('#menu').click(function(d_id, mc_id, name, price){
 				console.log(mc_id);
 				var orderUrl = '<c:url value="/mchefOrder.controller?mc_id="/>'+mc_id;
@@ -506,6 +508,7 @@
 				$('#header-img').attr("src","${pageContext.request.contextPath}" + "/pages/getImage.controller?mc_id=" + mc_id);
 				$('#header-img').attr("title",mc_id);
 				$('#mylabel').text(name);
+				$('#myvenue').text("地址：" + venue);
 				$('#price').text("NT$ " + price);
 				$('#myTextarea').text('');
 				$.ajax({

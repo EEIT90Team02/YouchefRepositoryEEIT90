@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 <title>Facebook Login JavaScript Example</title>
 <meta charset="UTF-8">
 </head>

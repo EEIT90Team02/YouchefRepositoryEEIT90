@@ -13,7 +13,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
+		<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
 		
 		<title>優廚 - 瀏覽會員大廚餐點</title>
 		
@@ -242,6 +242,7 @@
 								<c:choose>
 									<c:when test="${empty user.photo}">
 										<img src="<c:url value="/image/unknow64.png" />"/>
+
 										<span class="dropdown-toggle" data-toggle="dropdown" id="navuser">${user.lastName}${user.firstName}</span> 		
 									</c:when>
 									<c:otherwise>

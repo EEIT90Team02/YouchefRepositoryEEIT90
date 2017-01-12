@@ -23,7 +23,7 @@ public class DishesBean implements java.io.Serializable {
 	
 	private Integer d_id;
 	private MchefBean mchefBean;
-	private double price; 
+	private Double price; 
 	private	String d_name;
 	private String d_briefing;
 	private	String menu;

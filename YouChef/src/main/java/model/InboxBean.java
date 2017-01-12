@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="inbox")
 public class InboxBean {
 
-	private int mail_id;
+	private Integer mail_id;
 	private String subject;
 	private String content;
 	private String i_status;
@@ -26,10 +26,10 @@ public class InboxBean {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getMail_id() {
+	public Integer getMail_id() {
 		return mail_id;
 	}
-	public void setMail_id(int mail_id) {
+	public void setMail_id(Integer mail_id) {
 		this.mail_id = mail_id;
 	}
 	public String getSubject() {

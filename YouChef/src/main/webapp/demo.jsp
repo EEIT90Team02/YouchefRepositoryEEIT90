@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="images/YouChef-logo-bk.png">
     <title>Hello WebSocket</title>
     
   		<!-- Bootstrap core CSS -->
@@ -47,8 +48,7 @@
             var content = document.getElementById('content').value;
             var name = document.getElementById('name').getAttribute('value');
             stompClient.send("/app/hello", {}, JSON.stringify({ 'content': content, 'm_id': m_id, 'name': name }));
-        }
-        																				
+        }        																				
         function showMessageOutput(messageOutput) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
@@ -95,8 +95,7 @@
 			 <img id="pic" style="width:60px; height:60px;"/><p id="response" style="font-size:16px; font-weight:700;"></p> 
 		</div>
 	 			<div id="m_id" value="${user.m_id}"></div>
-	 			<div id="name" value="${user.lastName}${user.firstName}"></div>
-	 		
+	 			<div id="name" value="${user.lastName}${user.firstName}"></div>	 		
 		 		<div class="footer">
 			        <input type="text" id="content">
 			      	 <button id="sendMessage" type="button" class="btn btn-default" data-dismiss="modal" onclick="sendMessage();">Send</button>

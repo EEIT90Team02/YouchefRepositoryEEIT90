@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">	
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
 <!-- 	Shian -->
 	<bean id="captcha.success" class="org.springframework.web.servlet.view.InternalResourceView">
@@ -80,7 +81,7 @@
 	</bean>
 	<bean id="mchefapply"
 		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/pages/mchefapply.jsp"></property>
+		<property name="url" value="/member/main.jsp#applychef"></property>
 	</bean>
 	<bean id="member"
 		class="org.springframework.web.servlet.view.InternalResourceView">
@@ -92,26 +93,27 @@
 		<!-- <property name="contextRelative" value="true"></property> -->
 		<property name="url" value="/pages/chefcalendar.jsp"></property>
 	</bean>
-	<bean id="mchefcalendar" class="org.springframework.web.servlet.view.RedirectView">
-		<property name="contextRelative" value="true"></property>
+	<bean id="mchefcalendar" class="org.springframework.web.servlet.view.InternalResourceView">
+<!-- 		<property name="contextRelative" value="true"></property> -->
 		<property name="url" value="/pages/mchefcalendar.jsp"></property>
 	</bean>
 	<bean id="applysuccess"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
-		<property name="url" value="/pages/applysuccess.jsp"></property>
+		<property name="url" value="/pages/main.jsp"></property>
+		
 	</bean>
 	<bean id="applyfailed"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
-		<property name="url" value="/pages/applyfailed.jsp"></property>
+		<property name="url" value="/pages/getmchef.controller"></property>
 	</bean>
 	<bean id="mchefdishdisplay"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<!-- <property name="contextRelative" value="true"></property> -->
 		<property name="url" value="/dishdisplay/mchef.jsp"></property>
 	</bean>
-	
+
 <!-- 	end Long Bro -->
 	
 	

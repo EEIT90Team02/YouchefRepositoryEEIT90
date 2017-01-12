@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -85,16 +89,21 @@ public class GetImageController {
 	@RequestMapping(path = { "/pages/getMemImage.controller" },
 			method = { RequestMethod.GET, RequestMethod.POST })
 	public void memberPic(HttpSession session,HttpServletResponse response){
+		System.out.println("Start to getMemImage controller");
 	MemberBean mBean = (MemberBean)session.getAttribute("user");
+	System.out.println(mBean.getLastName());
 	byte[] ba = mBean.getPhoto();
 	response.setContentType("image/jpeg");
 	OutputStream os = null;
 	try {
 		os = response.getOutputStream();
 			os.write(ba);
+			os.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally{
+		} catch (java.lang.NullPointerException e) {
+			e.printStackTrace();
+		} finally {
 			try {
 				os.close();
 			} catch (IOException e) {
@@ -145,7 +154,6 @@ public class GetImageController {
 	}	
 	}
 	
-
 	@RequestMapping(path = { "/getMemImage.controller" },
 			method = { RequestMethod.GET, RequestMethod.POST })
 	public void csPic(HttpSession session,HttpServletResponse response){

@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="shortcut icon" href="images/YouChef-logo-bk.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>會員大廚點餐區  </title>
 <link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
@@ -361,6 +362,9 @@
     	$.get('/YouChef/dishesNumAjaxForMchef.controller',{'mc_id':mc_id,'dateText':dateText,'theMonth':theMonth},function(data){
         	var object = JSON.parse(data);
         	maxNum = object.dishesMaxNum;
+        	if(maxNum == -1){
+        		maxNum = 0 ;
+        	}
 			$(".btn-info").text("可購買數量: "+ maxNum);
 
 	
@@ -484,6 +488,7 @@
 				   var result = data;
 		        	if(result.duplicate){
 		        		 alert("此時段已經被預訂");
+		        		 window.close();
 // 		        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 		        		 //document.location.href="http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror";
 		        	}else{
@@ -499,11 +504,13 @@
 			     
 			        if (xhr.status == 200) {
 			        	 alert("此時段已經被預訂");
+			        	 window.close();
 // 		        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 			            //alert(ajaxOptions);
 			        }
 			        else {
 			        	 alert("此時段已經被預訂");
+			        	 window.close();
 // 		        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 			            //alert(xhr.status);
 			            //alert(thrownError);
@@ -565,7 +572,6 @@
 			<input id="time3" type="hidden">
 			<input id="time4" type="hidden">
 			<p>地址: <input type="text" id="address" size="47" value="${mchef.venue}"></p>
-		
 	</div>
 
   <div class="row">
