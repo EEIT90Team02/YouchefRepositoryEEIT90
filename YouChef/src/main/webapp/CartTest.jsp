@@ -606,7 +606,6 @@
  		        	 alert("此時段已經被預訂");
  		        	 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
->>>>>>> refs/remotes/origin/master
 		            //alert(xhr.status);
 		            //alert(thrownError);
 		        }

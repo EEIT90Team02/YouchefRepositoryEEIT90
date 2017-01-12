@@ -66,6 +66,7 @@ public class DishPhotoService {
 			((ConfigurableApplicationContext) context).close();
 		}
 	}
+
 	
 	
 	@Transactional
@@ -97,7 +98,6 @@ public class DishPhotoService {
 		System.out.println(list);
 		return list;
 	}
-	
 	//書賢修改
 	@Transactional
 	public DishPhotoBean update(DishPhotoBean bean){

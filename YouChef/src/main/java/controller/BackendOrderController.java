@@ -19,7 +19,6 @@ import model.OrdersBean;
 import model.OrdersDAO;
 import model.OrdersService;
 
-
 @Controller
 public class BackendOrderController {
 	@Autowired

@@ -121,7 +121,6 @@ public class DishInsterController {
 			@RequestParam(name="t_id2") String temp1,
 			 DishesBean dishes, DishPhotoBean dishPhotoBean,
 			Model model, MultipartHttpServletRequest request){
-		
 		int id = dishes.getD_id();
 		int t_id=0;
 		t_id=Integer.parseInt(temp1);

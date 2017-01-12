@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	document.addEventListener("DOMContentLoaded",function(){
+		document.getElementById("reimg").addEventListener("mouseover",mouseOver);
+		document.getElementById("reimg").addEventListener("mouseout",mouseOut);
+	});
+	function mouseOver(){
+		document.getElementById("reimg").src="images/stars/allstars50.png";
+	}
+	function mouseOut(){
+		document.getElementById("reimg").src="images/stars/allstars10.png";
+	}
+</script>
+</head>
+<body>
+<img id="reimg" src="images/stars/allstars10.png"/>
+</body>
+</html>

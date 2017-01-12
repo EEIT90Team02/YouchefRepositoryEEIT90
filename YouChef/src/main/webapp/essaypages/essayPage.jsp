@@ -227,8 +227,6 @@
 	
 		<div class="container col-md-8 col-md-offset-2">
 
-<br>
-	<br>
 	<br>
 	<br>
 	<br>		
@@ -250,7 +248,7 @@
 			<p>
 				<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
 				<a href="<c:url value="${request.contextPath}/essaypages/discussPage.jsp"/>"><input type="button" class="btn btn-success" name="getessay" value="留言"></a>
-				<a href="<c:url value="${request.contextPath}/essay/reportessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="return(confirm('確定檢舉該文章?'))"><input type="button" class="btn btn-danger" name="getessay" value="檢舉" style="float:right"></a>
+				<a href="<c:url value="${request.contextPath}/essay/reportessay.controller?essay_id=${essayPage.essay_id}"/>" onClick="window.open(' <c:url value="/essaypages/essayReport.jsp"/> ', 'YouChef', config='height=700,width=1000');"><input type="button" class="btn btn-danger" name="getessay" value="檢舉" style="float:right"></a>
 			</p>			
 		</c:otherwise>
 	</c:choose>
@@ -264,6 +262,16 @@
 	<fmt:formatDate value="${essayPage.time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日HH:mm:ss"/>
 	<table class="table table-hover table-curved table-bordered">
 			<tr class="info">
+			<td rowspan="4" style="width:100px">
+				<c:choose>
+					<c:when test="${not empty essayPage.writer_id.photo}">
+						<img alt="member" width="100" height="100" src="<c:url value="/pages/getImage.controller?m_id=${essayPage.writer_id.m_id}"/>">
+					</c:when>
+					<c:otherwise>
+						<img alt="nonmember"  width="100" height="100" src="<c:url value="/image/unknow128.png"/>">
+					</c:otherwise>
+				</c:choose>
+			</td>
 			<td><label class="title">發文者：</label>${essayPage.writer_id.lastName}${essayPage.writer_id.firstName}</td>
 			</tr>
 			<tr class="success">
@@ -281,9 +289,18 @@
 			<fmt:formatDate value="${discuss.time}" var="fordiscussDate" type="date" pattern="YYYY年MM月dd日HH:mm:ss"/>
 			<table class="table table-hover table-curved table-bordered">
 				<tr class="info">
+				<td rowspan="4" style="width:100px">
+					<c:choose>
+						<c:when test="${not empty discuss.memberBean.photo}">
+							<img alt="member" width="100" height="100" src="<c:url value="/pages/getImage.controller?m_id=${discuss.memberBean.m_id}"/>">
+						</c:when>
+						<c:otherwise>
+							<img alt="nonmember"  width="100" height="100" src="<c:url value="/image/unknow128.png"/>">
+						</c:otherwise>
+					</c:choose>
+				</td>
 				<td>回文者：${discuss.memberBean.lastName}${discuss.memberBean.firstName}</td>
 				</tr>
-
 				<tr class="success">
 				<td>回覆內容：${discuss.content}</td>
 				</tr>

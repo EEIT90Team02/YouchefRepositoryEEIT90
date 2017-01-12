@@ -154,8 +154,7 @@ public class GetImageController {
 	}	
 	}
 	
-
-	@RequestMapping(path = { "getMemImage.controller" },
+	@RequestMapping(path = { "/getMemImage.controller" },
 			method = { RequestMethod.GET, RequestMethod.POST })
 	public void csPic(HttpSession session,HttpServletResponse response){
 	MemberBean mBean = (MemberBean)session.getAttribute("user");
@@ -175,6 +174,5 @@ public class GetImageController {
 			}
 	}	
 	}
-	
 }
 

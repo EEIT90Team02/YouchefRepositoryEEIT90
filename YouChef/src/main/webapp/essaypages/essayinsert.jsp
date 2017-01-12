@@ -257,6 +257,7 @@
 			<tr class="success">
 			<td><label class="title">標題:</label>
 			<input type="text" name="title" ></td>
+			</tr>
 			<tr class="success">
 			<td><label class="title">內容:</label>
 			<textarea class="form-control" cols="40" rows="10" name="content"></textarea></td>
@@ -264,7 +265,7 @@
 			</table>
 	<a href="<c:url value="${request.contextPath}/essay/getessay.controller"/>"><input type="button" class="btn btn-info" name="getessay" value="回列表"></a>
 	<input type="reset" value="清除內容" class="btn btn-warning">
-	<input type="submit" name="inessay" value="發表文章" type="button" class="btn btn-success">
+	<input type="submit" name="inessay" value="發表文章" class="btn btn-success">
 </form>
 			
 			

@@ -13,7 +13,7 @@
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
 		<style type="text/css">
-					#webSocketBtn{
+	#webSocketBtn{
 		position:fixed;
 		bottom:0px;
 		right:20px;

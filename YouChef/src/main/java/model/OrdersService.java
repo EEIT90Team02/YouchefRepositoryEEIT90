@@ -528,8 +528,6 @@ public class OrdersService {
 		}
 		return result;
 	}
-	
-	
 	private static final String CHEF_CHECK = "SELECT * FROM orders WHERE o_status = 0 and c_id = ? and session = ? and (DATEPART(yy, dineDate) = ? AND DATEPART(mm, dineDate) = ? AND DATEPART(dd, dineDate) = ?)";
 	@Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
 	@SuppressWarnings("deprecation")

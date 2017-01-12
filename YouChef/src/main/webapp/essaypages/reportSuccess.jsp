@@ -11,7 +11,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="shortcut icon" href="../images/YouChef-logo-bk.png">
+		<link rel="icon" href="<c:url value="/images/favicon.ico"/>">
 		
 		<title>優廚</title>
 		
@@ -216,7 +216,7 @@
 		<div id="navigation-wapper">
 			<div id="new-navigation">
 				<ul id="nav-bar">
-					<li class="tab mainpage"><a id="new-nav-mainpage" href="<c:url value="/pages/main.jsp"/>"><span>首頁</span></a></li>
+					<li class="tab mainpage"><a id="new-nav-mainpage" href="#"><span>首頁</span></a></li>
 					<li class="tab blog "><a id="new-nav-blog" href="<c:url value="/chefdisplay/chefview.controller"/>"><span>瀏覽大廚</span></a></li>
 					<li class="tab more-channel"><a id="new-nav-more-tab" href="<c:url value="/showDishes.controller?id=3001"/>"><span>瀏覽餐點</span></a></li>
 					<li class="tab beauty-group "><a class="tab-link" id="new-nav-makeup-tab" href="<c:url value="/pages/getmchef.controller"/>"><span>會員大廚餐點區</span></a></li>
@@ -235,45 +235,13 @@
 			
 	<br>
 	<br>
-	<br>			
-	<c:choose>
-		<c:when test="${empty user}">
-			<input type="submit" name="getessay" value="討論區文章" type="button" class="btn btn-info">
-		</c:when>
-		<c:otherwise>
-			<p>
-				<input type="submit" name="getessay" value="討論區文章" type="button" class="btn btn-info">
-				<a href="<c:url value="${request.contextPath}/essaypages/essayinsert.jsp"/>"><input type="button" class="btn btn-success" name="getessay" value="發文"></a>
-			</p>
-		</c:otherwise>
-	</c:choose>
-	<form action="<c:url value="${request.contextPath}/essay/getessay.controller"/>" method="POST">
-	<table class="table table-hover table-curved">
-		<thead>
-			<tr class="info">
-				<td style="width:100px;">編號</td>
-				<td style="width:100px;">發文者</td>
-				<td>標題</td>
-				<td style="width:200px;">最後發表時間</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:if test="${not empty elist}">
-			<c:forEach var="element" items="${elist}">
-			<fmt:formatDate value="${element.time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日HH:mm"/>
-				<tr class="success">
-				<td>${element.essay_id}</td>
-				<td>${element.writer_id.lastName}${element.writer_id.firstName}</td>
-				<td><a href="<c:url value="${request.contextPath}/essay/selectessay.controller?essay_id=${element.essay_id}"/>">${element.title}</a></td>
-				<td>${formattedDate}</td>
-				</tr>
-			</c:forEach>
-			
-			</c:if>
-		</tbody>	
-	</table>
-	<div style="float: left"><a href="javascript:;" onclick="$('html,body').animate({scrollTop:0},500);" title="回到頂端"><input type="button" class="btn btn-success" name="getessay" value="回到頂端"></a></div>
-	</form>	
+	<br>
+	<H1 style="color:green;">已送出檢舉!!<H1>
+	<Input button type="button" class="btn btn-primary" Value="關閉視窗" onClick="window.close();">
+	<br>
+	<br>
+	<br>
+
 			<hr>
 			<footer>
 				<p>&copy; 2016 Company, Inc.</p>

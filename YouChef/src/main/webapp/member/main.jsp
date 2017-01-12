@@ -353,7 +353,7 @@
 										  </div>
 											<div class="form-group">
 												<label for="captcha">
-												系統產生認證碼:<img src="captcha.controller" alt="New Image"/><br>
+												系統產生認證碼:<img src="<c:url value="/member/captcha.controller"/>" alt="New Image"/><br>
 												請輸入上認證碼:<input type="text" name="captcha" size="3"/><span id="spanCaptcha" class="">  ${errors.captcha}</span>
 												</label>
 											</div>	
@@ -391,7 +391,7 @@
 									</div>
 									<div class="form-group">
 										<label for="captcha">
-										系統產生認證碼:<img src="captcha.controller" alt="New Image"/><br>
+										系統產生認證碼:<img src="<c:url value="/member/captcha.controller"/>" alt="New Image"/><br>
 										請輸入上認證碼:<input type="text" name="captcha" size="3"/><span id="spanCaptcha" class="">  ${errors.captcha}</span>
 										</label>
 									</div>
@@ -440,10 +440,10 @@
 																	<td>處理中</td>
 																</c:when>
 																<c:when test="${element[7] == 1 }">
-																	<td>結束</td>
+																	<td>取消</td>
 																</c:when>
 																<c:when test="${element[7] == 2 }">
-																	<td>取消訂單</td>
+																	<td>已完成</td>
 																</c:when>
 																<c:when test="${element[7] == 3 }">
 																	<td>未赴約</td>

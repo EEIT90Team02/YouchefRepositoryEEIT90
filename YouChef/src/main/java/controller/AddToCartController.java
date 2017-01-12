@@ -39,6 +39,7 @@ import model.OrderDishesService;
 import model.OrdersBean;
 import model.OrdersService;
 import model.RickyService;
+import model.misc.GmailApp;
 
 @Controller
 public class AddToCartController {
@@ -62,6 +63,8 @@ public class AddToCartController {
 	private MemberDAO memberDAO;
 	@Autowired
 	private OrderDishesDAO orderDishesDAO;
+	@Autowired
+	private GmailApp gmailApp;
 	
 		@RequestMapping(value="/AddToCart.controller")
 		@ResponseBody
@@ -158,6 +161,7 @@ public class AddToCartController {
 //			ordersService.updateChefShift(order);
 			rickyService.placeNewChefOrder(ob, holder);
 			
+
 			System.out.println("ob= "+ob);
 			
 			Map <String, String> success = new HashMap();
