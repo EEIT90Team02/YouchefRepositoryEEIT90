@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	<!--SQL方言,以下使用SQLServer -->
+		<property name="hibernate.dialect">model.CustomDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<!-- <property name="hibernate.current_session_context_class">thread</property> -->
+		
+		<mapping class="model.MemberBean" />
+		<mapping class="model.MchefBean" />
+		<mapping class="model.VenueBean" />
+		<mapping class="model.CalendarBean" />
+		<mapping class="model.ChefBean" />
+		<mapping class="model.TypeBean" />
+		<mapping class="model.DishPhotoBean" />
+		<mapping class="model.DishesBean" />
+		<mapping class="model.CsBean" />
+		<mapping class="model.InboxBean" />
+		<mapping class="model.OrdersBean" />
+		<mapping class="model.OrderDishesBean" />
+		<mapping class="model.OrderDetailBean" />
+		<mapping class="model.EssayBean" />
+		<mapping class="model.DiscussBean" />
+		<mapping class="model.ReviewBean" />
+	</session-factory>
+</hibernate-configuration>
