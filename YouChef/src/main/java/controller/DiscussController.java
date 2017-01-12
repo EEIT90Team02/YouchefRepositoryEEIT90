@@ -22,7 +22,10 @@ import model.DiscussBean;
 import model.DiscussService;
 import model.EssayBean;
 import model.EssayService;
+import model.InboxBean;
+import model.InboxService;
 import model.MemberBean;
+import model.MemberDAO;
 
 @Controller
 @RequestMapping(path = {"/discuss"})
@@ -31,9 +34,13 @@ public class DiscussController {
 	DiscussService discussService;
 	@Autowired
 	EssayService essayService;
+	@Autowired
+	InboxService inboxService;
+	@Autowired
+	MemberDAO memberDao;
+	
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
-//		System.out.println("Start to initbinder");
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
 	}
 	@RequestMapping(path={"/insertdiscuss.controller"},
@@ -61,11 +68,8 @@ public class DiscussController {
 	bean.setContent(content);
 	bean.setD_status("0");
 	discussService.insert(bean);
-//	System.out.println("disbean="+bean);
+
 	session.setAttribute("discussPage", bean);
-//	System.out.println("disbean="+bean);
-//	essayService.select(bean);
-//	session.setAttribute("essaybean", bean);
 	return "essaylist";
 	}
 	
@@ -77,7 +81,6 @@ public class DiscussController {
 			@RequestParam(name="content")String content,
 			Model model, HttpSession session) throws InterruptedException {
 	MemberBean writer =(MemberBean) session.getAttribute("user");
-//	DiscussBean dister = (DiscussBean) session.getAttribute("discussList");
 	Map<String,String> errors = new HashMap<String,String>();
 	model.addAttribute("errors",errors);
 	if(content==null || content.length()==0){
@@ -119,5 +122,38 @@ public class DiscussController {
 	List<EssayBean> elist = essayService.listAll();
 	session.setAttribute("elist", elist);
 	return "essaylist";
+	}
+	
+	@RequestMapping(path={"/reportDiscuss.controller"},
+			method = {RequestMethod.GET, RequestMethod.POST},
+			produces="text/html;charset=utf-8")
+	public String reportprocess(
+			@RequestParam(name="discuss_id")String discussid,
+			Model model, HttpSession session) throws InterruptedException {
+	MemberBean writer =(MemberBean) session.getAttribute("user");
+	DiscussBean update = (DiscussBean) session.getAttribute("discusslist");
+	Map<String,String> errors = new HashMap<String,String>();
+	model.addAttribute("errors",errors);
+		MemberBean admin = memberDao.select("eeitgroup3@gmail.com");
+	
+		InboxBean bean = new InboxBean();
+		bean.setSubject("這是一封檢舉信喔!!");
+		bean.setContent("這篇回文不符合規定, 請做處理!!");
+		bean.setI_status("0");
+		long time= new java.util.Date().getTime();
+		bean.setMail_time(new java.sql.Time(time));
+		bean.setReceiver (admin);
+		try {
+			inboxService.sendMail(bean, writer, admin);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int discuss_id = Integer.parseInt(discussid);
+		DiscussBean upbean = new DiscussBean();
+		upbean.setDiscuss_id(discuss_id);
+		upbean=discussService.select(upbean);
+		upbean.setD_status("2");
+		discussService.update(upbean);
+		return "essayselect";
 	}
 }

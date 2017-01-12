@@ -1,10 +1,6 @@
 package model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -13,8 +9,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = "dishPhotoService")
+@Transactional
 public class DishPhotoService {
 	@Autowired
 	DishesService dishesService;

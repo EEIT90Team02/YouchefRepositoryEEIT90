@@ -62,25 +62,7 @@
 		<div class="container col-md-4 col-md-offset-4">
 			<form role="form" action="<c:url value="/backend/login.controller"/>"
 				method="POST">
-				<div class="form-group">
-					<c:choose>
-						<c:when test="${empty memberPic}">
-							<img src="<c:url value="/image/unknow64.png" />" class="center-block">
-						</c:when>
-						<c:otherwise>
-							<c:choose>
-								<c:when test="${not empty memberPic.photo}">
-									<img src="<c:url value="/pages/getMemLoginImage.controller?email=${memberPic.email}" />" class="center-block">
-									<p><label>請問你是 ${memberPic.firstName}${memberPic.lastName} 嗎?</label></p>
-								</c:when>
-								<c:otherwise>
-									<img src="<c:url value="/image/unknow64.png" />" class="center-block">
-									<p><label>請問你是 ${memberPic.firstName}${memberPic.lastName} 嗎?</label></p>
-								</c:otherwise>
-							</c:choose>
-						</c:otherwise>
-					</c:choose>
-				</div>
+
 				<div class="form-group">
 					<label for="inputEmail">電子郵件</label> <input type="text"
 						class="form-control" id="inputEmail" placeholder="輸入電子郵件"

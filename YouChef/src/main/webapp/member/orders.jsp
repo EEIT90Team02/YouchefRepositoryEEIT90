@@ -190,7 +190,7 @@
 									</c:otherwise>
 								</c:choose>
 								<ul class="dropdown-menu">
-									<li><a href="<c:url value="/memberOrders.controller?m_id=${user.m_id}"/>">會員專區</a></li>
+									<li><a href="<c:url value="/member/main.jsp"/>">會員專區</a></li>
 									<li><a href="<c:url value="/member/main.jsp"/>#orders">訂單查詢</a></li>
 									<li>
 										<a href="<c:url value="/mail/inbox.controller"/>">信箱 (未讀:
@@ -405,54 +405,63 @@
 							</div>		
 					  </div>
 					  <div role="tabpanel" class="tab-pane" id="orders">
-					  	<div class="col-md-12">
+	<div class="col-md-12">
 										<table class="table table-hover table-curved">
 												<thead>
 												<tr>
-													<th>訂單號碼</th>
+													<th>訂單編號</th>
+													<th>大廚姓名</th>
 													<th>訂購日</th>
+													<th>時段</th>
+													<th>總消費金額</th>
 													<th>用餐日</th>
 													<th>地點</th>
-													<th>時段</th>													
-													<th>總消費金額</th>
 													<th>狀態</th>
-													<th></th>
+													<th>更新時間</th>
+													<th>人數</th>
 												</tr>
 												</thead>
 												<tbody style="font-size: 80%;">
 												<c:forEach var="element" items="${memOrdersAll}">			
 														   <tr class="warning"> 
-														   		<td>${element[0]}</td>
-														   		<td>${element[8]}</td>
-																<td>${element[3]}</td>
-																<td>${element[4]}</td>
+														   		<td>${element.o_id}</td>
+																<td>${element.mchefBean.memberBean.lastName}${element.mchefBean.memberBean.firstName}
+																	${element.chefBean.lastName}${element.chefBean.firstName}</td>
+																<td>${element.orderDate}</td>
+																<td>${element.session}</td>
+																<td>${element.totalPrice}</td>
+																<td>${element.dineDate}</td>
+																<td>${element.dinePlace}</td>
 															<c:choose>
-																<c:when test="${element[5] == 1}">
-																	<td>中午</td>	
-																</c:when>
-																<c:otherwise>
-																	<td>晚上</td>
-																</c:otherwise>
-															</c:choose>
-																<td>${element[6]}</td>
-															<c:choose>
-																<c:when test="${element[7] == 0}">
+																<c:when test="${element.o_status == 0 }">
 																	<td>處理中</td>
 																</c:when>
-																<c:when test="${element[7] == 1 }">
-																	<td>結束</td>
+																<c:when test="${element.o_status == 1 }">
+																	<td>訂單成功</td>
 																</c:when>
-																<c:when test="${element[7] == 2 }">
-																	<td>取消訂單</td>
-																</c:when>
-																<c:when test="${element[7] == 3 }">
-																	<td>未赴約</td>
-																</c:when>
+																<c:otherwise>
+																	<td>訂單失敗</td>
+																</c:otherwise>
 															</c:choose>
-															<td><a class="btn btn-info" href="<c:url value="/memOrdersDetail.controller?o_id=${element[0]}&o_status=${element[7]}"/>" target="_blank">詳細</a></td>
-															</tr>
+																<td>${element.updateTime}</td>
+																<td>${element.people}</td>
+																
+															<c:choose>
+																<c:when test="${element.o_status == 0 }">
+																	<td><a href="<c:url value="/maintain.controller?o_status=4&o_id=${element.o_id}"/>"  
+																		   class="btn btn-success"
+																		   onClick="return(confirm('確定取消訂單嗎?'))">取消訂單
+																		</a>
+																	</td>
+																</c:when>
+														
+																<c:otherwise>
+																	<td>
+																		訂單取消
+																	</td>
+																</c:otherwise>
+															</c:choose>
 												</c:forEach>
-				
 												</tbody>
 											</table>
 							</div>
@@ -779,14 +788,14 @@
 												      <textarea class="form-control" rows="8" id="menu" wrap="soft" style="text-align: center;" name="menu">${param.menu}</textarea><font color="red">${errors.menu}</font>
 												    </div>
 												  </div>
-<!-- 												  <div class="form-group"> -->
-<!-- 												    <label class="col-md-2 control-label">菜系</label> -->
-<!-- 												    <div class="col-md-3"> -->
-<!-- 												      <select class="form-control" id="t_id" name="t_id" > -->
-<!-- 														javaScript -->
-<!-- 													  </select> -->
-<!-- 												    </div> -->
-<!-- 												  </div> -->
+												  <div class="form-group">
+												    <label class="col-md-2 control-label">菜系</label>
+												    <div class="col-md-3">
+												      <select class="form-control" id="t_id" name="t_id" >
+														<!-- javaScript -->
+													  </select>
+												    </div>
+												  </div>
 												  <div class="form-group">
 												    <label class="col-md-2 control-label">價格<font color="red">*</font></label>
 												    <div class="col-md-3">

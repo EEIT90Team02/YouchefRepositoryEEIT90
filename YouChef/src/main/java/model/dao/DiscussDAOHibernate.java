@@ -32,7 +32,7 @@ public class DiscussDAOHibernate implements DiscussDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DiscussBean> selectAll() {
-		Query query = this.getSession().createQuery("from DiscussBean where e_status='0'");
+		Query query = this.getSession().createQuery("from DiscussBean where (e_status='0' or e_status='2')");
 		return (List<DiscussBean>) query.getResultList();
 	}
 	@Override
@@ -48,7 +48,7 @@ public class DiscussDAOHibernate implements DiscussDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DiscussBean> discussAll(Integer essay_id) {
-		Query query = this.getSession().createQuery("from DiscussBean where d_status='0' and essay_id=:essay_id");
+		Query query = this.getSession().createQuery("from DiscussBean where (d_status='0' or d_status='2') and essay_id=:essay_id");
 		query.setParameter("essay_id", essay_id);
 		return (List<DiscussBean>) query.getResultList();
 	}

@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>	
+<title>後台 - 討論區管理</title>	
 	<!-- Bootstrap core CSS -->
 	<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
 	
-	<style type="text/css">
-					#webSocketBtn{
+		<style type="text/css">
+			#webSocketBtn{
 		position:fixed;
 		bottom:0px;
 		right:20px;
@@ -45,11 +45,11 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
+                        <li><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
-                        <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
-                        <li><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
+                        <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>                        
+                        <li class="active"><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                     </ul>
@@ -77,17 +77,12 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
+                                    <li class="hidden-xs">
+<!--                                    	<li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_test">新增大廚</a></li> -->
+                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
-	                                    <a href="<c:url value="/admin/mail/inbox.controller"/>" class="btn btn-info">收件匣</a>
-									</li>
-                                    <li>
-                                    	<a href="<c:url value="/backend/sendMail.jsp"/>" class="btn btn-info">新郵件</a>
-                                    </li>
-                                    <li>
-                                    	<a href="<c:url value="/admin/mail.controller?action=outbox&mail_id=${element.mail_id}"/>" class="btn btn-info">寄件匣</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="icon-info"> <i class="fa fa-bell" aria-hidden="true"></i>
+                                        <a href="#" class="icon-info">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
                                             <span class="label label-primary" id="mailCount">
                                             	<c:choose>
 													<c:when test="${empty inbox}">(0)</c:when>
@@ -129,80 +124,40 @@
                     </header>
                 </div>
                 <div class="user-dashboard">
-                    <h1>收件匣</h1>
+                    <h1>討論區列表</h1>
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 gutter">
                             <div class="sales">
-							    				<table class="mailtable">
-						<tr class="datarowodd">
-							<td>寄件者：
-								<label>
-									${adminReplyMail.sender.firstName}${adminReplyMail.sender.lastName} (${adminReplyMail.sender.email})
-								</label>
-							</td>
-						</tr>
-						<tr class="dataroweven">
-							<td>發送時間：
-								<label>
-									<fmt:formatDate value="${adminReplyMail.mail_time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日 hh:mm"/>
-									${formattedDate}
-								</label>
-							</td>
-						</tr>
-						<tr  class="datarowodd">
-							<td>訊息主旨：
-								<label>
-									${adminReplyMail.subject}
-								</label>
-							</td>
-						</tr>
-						<tr class="dataroweven">
-							<td colspan="2" >
-								訊息內容：
-							</td>
-						</tr>
-						<tr  class="mailContent">
-							<td colspan="2">
-								<label>
-								${adminReplyMail.content}
-								</label>
-							</td>
-						</tr>
-				</table>
-	
-				<button id="replyBtn" class="btn btn-success">回覆</button>
-				
-				<br/>
-				<br/>
-	
-				<div id="replyBlock" style="display:none">
-						<form class="form-horizontal" role="form" action="<c:url value="/email/sendMail.controller?role=admin"/>" method="post">
-							<div class="form-group">
-								<label for="to" class="col-sm-2">寄給:</label>
-								<div class="col-sm-10">
-									  <input type="email" class="form-control select2-offscreen select2-hidden-accessible" id="to" readonly="readonly" name="email" value="${adminReplyMail.sender.email }"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="subject" class="col-sm-2">主旨:</label>
-								<div class="col-sm-10">
-									  <input type="text" class="form-control select2-offscreen select2-hidden-accessible" id="subjcet" name="subject"></input>
-								</div>
-							</div>
-						
-							<br>	
-								
-							<div class="form-group">
-								<textarea class="form-control" id="message" name="content" rows="12" placeholder="請在這輸入文字" name="content" maxlength="1024"></textarea>
-							</div>
-		
-							<div class="form-group">	
-								<button type="submit" class="btn btn-success">寄送</button>
-								<button type="button" value="clear" class="btn btn-danger" onclick="javascript:clearForm();">清除</button>
-							</div>
-						</form>
-				</div>	
+								<table class="table table-hover table-curved">
+										<thead>
+										<tr>
+											<th>編號</th>
+											<th>發文者</th>
+											<th>標題</th>
+											<th>最後發表時間</th>										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="element" items="${backlist}">	
+										<fmt:formatDate value="${element.time}" var="formattedDate" type="date" pattern="YYYY年MM月dd日HH:mm"/>	
+												   <tr class="warning"> 
+<%-- 												   		<td><a href="<c:url value="/essay/selectessay.controller?essay_id=${element.essay_id}"/>">${element.essay_id}</a></td> --%>
+														<td><a href="" onclick="window.open(' <c:url value="/essay/selectessay.controller?essay_id=${element.essay_id}"/> ', 'YouChef', config='height=700,width=1000');" >${element.essay_id}</a></td>
+														<td>${element.writer_id.lastName}${element.writer_id.firstName}</td>
+														<td>${element.time}</td>
+														<td>${formattedDate}</td>
+														<td><a href="<c:url value="/essay/backnothing.controller?essay_id=${element.essay_id}"/>"  
+																   class="btn btn-success"
+																   onClick="return(confirm('確認該篇文章沒有違反規則?'))">正常
+																</a>
+																<a href="<c:url value="/essay/backessay.controller?essay_id=${element.essay_id}&writer_id=${element.writer_id}"/>"  
+																   class="btn btn-danger"
+																   onClick="return(confirm('確定該篇文章違反規則?'))">鎖定
+															</a>
+														</td>
 
+										</c:forEach>
+										</tbody>
+									</table>
                                 </div>
                             </div>
                         </div>
@@ -210,12 +165,17 @@
                 </div>
             </div>
         </div>
-			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+
+
+   
+   			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
 			
 			<div id="webSocket" style="display:none">
 				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
-			</div>			
-			
+			</div>		
+    
+    
+    
     	<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
     	</script>
@@ -229,7 +189,26 @@
 		<!-- 用Ajax 連接 controller 去新增大廚 -->
     	
     	<script type="text/javascript">
- 	
+    	  $(document).ready(function () {
+    		  $("#submit").click(function(){
+    		      $.ajax({
+    		          type: "POST",
+    		          url: "", // 連接到controller
+    		          data: $('form.insert').serialize(),
+    		          success: function(msg){
+//     		        	  可以控制語法去改變html
+//     		              $("#thanks").html(msg) //hide button and show thank you
+//     		              $("#form-content").modal('hide'); //hide popup  
+						  alert("success");
+    		          },
+    		          error: function(){
+    		              alert("failure");
+    		          }
+    		      });
+    		  });
+    		  });
+    	
+
 		$(document).ready(function(){
 		   $('[data-toggle="offcanvas"]').click(function(){
 		       $("#navigation").toggleClass("hidden-xs");
@@ -238,39 +217,23 @@
 		
 		
 		<c:choose>
-			<c:when test="${not empty admin}">			
-				function MailCountValue(){
-					$.get('<c:url value='/admin/mailCheck.controller' />' ,{'m_id':${admin.m_id}},function(data){
-							$('#mailCount').html(data);
-						});
-					}				
-				MailCountValue();
-				setInterval('MailCountValue()',10000);					
-			</c:when>
+		<c:when test="${not empty admin}">			
+			function MailCountValue(){
+				$.get('<c:url value='/admin/mailCheck.controller' />' ,{'m_id':${admin.m_id}},function(data){
+						$('#mailCount').html(data);
+					});
+				}				
+			MailCountValue();
+			setInterval('MailCountValue()',10000);					
+		</c:when>
 		</c:choose>
 
-		$(document).ready(function(){
-			$("#replyBtn").click(function(){
-				$("#replyBlock").slideToggle();
-			});
-		});
-		
-		function clearForm() {
-			var inputs = document.getElementsByTagName("input");
-			for(var i=0; i<inputs.length; i++) {
-				if(inputs[i].type=="text") {
-					inputs[i].value="";
-				}
-			}
-			document.getElementById("message").value = "";
-		}
-			
-		
 		$(document).ready(function(){
 			$("#webSocketBtn").click(function(){
 				$("#webSocket").slideToggle();
 			});
 		});
+
 		</script>
 		
 		<script src="<c:url value="/js/bootstrap.min.js"/>"></script>

@@ -8,6 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Chef</title>
 <link rel="stylesheet" type="text/css" href="" />
+
+		
+		<!-- Bootstrap core CSS -->
+		<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
+		
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<link href="<c:url value="/css/ie10-viewport-bug-workaround.css"/>"	rel="stylesheet">
+		
 <script type="text/javascript">
 function clearForm() {
 	var inputs = document.getElementsByTagName("input");
@@ -21,14 +29,14 @@ function clearForm() {
 </head>
 <body>
 
-<h3 align='center'>Welcome </h3>
-
-<h3 align='center'>Chef Table</h3>
+<div class="col-md-8 col-md-offset-2"> 
 <form action="<c:url value="/chefdisplay/chefupdate.controller"/>" action="upload.action" enctype="multipart/form-data" method="post">
-<table  class="table_color" width="680" border="2" align="center" cellpadding="2" cellspacing="2" bordercolorlight="#FFFFFF" bordercolordark="#330033">
+<!-- <table  class="table_color" width="680" border="2" align="center" cellpadding="2" cellspacing="2" bordercolorlight="#FFFFFF" bordercolordark="#330033"> -->
+	 
+<table  class="table table-condensed">	 
 	 <tr height='40'>
        <td colspan="4" align="center" valign="bottom"> 
-           <TABLE width="680" BORDER='0' style="background:#ffE4C4">
+           <TABLE >
             <TR height='5' >
                 <TD align='center' >&nbsp;</TD>
             </TR>
@@ -158,6 +166,10 @@ function clearForm() {
 </table>
 
 </form>
+</div>
+		<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="<c:url value="/js/ie10-viewport-bug-workaround.js"/>"></script>
 
 </body>
 </html>

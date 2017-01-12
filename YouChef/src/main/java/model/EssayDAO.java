@@ -14,4 +14,6 @@ public interface EssayDAO {
 	List<EssayBean> listAll();
 
 	boolean delete(int essay_id, String string);
+	
+	List<EssayBean> listBack();
 }

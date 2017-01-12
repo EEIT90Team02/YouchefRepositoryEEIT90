@@ -10,7 +10,26 @@
 	<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 	
 	<link href="<c:url value="/css/back.end.css"/>" rel="stylesheet">	
+
+	<style type="text/css">
+			#webSocketBtn{
+		position:fixed;
+		bottom:0px;
+		right:20px;
+		z-index:9999;
+	}
 	
+	#webSocket {
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		hieght:500px;
+		Width: 300px;
+		z-index:9998;
+		background:white;
+	}
+	</style>
+		
 	
 </head>
 <body class="home">
@@ -25,11 +44,11 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
-                        <li><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
+                        <li><a href="<c:url value="/backend/ListAllMember.controller"/>"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">會員管理</span></a></li>
+                        <li class="active"><a href="<c:url value="${request.contextPath}/chefdisplay/chefview2.controller"/>"><i class="glyphicon glyphicon-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">大廚管理</span></a></li>
                         <li><a href="<c:url value="${request.contextPath}/showDishes2.controller?t_id=3001"/>"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i><span class="hidden-xs hidden-sm">餐點管理</span></a></li>
                         <li><a href="<c:url value="/backEndOrder.controller"/>"><i class="glyphicon glyphicon-usd" aria-hidden="true"></i><span class="hidden-xs hidden-sm">訂單管理</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
+                        <li><a href="<c:url value="${request.contextPath}/essay/getbackessay.controller"/>"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span class="hidden-xs hidden-sm">討論區管理</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm"></span></a></li>
                     </ul>
@@ -57,8 +76,10 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
-                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">增刪管理員</a></li>
-<!--                                    	<li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_test">新增大廚</a></li> -->
+                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">新增大廚</a></li> 
+                                    
+                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project2">新增餐點</a></li> 
+
                                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                                     <li>
                                         <a href="#" class="icon-info">
@@ -264,6 +285,15 @@ request.setAttribute("basePath", basePath);
             </div>
 
         </div>
+        
+        
+   
+   			<button id="webSocketBtn"><img id="csPic" src="<c:url value="/image/info.png"/>" width="50" height="50"></button>
+			
+			<div id="webSocket" style="display:none">
+				<iframe src="<c:url value="/demo.jsp" /> " width="300" height="500"></iframe>
+			</div>		
+    
     </div>
     	<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
@@ -308,6 +338,8 @@ request.setAttribute("basePath", basePath);
 			$(this).attr("selected");
 			
 		});
+		
+		
     	  
     	</script>
 			
@@ -342,6 +374,12 @@ request.setAttribute("basePath", basePath);
     		      });
     		  });
     		  });
+    	  
+    				$(document).ready(function(){
+    					$("#webSocketBtn").click(function(){
+    						$("#webSocket").slideToggle();
+    					});
+    				});
     			  </script>
 		<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

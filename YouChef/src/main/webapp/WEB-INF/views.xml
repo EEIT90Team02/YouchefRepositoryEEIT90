@@ -60,7 +60,10 @@
 	</bean>	
 	<bean id="memorders.show" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/member/main.jsp"></property>
-	</bean>	
+	</bean>
+	<bean id="orderDetail.show" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/member/orderDetail.jsp"></property>
+	</bean>		
 <!-- 	end Shian -->
 
 <!-- Long Bro -->
@@ -171,6 +174,13 @@
 	</bean>
 	<bean id="reviewPage" class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/essaypages/reviewPage.jsp"></property>
+	</bean>
+	<bean id="essayback"	class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/essaypages/essayBack.jsp"/>
+	</bean>
+	<bean id="back.redirect" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/essaypages/essayBack.jsp"></property>
 	</bean>
 <!-- 	end Lee -->
 

@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>大廚點餐區</title>
+<link rel="shortcut icon" href="<c:url value='${request.contextPath}/images/favicon.png' />">
 <link rel="stylesheet" href="css/bootstrap.min.css">
  <style>
   .badge-notify{
@@ -543,6 +544,7 @@
 		        		 //document.location.href="http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror";
 		        	}else{
 		        		 alert("預訂成功");
+		        		 window.close();
 // 		        		 window.location.replace('https://www.youtube.com/');
 		        		 //document.location.href="https://www.youtube.com/";
 		        	}
