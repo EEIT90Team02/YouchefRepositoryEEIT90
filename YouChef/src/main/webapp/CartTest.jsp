@@ -581,6 +581,7 @@
 			   var result = data;
 	        	if(result.duplicate){
 	        		 alert("此時段已經被預訂");
+	        		 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 	        		 //document.location.href="http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror";
 	        	}else{
@@ -595,12 +596,14 @@
 		      //On error do this
 		     
 		        if (xhr.status == 200) {
-// 		        	 alert("此時段已經被預訂");
+ 		        	 alert("此時段已經被預訂");
+ 		        	 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 		            //alert(ajaxOptions);
 		        }
 		        else {
-// 		        	 alert("此時段已經被預訂");
+ 		        	 alert("此時段已經被預訂");
+ 		        	 window.close();
 // 	        		 window.location.replace('http://stackoverflow.com/questions/6643838/jquery-ajax-parsererror');
 		            //alert(xhr.status);
 		            //alert(thrownError);
